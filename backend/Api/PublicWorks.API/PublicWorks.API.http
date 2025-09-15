@@ -1,0 +1,6 @@
+@PublicWorks.API_HostAddress = http://localhost:5142
+
+GET {{PublicWorks.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

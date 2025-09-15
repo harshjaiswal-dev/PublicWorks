@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "N+Fx98HCVxA=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\harsh.jaiswal\\Desktop\\MyFullstackApp\\backend\\Api\\PublicWorks.API\\PublicWorks.API.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\harsh.jaiswal\\.nuget\\packages\\microsoft.aspnetcore.openapi\\9.0.8\\microsoft.aspnetcore.openapi.9.0.8.nupkg.sha512",
+    "C:\\Users\\harsh.jaiswal\\.nuget\\packages\\microsoft.openapi\\1.6.17\\microsoft.openapi.1.6.17.nupkg.sha512"
+  ],
+  "logs": []
+}

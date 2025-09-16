@@ -3,20 +3,29 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Model
 {
-    public class Image
+    public class Message
     {
         [Key]
         public int ID { get; set; }
-    
+
         [Required]
         public int IssueId { get; set; }
 
         [ForeignKey(nameof(IssueId))]
         public Issue Issue { get; set; } = null!;
+    
+        [Required]
+        public int SendBy { get; set; }
+    
+        [Required]
+        public int SendTo { get; set; }      
 
         [Required, MaxLength(255)]
-        public string ImagePath { get; set; } = string.Empty;
+        public string Subject { get; set; } = string.Empty;
+
+        [Required, MaxLength(500)]
+        public string Body { get; set; } = string.Empty;
     
-        public DateTimeOffset UploadedAt { get; set; }
-    }  
+        public DateTime SendDate { get; set; }
+    }
 }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Model
 {
-    public class Image
+    public class Remark
     {
         [Key]
         public int ID { get; set; }
@@ -14,9 +14,13 @@ namespace Data.Model
         [ForeignKey(nameof(IssueId))]
         public Issue Issue { get; set; } = null!;
 
-        [Required, MaxLength(255)]
-        public string ImagePath { get; set; } = string.Empty;
+        [Required, MaxLength(1000)]
+        public string RemarkText { get; set; } = string.Empty;
     
-        public DateTimeOffset UploadedAt { get; set; }
-    }  
+        [Required]
+        public int RemarkBy { get; set; } 
+    
+        [Required]
+        public DateTimeOffset RemarkAt { get; set; }
+    }
 }

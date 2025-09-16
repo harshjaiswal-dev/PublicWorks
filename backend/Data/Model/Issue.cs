@@ -6,7 +6,7 @@ namespace Data.Model
     public class Issue
     {
         [Key]
-        public int ID { get; set; }
+        public int IssueId { get; set; }
 
         [Required(ErrorMessage = "User is required.")]
         public int UserId { get; set; }

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PublicWorks.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+14255f568a835940b95274c82c18feb5a9b0fbed")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d125d7fa85882a95028af4b5f7a05037df770a2e")]
 [assembly: System.Reflection.AssemblyProductAttribute("PublicWorks.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PublicWorks.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

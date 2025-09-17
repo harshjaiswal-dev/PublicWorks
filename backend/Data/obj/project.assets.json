@@ -4712,19 +4712,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\harsh.jaiswal\\.nuget\\packages\\": {}
+    "C:\\Users\\poorvi.prajapati\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\harsh.jaiswal\\Desktop\\MyFullstackApp\\backend\\Data\\Data.csproj",
+      "projectUniqueName": "C:\\Users\\poorvi.prajapati\\OneDrive - AgreeYa\\Desktop\\PublicWorks\\backend\\Data\\Data.csproj",
       "projectName": "Data",
-      "projectPath": "C:\\Users\\harsh.jaiswal\\Desktop\\MyFullstackApp\\backend\\Data\\Data.csproj",
-      "packagesPath": "C:\\Users\\harsh.jaiswal\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\harsh.jaiswal\\Desktop\\MyFullstackApp\\backend\\Data\\obj\\",
+      "projectPath": "C:\\Users\\poorvi.prajapati\\OneDrive - AgreeYa\\Desktop\\PublicWorks\\backend\\Data\\Data.csproj",
+      "packagesPath": "C:\\Users\\poorvi.prajapati\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\poorvi.prajapati\\OneDrive - AgreeYa\\Desktop\\PublicWorks\\backend\\Data\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\harsh.jaiswal\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\poorvi.prajapati\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
@@ -4791,7 +4791,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\harsh.jaiswal\\Desktop\\MyFullstackApp\\backend\\Api\\PublicWorks.API\\PublicWorks.API.csproj": {}
+    "C:\\Users\\poorvi.prajapati\\OneDrive - AgreeYa\\Desktop\\PublicWorks\\backend\\Api\\PublicWorks.API\\PublicWorks.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\harsh.jaiswal\\Desktop\\MyFullstackApp\\backend\\Api\\PublicWorks.API\\PublicWorks.API.csproj": {
+    "C:\\Users\\poorvi.prajapati\\OneDrive - AgreeYa\\Desktop\\PublicWorks\\backend\\Api\\PublicWorks.API\\PublicWorks.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\harsh.jaiswal\\Desktop\\MyFullstackApp\\backend\\Api\\PublicWorks.API\\PublicWorks.API.csproj",
+        "projectUniqueName": "C:\\Users\\poorvi.prajapati\\OneDrive - AgreeYa\\Desktop\\PublicWorks\\backend\\Api\\PublicWorks.API\\PublicWorks.API.csproj",
         "projectName": "PublicWorks.API",
-        "projectPath": "C:\\Users\\harsh.jaiswal\\Desktop\\MyFullstackApp\\backend\\Api\\PublicWorks.API\\PublicWorks.API.csproj",
-        "packagesPath": "C:\\Users\\harsh.jaiswal\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\harsh.jaiswal\\Desktop\\MyFullstackApp\\backend\\Api\\PublicWorks.API\\obj\\",
+        "projectPath": "C:\\Users\\poorvi.prajapati\\OneDrive - AgreeYa\\Desktop\\PublicWorks\\backend\\Api\\PublicWorks.API\\PublicWorks.API.csproj",
+        "packagesPath": "C:\\Users\\poorvi.prajapati\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\poorvi.prajapati\\OneDrive - AgreeYa\\Desktop\\PublicWorks\\backend\\Api\\PublicWorks.API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\harsh.jaiswal\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\poorvi.prajapati\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -47,6 +47,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[9.0.8, )"
+            },
+            "Microsoft.Identity.Client": {
+              "target": "Package",
+              "version": "[4.77.0, )"
             }
           },
           "imports": [
@@ -68,7 +72,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.304/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.305/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

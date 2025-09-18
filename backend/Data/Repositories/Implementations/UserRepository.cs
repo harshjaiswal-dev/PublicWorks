@@ -1,10 +1,10 @@
 using Data;
 using Data.GenericRepository;
-using Data.Interfaces;
 using Data.Model;
+using Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Implementations.Repositories
+namespace Data.Repositories.Implementations
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {

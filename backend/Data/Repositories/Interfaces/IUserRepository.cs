@@ -1,7 +1,7 @@
 using Data.Model;
 using Data.GenericRepository;
 
-namespace Data.Interfaces
+namespace Data.Repositories.Interfaces
 {
     public interface IUserRepository : IGenericRepository<User>
     {

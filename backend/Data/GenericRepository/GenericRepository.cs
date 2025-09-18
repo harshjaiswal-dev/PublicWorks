@@ -5,8 +5,8 @@ namespace Data.GenericRepository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly AppDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected  readonly AppDbContext _context;
+        protected  readonly DbSet<T> _dbSet;
 
         public GenericRepository(AppDbContext context)
         {
@@ -39,9 +39,5 @@ namespace Data.GenericRepository
             _dbSet.Remove(entity);
         }
 
-        public async Task SaveAsync()
-        {
-            await _context.SaveChangesAsync();
-        }
     }
 }

@@ -1,18 +1,15 @@
-using Data;
 using Data.GenericRepository;
-using Data.Interfaces;
 using Data.Model;
+using Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Implementations.Repositories
+namespace Data.Repositories.Implementations
 {
     public class RemarkRepository : GenericRepository<Remark>, IRemarkRepository
     {
-        private readonly AppDbContext _context;
-
         public RemarkRepository(AppDbContext context) : base(context)
         {
-            _context = context;
+            
         }
     }
 }

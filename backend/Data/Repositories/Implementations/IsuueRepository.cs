@@ -1,18 +1,15 @@
-using Data;
 using Data.GenericRepository;
-using Data.Interfaces;
 using Data.Model;
+using Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Implementations.Repositories
+namespace Data.Repositories.Implementations
 {
     public class IssueRepository : GenericRepository<Issue>, IIssueRepository
     {
-        private readonly AppDbContext _context;
-
         public IssueRepository(AppDbContext context) : base(context)
         {
-            _context = context;
+            
         }
     }
 }

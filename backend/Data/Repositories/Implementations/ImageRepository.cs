@@ -1,18 +1,15 @@
-using Data;
 using Data.GenericRepository;
-using Data.Interfaces;
 using Data.Model;
+using Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
-namespace Implementations.Repositories
+namespace Data.Repositories.Implementations
 {
     public class ImageRepository : GenericRepository<Image>, IImageRepository
     {
-        private readonly AppDbContext _context;
-
         public ImageRepository(AppDbContext context) : base(context)
         {
-            _context = context;
+
         }
     }
 }

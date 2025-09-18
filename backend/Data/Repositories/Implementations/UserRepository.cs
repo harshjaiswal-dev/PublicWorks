@@ -1,4 +1,4 @@
-using Data;
+using System;
 using Data.GenericRepository;
 using Data.Model;
 using Data.Repositories.Interfaces;
@@ -8,11 +8,9 @@ namespace Data.Repositories.Implementations
 {
     public class UserRepository : GenericRepository<User>, IUserRepository
     {
-        private readonly AppDbContext _context;
-
         public UserRepository(AppDbContext context) : base(context)
         {
-            _context = context;
+
         }
 
         public async Task<IEnumerable<User>> GetUsersByRoleIdAsync(int roleId)

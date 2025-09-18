@@ -6,6 +6,11 @@ namespace Data.UnitOfWork
     {
         Task<int> CompleteAsync();
 
+        IAuditTrailRepository AuditTrailRepository { get; }
+        IImageRepository ImageRepository { get; }
+        IIssueRepository IssueRepository { get; }
+        IMessageRepository MessageRepository { get; }
+        IRemarkRepository RemarkRepository { get; }
         IUserRepository UserRepository { get; }
        
     }

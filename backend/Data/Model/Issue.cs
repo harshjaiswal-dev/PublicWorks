@@ -37,7 +37,7 @@ namespace Data.Model
         [Required(ErrorMessage = "Priority is required.")]
         public int PriorityId { get; set; }
 
-        [ForeignKey(nameof(StatusId))]
+        [ForeignKey(nameof(PriorityId))]
         public Priority Priority { get; set; } = null!;
     
         [Required(ErrorMessage = "Status is required.")]

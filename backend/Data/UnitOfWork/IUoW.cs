@@ -4,7 +4,7 @@ namespace Data.UnitOfWork
 {
     public interface IUoW : IDisposable
     {
-        Task<int> CompleteAsync();
+        Task<int> SaveAsync();
 
         IAuditTrailRepository AuditTrailRepository { get; }
         IImageRepository ImageRepository { get; }

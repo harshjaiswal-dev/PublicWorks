@@ -15,7 +15,7 @@ namespace Data.UnitOfWork
         {
             _context.Dispose();
         }
-        public async Task<int> CompleteAsync()
+        public async Task<int> SaveAsync()
         {
             return await _context.SaveChangesAsync();
         }

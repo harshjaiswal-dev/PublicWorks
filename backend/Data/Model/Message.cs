@@ -12,7 +12,7 @@ namespace Data.Model
         public int IssueId { get; set; }
 
         [ForeignKey(nameof(IssueId))]
-        public Issue Issue { get; set; } = null!;
+        public Issue? Issue { get; set; } 
     
         [Required]
         public int SendBy { get; set; }

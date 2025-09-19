@@ -12,13 +12,13 @@ namespace Data.Model
         public int UserId { get; set; }
 
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; } = null!;
+        public User? User { get; set; }
         
         [Required(ErrorMessage = "Category is required.")]
         public int CategoryId { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
-        public Category Category { get; set; } = null!;
+        public Category? Category { get; set; } 
 
         [Required(ErrorMessage = "Latitude is required.")]
         [Column(TypeName = "decimal(9,6)")]
@@ -38,13 +38,13 @@ namespace Data.Model
         public int PriorityId { get; set; }
 
         [ForeignKey(nameof(PriorityId))]
-        public Priority Priority { get; set; } = null!;
+        public Priority? Priority { get; set; }
     
         [Required(ErrorMessage = "Status is required.")]
         public int StatusId { get; set; }
     
         [ForeignKey(nameof(StatusId))]
-        public Status Status { get; set; } = null!;
+        public Status? Status { get; set; } 
     
     }
 }

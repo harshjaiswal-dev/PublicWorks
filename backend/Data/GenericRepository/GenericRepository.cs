@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using Data.Exceptions;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.GenericRepository
@@ -19,24 +20,43 @@ namespace Data.GenericRepository
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<T?> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+            var entity = await _dbSet.FindAsync(id);
+            if (entity == null)
+                throw new EntityNotFoundException(typeof(T).Name, id);
+
+            return entity;
         }
 
         public async Task AddAsync(T entity)
         {
+            if (entity == null)
+                throw new NullEntityException(typeof(T).Name);
+
             await _dbSet.AddAsync(entity);
         }
 
-        public void Update(T entity)
+        public async Task UpdateAsync(int id, T entity)
         {
-            _dbSet.Update(entity);
+            if (entity == null)
+                throw new NullEntityException(typeof(T).Name);
+
+            var existingEntity = await _dbSet.FindAsync(id);
+            if (existingEntity == null)
+                throw new EntityNotFoundException(typeof(T).Name, id);
+
+            _context.Entry(existingEntity).CurrentValues.SetValues(entity);
         }
 
-        public void Delete(T entity)
+        public async Task DeleteAsync(int id)
         {
-            _dbSet.Remove(entity);
+            var existingEntity = await _dbSet.FindAsync(id);
+            if (existingEntity == null)
+                throw new EntityNotFoundException(typeof(T).Name, id);
+      
+            _dbSet.Remove(existingEntity);
+            
         }
 
     }

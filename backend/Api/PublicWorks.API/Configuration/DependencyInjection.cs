@@ -12,7 +12,11 @@ namespace PublicWorks.API.Configuration
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IRemarkService, RemarkService>();
             services.AddScoped<IUserService, UserService>();
+             services.AddScoped<IPriorityService, PriorityService>();
+             services.AddScoped<ICategoryService, CategoryService>();
+                 services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IUoW, UoW>();
+            services.AddScoped<IStatusService, StatusService>();
             
             return services;
         }

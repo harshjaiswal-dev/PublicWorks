@@ -6,10 +6,10 @@ namespace PublicWorks.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class MessageController : ControllerBase
+    public class RoleController : ControllerBase
     {
-        private readonly IMessageService _service;
-        public MessageController(IMessageService service)
+        private readonly IRoleService _service;
+        public RoleController(IRoleService service)
         {
             _service = service;
         }
@@ -17,40 +17,40 @@ namespace PublicWorks.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var messages = await _service.GetMessagesAsync();
+            var messages = await _service.GetRoleAsync();
             return Ok(messages);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var message = await _service.GetMessageByIdAsync(id);
+            var message = await _service.GetRoleByIdAsync(id);
             if (message == null)
                 return NotFound();
             return Ok(message);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] MessageDto message)
+        public async Task<IActionResult> Create([FromBody] RoleDto roles)
         {
-            await _service.CreateMessageAsync(message);
-            return CreatedAtAction(nameof(GetById), new { id = message.ID }, message);
+            await _service.CreateRoleAsync(roles);
+            return CreatedAtAction(nameof(GetById), new { id = roles.RoleId }, roles);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] MessageDto message)
+        public async Task<IActionResult> Update(int id, [FromBody] RoleDto roles)
         {
-            if (id != message.ID)
+            if (id != roles.RoleId)
                 return BadRequest();
 
-            await _service.UpdateMessageAsync(id, message);
+            await _service.UpdateRoleAsync(id, roles);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteMessageAsync(id);
+            await _service.DeleteRoleAsync(id);
             return NoContent();
         }
 

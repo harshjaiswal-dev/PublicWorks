@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Implementations.Repositories
 {
-    public class StatusRepository : GenericRepository<Status>, IStatusRepository
+    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
     {
     //     private readonly AppDbContext _context;
 
-        public StatusRepository(AppDbContext context) : base(context)
+        public CategoryRepository(AppDbContext context) : base(context)
         {
            //_context = context;
         }

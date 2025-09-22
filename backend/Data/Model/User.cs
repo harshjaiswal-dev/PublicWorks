@@ -23,7 +23,7 @@ namespace Data.Model
         public string? ProfilePicture { get; set; }  
 
         [Required]
-        public int RoleId { get; set; }  // FK RoleID
+        public int RoleId { get; set; } 
 
         [ForeignKey(nameof(RoleId))]
         public Role? Role { get; set; }

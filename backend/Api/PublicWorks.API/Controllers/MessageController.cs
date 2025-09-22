@@ -1,60 +1,58 @@
-using Business.Interface;
-using Data;
-using Data.Model;
+using Business.DTOs;
+using Business.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 
-[ApiController]
-[Route("api/[controller]")]
-public class MessageController : ControllerBase
+namespace PublicWorks.API.Controllers
 {
-     private readonly IUnitOfWork _unitOfWork;
-      
-    public MessageController( IUnitOfWork unitofwork)
+    [ApiController]
+    [Route("api/[controller]")]
+    public class MessageController : ControllerBase
     {
-      
-        _unitOfWork = unitofwork;
-    }
+        private readonly IMessageService _service;
+        public MessageController(IMessageService service)
+        {
+            _service = service;
+        }
 
-    
+        [HttpGet]
+        public async Task<IActionResult> GetAll()
+        {
+            var messages = await _service.GetMessagesAsync();
+            return Ok(messages);
+        }
 
-    [HttpGet]
-    public async Task<IActionResult> GetAll()
-    {
-      
-        var messages = await _unitOfWork.Message.GetAllAsync();
-        return Ok(messages);
-    }
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetById(int id)
+        {
+            var message = await _service.GetMessageByIdAsync(id);
+            if (message == null)
+                return NotFound();
+            return Ok(message);
+        }
 
-    [HttpGet("{id}")]
-    public async Task<IActionResult> GetById(int id)
-    {  
-        var message = await _unitOfWork.Message.GetByIdAsync(id);
-        return message == null ? NotFound() : Ok(message);
-    }
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] MessageDto message)
+        {
+            await _service.CreateMessageAsync(message);
+            return CreatedAtAction(nameof(GetById), new { id = message.ID }, message);
+        }
 
-    [HttpPost]
-    public async Task<IActionResult> Create([FromBody] Message message)
-    {
-      
-        await _unitOfWork.Message.AddAsync(message);
-        await _unitOfWork.CompleteAsync();
-        return Ok();
-    }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(int id, [FromBody] MessageDto message)
+        {
+            if (id != message.ID)
+                return BadRequest();
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> Update(int id, [FromBody] Message message)
-    {
-        
-        if (id != message.ID) return BadRequest();
-        await _unitOfWork.Message.UpdateAsync(message);
-        return Ok();
-    }
+            await _service.UpdateMessageAsync(id, message);
+            return NoContent();
+        }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> Delete(int id)
-    {
-       
-       // await _unitOfWork.Messages.Delete(id);
-        return Ok();
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await _service.DeleteMessageAsync(id);
+            return NoContent();
+        }
+
     }
 }

@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories.Implementations
 {
-    public class RemarkRepository : GenericRepository<Remark>, IRemarkRepository
+    public class ActionTypeRepository : GenericRepository<ActionType>, IActionTypeRepository
     {
-        public RemarkRepository(AppDbContext context) : base(context)
+        public ActionTypeRepository(AppDbContext context) : base(context)
         {
-            
+
         }
     }
 }

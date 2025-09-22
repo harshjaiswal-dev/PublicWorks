@@ -17,7 +17,7 @@ namespace Implementations.Repositories
 
         public async Task<IEnumerable<User>> GetUsersByRoleIdAsync(int roleId)
         {
-            return await _context.User
+            return await _context.Users
                 .Include(u => u.Role)
                 .Where(u => u.RoleId == roleId)
                 .ToListAsync();
@@ -25,7 +25,7 @@ namespace Implementations.Repositories
 
         public async Task<IEnumerable<User>> GetUsersByRoleNameAsync(string roleName)
         {
-            return await _context.User
+            return await _context.Users
                 .Include(u => u.Role)
                 .Where(u => u.Name == roleName)
                 .ToListAsync();

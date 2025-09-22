@@ -1,11 +1,12 @@
 using System.Threading.Tasks;
+using Data.Exceptions;
 using Microsoft.EntityFrameworkCore;
 namespace Data.GenericRepository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly AppDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected  readonly AppDbContext _context;
+        protected  readonly DbSet<T> _dbSet;
 
         public GenericRepository(AppDbContext context)
         {
@@ -18,31 +19,44 @@ namespace Data.GenericRepository
             return await _dbSet.ToListAsync();
         }
 
-//fetches that id's data
-        public async Task<T?> GetByIdAsync(int id)
+        public async Task<T> GetByIdAsync(int id)
         {
-            return await _dbSet.FindAsync(id);
+            var entity = await _dbSet.FindAsync(id);
+            if (entity == null)
+                throw new EntityNotFoundException(typeof(T).Name, id);
+
+            return entity;
         }
 
         public async Task AddAsync(T entity)
         {
+            if (entity == null)
+                throw new NullEntityException(typeof(T).Name);
+
             await _dbSet.AddAsync(entity);
         }
 
-       public async Task UpdateAsync(T entity)
-       {
-          _dbSet.Update(entity);
-       }
-
-
-        public void Delete(T entity)
+        public async Task UpdateAsync(int id, T entity)
         {
-            _dbSet.Remove(entity);
+            if (entity == null)
+                throw new NullEntityException(typeof(T).Name);
+
+            var existingEntity = await _dbSet.FindAsync(id);
+            if (existingEntity == null)
+                throw new EntityNotFoundException(typeof(T).Name, id);
+
+            _context.Entry(existingEntity).CurrentValues.SetValues(entity);
         }
 
-        public async Task SaveAsync()
+        public async Task DeleteAsync(int id)
         {
-            await _context.SaveChangesAsync();
+            var existingEntity = await _dbSet.FindAsync(id);
+            if (existingEntity == null)
+                throw new EntityNotFoundException(typeof(T).Name, id);
+      
+            _dbSet.Remove(existingEntity);
+            
         }
+
     }
 }

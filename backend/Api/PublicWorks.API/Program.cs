@@ -1,53 +1,37 @@
-using Data.Helpers.Configuration;
-using Data.Repositories.Configuration;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using PublicWorks.API.Configuration;
+using PublicWorks.API.Middleware;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container
+// Add services to the container.
+// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+builder.Services.AddOpenApi();
+
+builder.Services.AddDatabaseConfiguration(builder.Configuration);
+builder.Services.AddDependencyInjection();
+builder.Services.AddSwaggerConfiguration();
+
+builder.Services.AddSerilog(options =>
+{
+    //we can configure serilog from configuration
+    options.ReadFrom.Configuration(builder.Configuration);
+});
+
 builder.Services.AddControllers();
-
-builder.Services.AddAppDbContext(builder.Configuration);
-builder.Services.AddRepositories();
-builder.Services.AddHelpers();
-// // Call the static Serilog configuration method
-// SerilogConfiguration.ConfigureLogger(builder.Configuration);
-
-// builder.Host.UseSerilog(); // Use Serilog as the logging provider
-
-// Add Swagger for API documentation
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
 // Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
+    app.MapOpenApi();
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
 app.MapControllers();
-
-try
-{
-    app.Run();
-}
-catch (Exception ex)
-{
-    Log.Fatal(ex, "Application failed to start correctly");
-    Console.WriteLine("Startup exception: " + ex.Message);
-}
-finally
-{
-    Log.CloseAndFlush();
-}
-
-
+app.Run();

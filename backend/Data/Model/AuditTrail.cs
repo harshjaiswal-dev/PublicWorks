@@ -12,7 +12,7 @@ namespace Data.Model
         public int? UserId { get; set; }  // FK to Users
 
         [ForeignKey(nameof(UserId))]
-        public User User { get; set; } = null!;
+        public User? User { get; set; }
 
         [Required]
         public string EntityName { get; set; } = string.Empty;
@@ -24,7 +24,7 @@ namespace Data.Model
         public int ActionTypeId { get; set; }  // FK to ActionTypes
 
         [ForeignKey(nameof(ActionTypeId))]
-        public ActionType ActionType { get; set; } = null!;
+        public ActionType? ActionType { get; set; }
 
         public string OldValues { get; set; } = string.Empty;
         public string NewValues { get; set; } = string.Empty;

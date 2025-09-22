@@ -26,7 +26,7 @@ namespace Data.Model
         public int RoleId { get; set; }  // FK RoleID
 
         [ForeignKey(nameof(RoleId))]
-        public Role Role { get; set; } = null!;
+        public Role? Role { get; set; }
               
         public DateTimeOffset? LastLoginAt { get; set; }  
 

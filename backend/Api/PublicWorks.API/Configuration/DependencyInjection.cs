@@ -9,6 +9,8 @@ namespace PublicWorks.API.Configuration
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
             services.AddScoped<IActionTypeService, ActionTypeService>();
+            services.AddScoped<IImageService, ImageService>();
+            services.AddScoped<IIssueService, IssueService>();
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IRemarkService, RemarkService>();
             services.AddScoped<IUserService, UserService>();

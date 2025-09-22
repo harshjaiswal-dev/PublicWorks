@@ -1,7 +1,8 @@
+using Business.Service.Interface;
 using Data.Model;
 using Data.UnitOfWork;
 
-namespace Business
+namespace Business.Service.Implementation
 {
     public class UserService : IUserService
     {

@@ -20,6 +20,8 @@ namespace Data.UnitOfWork
             return await _context.SaveChangesAsync();
         }
 
+        private IActionTypeRepository? _actionTypeRepository;
+        public IActionTypeRepository ActionTypeRepository => _actionTypeRepository ??= new ActionTypeRepository(_context);
         private IAuditTrailRepository? _auditTrailRepository;
         public IAuditTrailRepository AuditTrailRepository => _auditTrailRepository ??= new AuditTrailRepository(_context);
         private IImageRepository? _imageRepository;

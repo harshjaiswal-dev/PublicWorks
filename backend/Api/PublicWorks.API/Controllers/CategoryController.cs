@@ -7,10 +7,10 @@ namespace PublicWorks.API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class StatusController : ControllerBase
+    public class CategoryController : ControllerBase
     {
-        private readonly IStatusService _service;
-        public StatusController(IStatusService service)
+        private readonly ICategoryService _service;
+        public CategoryController(ICategoryService service)
         {
             _service = service;
         }
@@ -18,40 +18,41 @@ namespace PublicWorks.API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var remarks = await _service.GetStatusAsync();
+            var remarks = await _service.GetCategoryAsync();
             return Ok(remarks);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var remark = await _service.GetStatusByIdAsync(id);
+            var remark = await _service.GetCategoryByIdAsync(id);
             if (remark == null)
                 return NotFound();
             return Ok(remark);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] StatusDto status)
+        public async Task<IActionResult> Create([FromBody] CategoryDto category)
         {
-            await _service.CreateStatusAsync(status);
-            return CreatedAtAction(nameof(GetById), new { id = status.StatusId}, status);
+            await _service.CreateCategoryAsync(category);
+            return CreatedAtAction(nameof(GetById), new { id = category.CategoryId},  category
+);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] StatusDto status)
+        public async Task<IActionResult> Update(int id, [FromBody] CategoryDto category)
         {
-            if (id != status.StatusId)
+            if (id != category.CategoryId)
                 return BadRequest();
 
-            await _service.UpdateStatusAsync(id, status);
+            await _service.UpdateCategoryAsync(id, category);
             return NoContent();
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            await _service.DeleteStatusAsync(id);
+            await _service.DeleteCategoryAsync(id);
             return NoContent();
         }
 

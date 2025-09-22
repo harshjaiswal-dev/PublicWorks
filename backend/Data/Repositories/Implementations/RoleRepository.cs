@@ -1,16 +1,16 @@
 using Data;
 using Data.GenericRepository;
-using Data.Interfaces;
 using Data.Model;
+using Data.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Implementations.Repositories
 {
-    public class StatusRepository : GenericRepository<Status>, IStatusRepository
+    public class RoleRepository : GenericRepository<Role>, IRoleRepository
     {
     //     private readonly AppDbContext _context;
 
-        public StatusRepository(AppDbContext context) : base(context)
+        public RoleRepository(AppDbContext context) : base(context)
         {
            //_context = context;
         }

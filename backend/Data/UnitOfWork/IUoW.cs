@@ -1,3 +1,4 @@
+using Data.Interfaces;
 using Data.Repositories.Interfaces;
 
 namespace Data.UnitOfWork
@@ -7,7 +8,12 @@ namespace Data.UnitOfWork
         Task<int> SaveAsync();
 
         IActionTypeRepository ActionTypeRepository { get; }
-       // IAuditTrailRepository AuditTrailRepository { get; }
+        // IAuditTrailRepository AuditTrailRepository { get; }
+       IStatusRepository StatusRepository { get; }
+       IRoleRepository RoleRepository { get; }
+       IPriorityRepository PriorityRepository { get; }
+      ICategoryRepository CategoryRepository { get; }
+
         IImageRepository ImageRepository { get; }
         IIssueRepository IssueRepository { get; }
         IMessageRepository MessageRepository { get; }

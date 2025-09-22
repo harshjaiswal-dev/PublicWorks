@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Implementations.Repositories
 {
-    public class StatusRepository : GenericRepository<Status>, IStatusRepository
+    public class PriorityRepository : GenericRepository<Priority>, IPriorityRepository
     {
     //     private readonly AppDbContext _context;
 
-        public StatusRepository(AppDbContext context) : base(context)
+        public PriorityRepository(AppDbContext context) : base(context)
         {
            //_context = context;
         }

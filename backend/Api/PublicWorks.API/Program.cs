@@ -20,6 +20,7 @@ builder.Services.AddSerilog(options =>
 });
 
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();
 

@@ -1,4 +1,5 @@
-using Business;
+using Business.Service.Implementation;
+using Business.Service.Interface;
 using Data.UnitOfWork;
 
 namespace PublicWorks.API.Configuration
@@ -7,6 +8,9 @@ namespace PublicWorks.API.Configuration
     {
         public static IServiceCollection AddDependencyInjection(this IServiceCollection services)
         {
+            services.AddScoped<IActionTypeService, ActionTypeService>();
+            services.AddScoped<IMessageService, MessageService>();
+            services.AddScoped<IRemarkService, RemarkService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IUoW, UoW>();
             

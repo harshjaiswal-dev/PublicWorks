@@ -1,4 +1,7 @@
+using Microsoft.Extensions.Configuration;
 using PublicWorks.API.Configuration;
+using PublicWorks.API.Middleware;
+using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,6 +12,12 @@ builder.Services.AddOpenApi();
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddDependencyInjection();
 builder.Services.AddSwaggerConfiguration();
+
+builder.Services.AddSerilog(options =>
+{
+    //we can configure serilog from configuration
+    options.ReadFrom.Configuration(builder.Configuration);
+});
 
 builder.Services.AddControllers();
 
@@ -22,6 +31,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 app.MapControllers();
 app.Run();

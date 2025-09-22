@@ -995,3 +995,596 @@ Error Number:547,State:0,Class:16
 2025-09-22 11:34:53.895 +05:30 [DBG] Connection id "0HNFPJMMP7A14" sending FIN because: "The Socket transport's send loop completed gracefully."
 2025-09-22 11:34:53.895 +05:30 [DBG] Connection id "0HNFPJMMP7A14" disconnecting.
 2025-09-22 11:34:53.896 +05:30 [DBG] Connection id "0HNFPJMMP7A14" stopped.
+2025-09-22 11:54:57.773 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-09-22 11:54:57.893 +05:30 [DBG] Hosting starting
+2025-09-22 11:54:57.996 +05:30 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2025-09-22 11:54:58.000 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-09-22 11:54:58.018 +05:30 [INF] Now listening on: http://localhost:5142
+2025-09-22 11:54:58.018 +05:30 [DBG] Loaded hosting startup assembly PublicWorks.API
+2025-09-22 11:54:58.018 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-22 11:54:58.019 +05:30 [INF] Hosting environment: Development
+2025-09-22 11:54:58.019 +05:30 [INF] Content root path: C:\Users\harsh.jaiswal\Desktop\MyFullstackApp\backend\Api\PublicWorks.API
+2025-09-22 11:54:58.019 +05:30 [DBG] Hosting started
+2025-09-22 11:56:34.389 +05:30 [DBG] Connection id "0HNFPK3T2S014" accepted.
+2025-09-22 11:56:34.390 +05:30 [DBG] Connection id "0HNFPK3T2S014" started.
+2025-09-22 11:56:34.393 +05:30 [DBG] Connection id "0HNFPK3T2S015" accepted.
+2025-09-22 11:56:34.393 +05:30 [DBG] Connection id "0HNFPK3T2S015" started.
+2025-09-22 11:56:34.445 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger/index.html - null null
+2025-09-22 11:56:34.487 +05:30 [DBG] No candidates found for the request path '/swagger/index.html'
+2025-09-22 11:56:34.488 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 11:56:34.684 +05:30 [DBG] Connection id "0HNFPK3T2S014" completed keep alive response.
+2025-09-22 11:56:34.688 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/index.html - 200 null text/html;charset=utf-8 246.2023ms
+2025-09-22 11:56:34.915 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - null null
+2025-09-22 11:56:34.916 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-09-22 11:56:34.916 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 11:56:34.936 +05:30 [DBG] Executing API description provider 'EndpointMetadataApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 11:56:34.937 +05:30 [DBG] Executing API description provider 'DefaultApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 11:56:35.147 +05:30 [DBG] Connection id "0HNFPK3T2S014" completed keep alive response.
+2025-09-22 11:56:35.148 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 232.7845ms
+2025-09-22 11:57:35.328 +05:30 [DBG] Connection id "0HNFPK3T2S015" received FIN.
+2025-09-22 11:57:35.338 +05:30 [DBG] Connection id "0HNFPK3T2S015" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 11:57:35.341 +05:30 [DBG] Connection id "0HNFPK3T2S015" disconnecting.
+2025-09-22 11:57:35.343 +05:30 [DBG] Connection id "0HNFPK3T2S015" stopped.
+2025-09-22 11:57:42.882 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5142/api/Message - application/json 144
+2025-09-22 11:57:42.887 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Message'
+2025-09-22 11:57:42.887 +05:30 [DBG] Endpoint 'PublicWorks.API.Controllers.MessageController.Create (PublicWorks.API)' with route pattern 'api/Message' is valid for the request path '/api/Message'
+2025-09-22 11:57:42.888 +05:30 [DBG] Request matched endpoint 'PublicWorks.API.Controllers.MessageController.Create (PublicWorks.API)'
+2025-09-22 11:57:42.898 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-09-22 11:57:42.900 +05:30 [INF] Executing endpoint 'PublicWorks.API.Controllers.MessageController.Create (PublicWorks.API)'
+2025-09-22 11:57:42.933 +05:30 [INF] Route matched with {action = "Create", controller = "Message"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create(Business.DTOs.MessageDto) on controller PublicWorks.API.Controllers.MessageController (PublicWorks.API).
+2025-09-22 11:57:42.935 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-09-22 11:57:42.936 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-09-22 11:57:42.938 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-09-22 11:57:42.939 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-09-22 11:57:42.939 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-09-22 11:57:42.943 +05:30 [DBG] Executing controller factory for controller PublicWorks.API.Controllers.MessageController (PublicWorks.API)
+2025-09-22 11:57:43.163 +05:30 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2025-09-22 11:57:43.206 +05:30 [DBG] Executed controller factory for controller PublicWorks.API.Controllers.MessageController (PublicWorks.API)
+2025-09-22 11:57:43.212 +05:30 [DBG] Attempting to bind parameter 'message' of type 'Business.DTOs.MessageDto' ...
+2025-09-22 11:57:43.216 +05:30 [DBG] Attempting to bind parameter 'message' of type 'Business.DTOs.MessageDto' using the name '' in request data ...
+2025-09-22 11:57:43.219 +05:30 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonInputFormatter' for content type 'application/json'.
+2025-09-22 11:57:43.258 +05:30 [DBG] Connection id "0HNFPK3T2S014", Request id "0HNFPK3T2S014:00000003": started reading request body.
+2025-09-22 11:57:43.258 +05:30 [DBG] Connection id "0HNFPK3T2S014", Request id "0HNFPK3T2S014:00000003": done reading request body.
+2025-09-22 11:57:43.293 +05:30 [DBG] JSON input formatter succeeded, deserializing to type 'Business.DTOs.MessageDto'
+2025-09-22 11:57:43.293 +05:30 [DBG] Done attempting to bind parameter 'message' of type 'Business.DTOs.MessageDto'.
+2025-09-22 11:57:43.294 +05:30 [DBG] Done attempting to bind parameter 'message' of type 'Business.DTOs.MessageDto'.
+2025-09-22 11:57:43.294 +05:30 [DBG] Attempting to validate the bound parameter 'message' of type 'Business.DTOs.MessageDto' ...
+2025-09-22 11:57:43.309 +05:30 [DBG] Done attempting to validate the bound parameter 'message' of type 'Business.DTOs.MessageDto'.
+2025-09-22 11:57:44.422 +05:30 [DBG] Entity Framework Core 9.0.9 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.9' with options: EngineType=SqlServer 
+2025-09-22 11:57:44.511 +05:30 [DBG] 'AppDbContext' generated a temporary value for the property 'Message.ID'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-09-22 11:57:44.613 +05:30 [DBG] Context 'AppDbContext' started tracking 'Message' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-09-22 11:57:44.621 +05:30 [DBG] SaveChanges starting for 'AppDbContext'.
+2025-09-22 11:57:44.626 +05:30 [DBG] DetectChanges starting for 'AppDbContext'.
+2025-09-22 11:57:44.646 +05:30 [DBG] DetectChanges completed for 'AppDbContext'.
+2025-09-22 11:57:44.875 +05:30 [DBG] Creating DbConnection.
+2025-09-22 11:57:44.916 +05:30 [DBG] Created DbConnection. (37ms).
+2025-09-22 11:57:44.922 +05:30 [DBG] Opening connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:57:45.347 +05:30 [DBG] Opened connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:57:45.361 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-09-22 11:57:45.373 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (6ms).
+2025-09-22 11:57:45.388 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (27ms).
+2025-09-22 11:57:45.402 +05:30 [DBG] Executing DbCommand [Parameters=[@p0='?' (Size = 500), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Message] ([Body], [IssueId], [SendBy], [SendDate], [SendTo], [Subject])
+OUTPUT INSERTED.[ID]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-09-22 11:57:45.499 +05:30 [INF] Executed DbCommand (100ms) [Parameters=[@p0='?' (Size = 500), @p1='?' (DbType = Int32), @p2='?' (DbType = Int32), @p3='?' (DbType = DateTime2), @p4='?' (DbType = Int32), @p5='?' (Size = 255)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Message] ([Body], [IssueId], [SendBy], [SendDate], [SendTo], [Subject])
+OUTPUT INSERTED.[ID]
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-09-22 11:57:45.539 +05:30 [DBG] The foreign key property 'Message.ID' was detected as changed. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see property values.
+2025-09-22 11:57:45.557 +05:30 [DBG] Closing data reader to 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:57:45.569 +05:30 [DBG] A data reader for 'PublicWorks' on server 'GDC-779-LPT' is being disposed after spending 60ms reading results.
+2025-09-22 11:57:45.575 +05:30 [DBG] Closing connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:57:45.586 +05:30 [DBG] Closed connection to database 'PublicWorks' on server 'GDC-779-LPT' (9ms).
+2025-09-22 11:57:45.605 +05:30 [DBG] An entity of type 'Message' tracked by 'AppDbContext' changed state from '"Added"' to '"Unchanged"'. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-09-22 11:57:45.609 +05:30 [DBG] SaveChanges completed for 'AppDbContext' with 1 entities written to the database.
+2025-09-22 11:57:45.617 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-09-22 11:57:45.620 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-09-22 11:57:45.620 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-09-22 11:57:45.620 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-09-22 11:57:45.621 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-09-22 11:57:45.622 +05:30 [INF] Executing CreatedAtActionResult, writing value of type 'Business.DTOs.MessageDto'.
+2025-09-22 11:57:45.649 +05:30 [DBG] Found the endpoints ["PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API)"] for address (id=[0],action=[GetById],controller=[Message])
+2025-09-22 11:57:45.653 +05:30 [DBG] Successfully processed template api/Message/{id} for PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API) resulting in /api/Message/0 and 
+2025-09-22 11:57:45.655 +05:30 [DBG] Link generation succeeded for endpoints ["PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API)"] with result /api/Message/0
+2025-09-22 11:57:45.676 +05:30 [INF] Executed action PublicWorks.API.Controllers.MessageController.Create (PublicWorks.API) in 2730.5756ms
+2025-09-22 11:57:45.677 +05:30 [INF] Executed endpoint 'PublicWorks.API.Controllers.MessageController.Create (PublicWorks.API)'
+2025-09-22 11:57:45.680 +05:30 [DBG] Connection id "0HNFPK3T2S014" completed keep alive response.
+2025-09-22 11:57:45.682 +05:30 [DBG] 'AppDbContext' disposed.
+2025-09-22 11:57:45.687 +05:30 [DBG] Disposing connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:57:45.688 +05:30 [DBG] Disposed connection to database '' on server '' (1ms).
+2025-09-22 11:57:45.690 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5142/api/Message - 201 null application/json; charset=utf-8 2807.699ms
+2025-09-22 11:58:16.944 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/api/Message/1 - null null
+2025-09-22 11:58:16.945 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Message/1'
+2025-09-22 11:58:16.945 +05:30 [DBG] Endpoint 'PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API)' with route pattern 'api/Message/{id}' is valid for the request path '/api/Message/1'
+2025-09-22 11:58:16.945 +05:30 [DBG] Request matched endpoint 'PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API)'
+2025-09-22 11:58:16.952 +05:30 [INF] Executing endpoint 'PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API)'
+2025-09-22 11:58:16.957 +05:30 [INF] Route matched with {action = "GetById", controller = "Message"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller PublicWorks.API.Controllers.MessageController (PublicWorks.API).
+2025-09-22 11:58:16.958 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-09-22 11:58:16.958 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-09-22 11:58:16.958 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-09-22 11:58:16.958 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-09-22 11:58:16.958 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-09-22 11:58:16.959 +05:30 [DBG] Executing controller factory for controller PublicWorks.API.Controllers.MessageController (PublicWorks.API)
+2025-09-22 11:58:16.960 +05:30 [DBG] Executed controller factory for controller PublicWorks.API.Controllers.MessageController (PublicWorks.API)
+2025-09-22 11:58:16.960 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' ...
+2025-09-22 11:58:16.961 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' using the name 'id' in request data ...
+2025-09-22 11:58:16.962 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2025-09-22 11:58:16.962 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2025-09-22 11:58:16.962 +05:30 [DBG] Attempting to validate the bound parameter 'id' of type 'System.Int32' ...
+2025-09-22 11:58:16.962 +05:30 [DBG] Done attempting to validate the bound parameter 'id' of type 'System.Int32'.
+2025-09-22 11:58:17.082 +05:30 [DBG] Entity Framework Core 9.0.9 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.9' with options: EngineType=SqlServer 
+2025-09-22 11:58:17.239 +05:30 [DBG] Compiling query expression: 
+'DbSet<Message>()
+    .FirstOrDefault(e => EF.Property<int>(e, "ID") == __p_0)'
+2025-09-22 11:58:17.645 +05:30 [DBG] Generated query execution expression: 
+'queryContext => ShapedQueryCompilingExpressionVisitor.SingleOrDefaultAsync<Message>(
+    asyncEnumerable: SingleQueryingEnumerable.Create<Message>(
+        relationalQueryContext: (RelationalQueryContext)queryContext, 
+        relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Message.ID (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Message.Body (string) Required MaxLength(500), 1], [Property: Message.IssueId (int) Required FK Index, 2], [Property: Message.SendBy (int) Required, 3], [Property: Message.SendDate (DateTime) Required, 4], [Property: Message.SendTo (int) Required, 5], [Property: Message.Subject (string) Required MaxLength(255), 6] }
+            SELECT TOP(1) m.ID, m.Body, m.IssueId, m.SendBy, m.SendDate, m.SendTo, m.Subject
+            FROM Message AS m
+            WHERE m.ID == @__p_0) | Resolver: c => new RelationalCommandCache(
+            c.Dependencies.MemoryCache, 
+            c.RelationalDependencies.QuerySqlGeneratorFactory, 
+            c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+            Projection Mapping:
+                EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Message.ID (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Message.Body (string) Required MaxLength(500), 1], [Property: Message.IssueId (int) Required FK Index, 2], [Property: Message.SendBy (int) Required, 3], [Property: Message.SendDate (DateTime) Required, 4], [Property: Message.SendTo (int) Required, 5], [Property: Message.Subject (string) Required MaxLength(255), 6] }
+            SELECT TOP(1) m.ID, m.Body, m.IssueId, m.SendBy, m.SendDate, m.SendTo, m.Subject
+            FROM Message AS m
+            WHERE m.ID == @__p_0, 
+            False, 
+            new HashSet<string>(
+                new string[]{ }, 
+                StringComparer.Ordinal
+            )
+        )].GetRelationalCommandTemplate(parameters), 
+        readerColumns: null, 
+        shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+        {
+            Message entity;
+            entity = 
+            {
+                MaterializationContext materializationContext1;
+                IEntityType entityType1;
+                Message instance1;
+                InternalEntityEntry entry1;
+                bool hasNullKey1;
+                materializationContext1 = new MaterializationContext(
+                    [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                    queryContext.Context
+                );
+                instance1 = default(Message);
+                entry1 = queryContext.TryGetEntry(
+                    key: [LIFTABLE Constant: Key: Message.ID PK | Resolver: c => c.Dependencies.Model.FindEntityType("Data.Model.Message").FindPrimaryKey()], 
+                    keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                    throwOnNullKey: True, 
+                    hasNullKey: hasNullKey1);
+                !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+                {
+                    entityType1 = entry1.EntityType;
+                    return instance1 = (Message)entry1.Entity;
+                } : 
+                {
+                    ISnapshot shadowSnapshot1;
+                    shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                    entityType1 = [LIFTABLE Constant: EntityType: Message | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("Data.Model.Message")];
+                    instance1 = switch (entityType1)
+                    {
+                        case [LIFTABLE Constant: EntityType: Message | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("Data.Model.Message")]: 
+                            {
+                                return 
+                                {
+                                    Message instance;
+                                    instance = new Message();
+                                    instance.<ID>k__BackingField = dataReader.GetInt32(0);
+                                    instance.<Body>k__BackingField = dataReader.GetString(1);
+                                    instance.<IssueId>k__BackingField = dataReader.GetInt32(2);
+                                    instance.<SendBy>k__BackingField = dataReader.GetInt32(3);
+                                    instance.<SendDate>k__BackingField = dataReader.GetDateTime(4);
+                                    instance.<SendTo>k__BackingField = dataReader.GetInt32(5);
+                                    instance.<Subject>k__BackingField = dataReader.GetString(6);
+                                    (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                        context: materializationContext1.Context, 
+                                        entity: instance, 
+                                        queryTrackingBehavior: TrackAll, 
+                                        structuralType: [LIFTABLE Constant: EntityType: Message | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("Data.Model.Message")]) : default(void);
+                                    return instance;
+                                }}
+                        default: 
+                            default(Message)
+                    }
+                    ;
+                    entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                        entityType: entityType1, 
+                        entity: instance1, 
+                        snapshot: shadowSnapshot1);
+                    return instance1;
+                } : default(void);
+                return instance1;
+            };
+            return entity;
+        }, 
+        contextType: Data.AppDbContext, 
+        standAloneStateManager: False, 
+        detailedErrorsEnabled: False, 
+        threadSafetyChecksEnabled: True), 
+    cancellationToken: queryContext.CancellationToken)'
+2025-09-22 11:58:17.708 +05:30 [DBG] Creating DbConnection.
+2025-09-22 11:58:17.708 +05:30 [DBG] Created DbConnection. (0ms).
+2025-09-22 11:58:17.709 +05:30 [DBG] Opening connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:58:17.711 +05:30 [DBG] Opened connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:58:17.711 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-09-22 11:58:17.711 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-09-22 11:58:17.712 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-09-22 11:58:17.712 +05:30 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[ID], [m].[Body], [m].[IssueId], [m].[SendBy], [m].[SendDate], [m].[SendTo], [m].[Subject]
+FROM [Message] AS [m]
+WHERE [m].[ID] = @__p_0
+2025-09-22 11:58:17.747 +05:30 [INF] Executed DbCommand (35ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[ID], [m].[Body], [m].[IssueId], [m].[SendBy], [m].[SendDate], [m].[SendTo], [m].[Subject]
+FROM [Message] AS [m]
+WHERE [m].[ID] = @__p_0
+2025-09-22 11:58:17.754 +05:30 [DBG] Closing data reader to 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:58:17.755 +05:30 [DBG] A data reader for 'PublicWorks' on server 'GDC-779-LPT' is being disposed after spending 7ms reading results.
+2025-09-22 11:58:17.755 +05:30 [DBG] Closing connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:58:17.755 +05:30 [DBG] Closed connection to database 'PublicWorks' on server 'GDC-779-LPT' (0ms).
+2025-09-22 11:58:17.758 +05:30 [INF] Executed action PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API) in 799.6811ms
+2025-09-22 11:58:17.759 +05:30 [INF] Executed endpoint 'PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API)'
+2025-09-22 11:58:17.775 +05:30 [DBG] Connection id "0HNFPK3T2S014" completed keep alive response.
+2025-09-22 11:58:17.775 +05:30 [DBG] 'AppDbContext' disposed.
+2025-09-22 11:58:17.775 +05:30 [DBG] Disposing connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:58:17.776 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-09-22 11:58:17.776 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/api/Message/1 - 500 null application/json; charset=utf-8 832.5927ms
+2025-09-22 11:58:31.950 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/api/Message/3 - null null
+2025-09-22 11:58:31.950 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Message/3'
+2025-09-22 11:58:31.950 +05:30 [DBG] Endpoint 'PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API)' with route pattern 'api/Message/{id}' is valid for the request path '/api/Message/3'
+2025-09-22 11:58:31.950 +05:30 [DBG] Request matched endpoint 'PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API)'
+2025-09-22 11:58:31.951 +05:30 [INF] Executing endpoint 'PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API)'
+2025-09-22 11:58:31.951 +05:30 [INF] Route matched with {action = "GetById", controller = "Message"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetById(Int32) on controller PublicWorks.API.Controllers.MessageController (PublicWorks.API).
+2025-09-22 11:58:31.951 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-09-22 11:58:31.951 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-09-22 11:58:31.951 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-09-22 11:58:31.951 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-09-22 11:58:31.951 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-09-22 11:58:31.951 +05:30 [DBG] Executing controller factory for controller PublicWorks.API.Controllers.MessageController (PublicWorks.API)
+2025-09-22 11:58:31.961 +05:30 [DBG] Executed controller factory for controller PublicWorks.API.Controllers.MessageController (PublicWorks.API)
+2025-09-22 11:58:31.961 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' ...
+2025-09-22 11:58:31.962 +05:30 [DBG] Attempting to bind parameter 'id' of type 'System.Int32' using the name 'id' in request data ...
+2025-09-22 11:58:31.962 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2025-09-22 11:58:31.962 +05:30 [DBG] Done attempting to bind parameter 'id' of type 'System.Int32'.
+2025-09-22 11:58:31.962 +05:30 [DBG] Attempting to validate the bound parameter 'id' of type 'System.Int32' ...
+2025-09-22 11:58:31.962 +05:30 [DBG] Done attempting to validate the bound parameter 'id' of type 'System.Int32'.
+2025-09-22 11:58:31.980 +05:30 [DBG] Entity Framework Core 9.0.9 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.9' with options: EngineType=SqlServer 
+2025-09-22 11:58:31.990 +05:30 [DBG] Creating DbConnection.
+2025-09-22 11:58:31.990 +05:30 [DBG] Created DbConnection. (0ms).
+2025-09-22 11:58:31.990 +05:30 [DBG] Opening connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:58:31.990 +05:30 [DBG] Opened connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:58:31.991 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-09-22 11:58:31.991 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-09-22 11:58:31.991 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-09-22 11:58:31.991 +05:30 [DBG] Executing DbCommand [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[ID], [m].[Body], [m].[IssueId], [m].[SendBy], [m].[SendDate], [m].[SendTo], [m].[Subject]
+FROM [Message] AS [m]
+WHERE [m].[ID] = @__p_0
+2025-09-22 11:58:31.993 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [m].[ID], [m].[Body], [m].[IssueId], [m].[SendBy], [m].[SendDate], [m].[SendTo], [m].[Subject]
+FROM [Message] AS [m]
+WHERE [m].[ID] = @__p_0
+2025-09-22 11:58:32.001 +05:30 [DBG] Context 'AppDbContext' started tracking 'Message' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-09-22 11:58:32.002 +05:30 [DBG] Closing data reader to 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:58:32.002 +05:30 [DBG] A data reader for 'PublicWorks' on server 'GDC-779-LPT' is being disposed after spending 8ms reading results.
+2025-09-22 11:58:32.002 +05:30 [DBG] Closing connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:58:32.002 +05:30 [DBG] Closed connection to database 'PublicWorks' on server 'GDC-779-LPT' (0ms).
+2025-09-22 11:58:32.003 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-09-22 11:58:32.003 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-09-22 11:58:32.003 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-09-22 11:58:32.004 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-09-22 11:58:32.004 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-09-22 11:58:32.004 +05:30 [INF] Executing OkObjectResult, writing value of type 'Data.Model.Message'.
+2025-09-22 11:58:32.041 +05:30 [INF] Executed action PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API) in 89.8253ms
+2025-09-22 11:58:32.042 +05:30 [INF] Executed endpoint 'PublicWorks.API.Controllers.MessageController.GetById (PublicWorks.API)'
+2025-09-22 11:58:32.042 +05:30 [DBG] Connection id "0HNFPK3T2S014" completed keep alive response.
+2025-09-22 11:58:32.042 +05:30 [DBG] 'AppDbContext' disposed.
+2025-09-22 11:58:32.042 +05:30 [DBG] Disposing connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 11:58:32.042 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-09-22 11:58:32.043 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/api/Message/3 - 200 null application/json; charset=utf-8 92.5648ms
+2025-09-22 12:00:42.924 +05:30 [DBG] Connection id "0HNFPK3T2S014" disconnecting.
+2025-09-22 12:00:42.924 +05:30 [DBG] Connection id "0HNFPK3T2S014" stopped.
+2025-09-22 12:00:42.926 +05:30 [DBG] Connection id "0HNFPK3T2S014" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 12:02:07.748 +05:30 [DBG] Connection id "0HNFPK3T2S016" accepted.
+2025-09-22 12:02:07.748 +05:30 [DBG] Connection id "0HNFPK3T2S016" started.
+2025-09-22 12:02:07.750 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/api/Message - null null
+2025-09-22 12:02:07.750 +05:30 [DBG] 1 candidate(s) found for the request path '/api/Message'
+2025-09-22 12:02:07.750 +05:30 [DBG] Endpoint 'PublicWorks.API.Controllers.MessageController.GetAll (PublicWorks.API)' with route pattern 'api/Message' is valid for the request path '/api/Message'
+2025-09-22 12:02:07.750 +05:30 [DBG] Request matched endpoint 'PublicWorks.API.Controllers.MessageController.GetAll (PublicWorks.API)'
+2025-09-22 12:02:07.750 +05:30 [INF] Executing endpoint 'PublicWorks.API.Controllers.MessageController.GetAll (PublicWorks.API)'
+2025-09-22 12:02:07.754 +05:30 [INF] Route matched with {action = "GetAll", controller = "Message"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAll() on controller PublicWorks.API.Controllers.MessageController (PublicWorks.API).
+2025-09-22 12:02:07.754 +05:30 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2025-09-22 12:02:07.754 +05:30 [DBG] Execution plan of resource filters (in the following order): ["None"]
+2025-09-22 12:02:07.754 +05:30 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2025-09-22 12:02:07.754 +05:30 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2025-09-22 12:02:07.754 +05:30 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2025-09-22 12:02:07.754 +05:30 [DBG] Executing controller factory for controller PublicWorks.API.Controllers.MessageController (PublicWorks.API)
+2025-09-22 12:02:07.755 +05:30 [DBG] Executed controller factory for controller PublicWorks.API.Controllers.MessageController (PublicWorks.API)
+2025-09-22 12:02:07.758 +05:30 [DBG] Entity Framework Core 9.0.9 initialized 'AppDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:9.0.9' with options: EngineType=SqlServer 
+2025-09-22 12:02:07.764 +05:30 [DBG] Compiling query expression: 
+'DbSet<Message>()'
+2025-09-22 12:02:07.773 +05:30 [DBG] Generated query execution expression: 
+'queryContext => SingleQueryingEnumerable.Create<Message>(
+    relationalQueryContext: (RelationalQueryContext)queryContext, 
+    relationalCommandResolver: parameters => [LIFTABLE Constant: RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Message.ID (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Message.Body (string) Required MaxLength(500), 1], [Property: Message.IssueId (int) Required FK Index, 2], [Property: Message.SendBy (int) Required, 3], [Property: Message.SendDate (DateTime) Required, 4], [Property: Message.SendTo (int) Required, 5], [Property: Message.Subject (string) Required MaxLength(255), 6] }
+        SELECT m.ID, m.Body, m.IssueId, m.SendBy, m.SendDate, m.SendTo, m.Subject
+        FROM Message AS m) | Resolver: c => new RelationalCommandCache(
+        c.Dependencies.MemoryCache, 
+        c.RelationalDependencies.QuerySqlGeneratorFactory, 
+        c.RelationalDependencies.RelationalParameterBasedSqlProcessorFactory, 
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Message.ID (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Message.Body (string) Required MaxLength(500), 1], [Property: Message.IssueId (int) Required FK Index, 2], [Property: Message.SendBy (int) Required, 3], [Property: Message.SendDate (DateTime) Required, 4], [Property: Message.SendTo (int) Required, 5], [Property: Message.Subject (string) Required MaxLength(255), 6] }
+        SELECT m.ID, m.Body, m.IssueId, m.SendBy, m.SendDate, m.SendTo, m.Subject
+        FROM Message AS m, 
+        False, 
+        new HashSet<string>(
+            new string[]{ }, 
+            StringComparer.Ordinal
+        )
+    )].GetRelationalCommandTemplate(parameters), 
+    readerColumns: null, 
+    shaper: (queryContext, dataReader, resultContext, resultCoordinator) => 
+    {
+        Message entity;
+        entity = 
+        {
+            MaterializationContext materializationContext1;
+            IEntityType entityType1;
+            Message instance1;
+            InternalEntityEntry entry1;
+            bool hasNullKey1;
+            materializationContext1 = new MaterializationContext(
+                [LIFTABLE Constant: ValueBuffer | Resolver: _ => (object)ValueBuffer.Empty], 
+                queryContext.Context
+            );
+            instance1 = default(Message);
+            entry1 = queryContext.TryGetEntry(
+                key: [LIFTABLE Constant: Key: Message.ID PK | Resolver: c => c.Dependencies.Model.FindEntityType("Data.Model.Message").FindPrimaryKey()], 
+                keyValues: new object[]{ (object)dataReader.GetInt32(0) }, 
+                throwOnNullKey: True, 
+                hasNullKey: hasNullKey1);
+            !(hasNullKey1) ? entry1 != default(InternalEntityEntry) ? 
+            {
+                entityType1 = entry1.EntityType;
+                return instance1 = (Message)entry1.Entity;
+            } : 
+            {
+                ISnapshot shadowSnapshot1;
+                shadowSnapshot1 = [LIFTABLE Constant: Snapshot | Resolver: _ => Snapshot.Empty];
+                entityType1 = [LIFTABLE Constant: EntityType: Message | Resolver: namelessParameter{0} => namelessParameter{0}.Dependencies.Model.FindEntityType("Data.Model.Message")];
+                instance1 = switch (entityType1)
+                {
+                    case [LIFTABLE Constant: EntityType: Message | Resolver: namelessParameter{1} => namelessParameter{1}.Dependencies.Model.FindEntityType("Data.Model.Message")]: 
+                        {
+                            return 
+                            {
+                                Message instance;
+                                instance = new Message();
+                                instance.<ID>k__BackingField = dataReader.GetInt32(0);
+                                instance.<Body>k__BackingField = dataReader.GetString(1);
+                                instance.<IssueId>k__BackingField = dataReader.GetInt32(2);
+                                instance.<SendBy>k__BackingField = dataReader.GetInt32(3);
+                                instance.<SendDate>k__BackingField = dataReader.GetDateTime(4);
+                                instance.<SendTo>k__BackingField = dataReader.GetInt32(5);
+                                instance.<Subject>k__BackingField = dataReader.GetString(6);
+                                (instance is IInjectableService) ? ((IInjectableService)instance).Injected(
+                                    context: materializationContext1.Context, 
+                                    entity: instance, 
+                                    queryTrackingBehavior: TrackAll, 
+                                    structuralType: [LIFTABLE Constant: EntityType: Message | Resolver: namelessParameter{2} => namelessParameter{2}.Dependencies.Model.FindEntityType("Data.Model.Message")]) : default(void);
+                                return instance;
+                            }}
+                    default: 
+                        default(Message)
+                }
+                ;
+                entry1 = entityType1 == default(IEntityType) ? default(InternalEntityEntry) : queryContext.StartTracking(
+                    entityType: entityType1, 
+                    entity: instance1, 
+                    snapshot: shadowSnapshot1);
+                return instance1;
+            } : default(void);
+            return instance1;
+        };
+        return entity;
+    }, 
+    contextType: Data.AppDbContext, 
+    standAloneStateManager: False, 
+    detailedErrorsEnabled: False, 
+    threadSafetyChecksEnabled: True)'
+2025-09-22 12:02:07.779 +05:30 [DBG] Creating DbConnection.
+2025-09-22 12:02:07.779 +05:30 [DBG] Created DbConnection. (0ms).
+2025-09-22 12:02:07.779 +05:30 [DBG] Opening connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 12:02:07.780 +05:30 [DBG] Opened connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 12:02:07.780 +05:30 [DBG] Creating DbCommand for 'ExecuteReader'.
+2025-09-22 12:02:07.780 +05:30 [DBG] Created DbCommand for 'ExecuteReader' (0ms).
+2025-09-22 12:02:07.780 +05:30 [DBG] Initialized DbCommand for 'ExecuteReader' (0ms).
+2025-09-22 12:02:07.780 +05:30 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ID], [m].[Body], [m].[IssueId], [m].[SendBy], [m].[SendDate], [m].[SendTo], [m].[Subject]
+FROM [Message] AS [m]
+2025-09-22 12:02:07.809 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [m].[ID], [m].[Body], [m].[IssueId], [m].[SendBy], [m].[SendDate], [m].[SendTo], [m].[Subject]
+FROM [Message] AS [m]
+2025-09-22 12:02:07.810 +05:30 [DBG] Context 'AppDbContext' started tracking 'Message' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2025-09-22 12:02:07.812 +05:30 [DBG] Closing data reader to 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 12:02:07.812 +05:30 [DBG] A data reader for 'PublicWorks' on server 'GDC-779-LPT' is being disposed after spending 2ms reading results.
+2025-09-22 12:02:07.812 +05:30 [DBG] Closing connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 12:02:07.812 +05:30 [DBG] Closed connection to database 'PublicWorks' on server 'GDC-779-LPT' (0ms).
+2025-09-22 12:02:07.813 +05:30 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter"]
+2025-09-22 12:02:07.813 +05:30 [DBG] No information found on request to perform content negotiation.
+2025-09-22 12:02:07.813 +05:30 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2025-09-22 12:02:07.813 +05:30 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2025-09-22 12:02:07.813 +05:30 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.SystemTextJsonOutputFormatter' and content type 'application/json' to write the response.
+2025-09-22 12:02:07.813 +05:30 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[Data.Model.Message, Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-22 12:02:07.825 +05:30 [INF] Executed action PublicWorks.API.Controllers.MessageController.GetAll (PublicWorks.API) in 70.7228ms
+2025-09-22 12:02:07.825 +05:30 [INF] Executed endpoint 'PublicWorks.API.Controllers.MessageController.GetAll (PublicWorks.API)'
+2025-09-22 12:02:07.825 +05:30 [DBG] Connection id "0HNFPK3T2S016" completed keep alive response.
+2025-09-22 12:02:07.826 +05:30 [DBG] 'AppDbContext' disposed.
+2025-09-22 12:02:07.826 +05:30 [DBG] Disposing connection to database 'PublicWorks' on server 'GDC-779-LPT'.
+2025-09-22 12:02:07.826 +05:30 [DBG] Disposed connection to database '' on server '' (0ms).
+2025-09-22 12:02:07.826 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/api/Message - 200 null application/json; charset=utf-8 76.4589ms
+2025-09-22 12:04:19.475 +05:30 [DBG] Connection id "0HNFPK3T2S016" disconnecting.
+2025-09-22 12:04:19.476 +05:30 [DBG] Connection id "0HNFPK3T2S016" stopped.
+2025-09-22 12:04:19.476 +05:30 [DBG] Connection id "0HNFPK3T2S016" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 15:47:26.054 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-09-22 15:47:26.206 +05:30 [DBG] Hosting starting
+2025-09-22 15:47:26.492 +05:30 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2025-09-22 15:47:26.498 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-09-22 15:47:26.590 +05:30 [INF] Now listening on: http://localhost:5142
+2025-09-22 15:47:26.591 +05:30 [DBG] Loaded hosting startup assembly PublicWorks.API
+2025-09-22 15:47:26.592 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-22 15:47:26.593 +05:30 [INF] Hosting environment: Development
+2025-09-22 15:47:26.593 +05:30 [INF] Content root path: C:\Users\harsh.jaiswal\Desktop\MyFullstackApp\backend\Api\PublicWorks.API
+2025-09-22 15:47:26.594 +05:30 [DBG] Hosting started
+2025-09-22 15:47:36.472 +05:30 [DBG] Connection id "0HNFPO509VP73" accepted.
+2025-09-22 15:47:36.493 +05:30 [DBG] Connection id "0HNFPO509VP73" started.
+2025-09-22 15:47:36.538 +05:30 [DBG] Connection id "0HNFPO509VP74" accepted.
+2025-09-22 15:47:36.539 +05:30 [DBG] Connection id "0HNFPO509VP74" started.
+2025-09-22 15:47:36.603 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/ - null null
+2025-09-22 15:47:36.666 +05:30 [DBG] No candidates found for the request path '/'
+2025-09-22 15:47:36.667 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:47:36.722 +05:30 [WRN] Failed to determine the https port for redirect.
+2025-09-22 15:47:36.764 +05:30 [DBG] Connection id "0HNFPO509VP73" completed keep alive response.
+2025-09-22 15:47:36.767 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/ - 404 0 null 168.32ms
+2025-09-22 15:47:36.814 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5142/, Response status code: 404
+2025-09-22 15:47:41.790 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - null null
+2025-09-22 15:47:41.794 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-09-22 15:47:41.794 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:47:41.849 +05:30 [DBG] Executing API description provider 'EndpointMetadataApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 15:47:41.850 +05:30 [DBG] Executing API description provider 'DefaultApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 15:47:42.058 +05:30 [DBG] Connection id "0HNFPO509VP73" completed keep alive response.
+2025-09-22 15:47:42.059 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 268.5804ms
+2025-09-22 15:49:06.975 +05:30 [DBG] Connection id "0HNFPO509VP74" received FIN.
+2025-09-22 15:49:07.003 +05:30 [DBG] Connection id "0HNFPO509VP74" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 15:49:07.004 +05:30 [DBG] Connection id "0HNFPO509VP74" disconnecting.
+2025-09-22 15:49:07.006 +05:30 [DBG] Connection id "0HNFPO509VP74" stopped.
+2025-09-22 15:52:18.073 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger/index.html - null null
+2025-09-22 15:52:18.074 +05:30 [DBG] Connection id "0HNFPO509VP75" accepted.
+2025-09-22 15:52:18.075 +05:30 [DBG] No candidates found for the request path '/swagger/index.html'
+2025-09-22 15:52:18.108 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:52:18.140 +05:30 [DBG] Connection id "0HNFPO509VP75" started.
+2025-09-22 15:52:18.271 +05:30 [DBG] Connection id "0HNFPO509VP73" completed keep alive response.
+2025-09-22 15:52:18.272 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/index.html - 200 null text/html;charset=utf-8 198.2884ms
+2025-09-22 15:52:18.392 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - null null
+2025-09-22 15:52:18.393 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-09-22 15:52:18.393 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:52:18.405 +05:30 [DBG] Connection id "0HNFPO509VP73" completed keep alive response.
+2025-09-22 15:52:18.406 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 13.2078ms
+2025-09-22 15:52:50.314 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-09-22 15:52:50.427 +05:30 [DBG] Hosting starting
+2025-09-22 15:52:50.557 +05:30 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2025-09-22 15:52:50.563 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-09-22 15:52:50.592 +05:30 [INF] Now listening on: http://localhost:5142
+2025-09-22 15:52:50.592 +05:30 [DBG] Loaded hosting startup assembly PublicWorks.API
+2025-09-22 15:52:50.593 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-22 15:52:50.594 +05:30 [INF] Hosting environment: Development
+2025-09-22 15:52:50.594 +05:30 [INF] Content root path: C:\Users\harsh.jaiswal\Desktop\MyFullstackApp\backend\Api\PublicWorks.API
+2025-09-22 15:52:50.594 +05:30 [DBG] Hosting started
+2025-09-22 15:52:59.243 +05:30 [DBG] Connection id "0HNFPO80G5RLN" accepted.
+2025-09-22 15:52:59.246 +05:30 [DBG] Connection id "0HNFPO80G5RLN" started.
+2025-09-22 15:52:59.283 +05:30 [DBG] Connection id "0HNFPO80G5RLO" accepted.
+2025-09-22 15:52:59.284 +05:30 [DBG] Connection id "0HNFPO80G5RLO" started.
+2025-09-22 15:52:59.292 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/ - null null
+2025-09-22 15:52:59.329 +05:30 [DBG] No candidates found for the request path '/'
+2025-09-22 15:52:59.330 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:52:59.363 +05:30 [DBG] Connection id "0HNFPO80G5RLN" completed keep alive response.
+2025-09-22 15:52:59.365 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/ - 301 0 null 75.1854ms
+2025-09-22 15:52:59.383 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/index.html - null null
+2025-09-22 15:52:59.384 +05:30 [DBG] No candidates found for the request path '/index.html'
+2025-09-22 15:52:59.384 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:52:59.476 +05:30 [DBG] Connection id "0HNFPO80G5RLN" completed keep alive response.
+2025-09-22 15:52:59.476 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/index.html - 200 null text/html;charset=utf-8 93.4544ms
+2025-09-22 15:52:59.511 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger-ui.css - null null
+2025-09-22 15:52:59.512 +05:30 [DBG] Connection id "0HNFPO80G5RLP" accepted.
+2025-09-22 15:52:59.514 +05:30 [DBG] Connection id "0HNFPO80G5RLQ" accepted.
+2025-09-22 15:52:59.515 +05:30 [DBG] Connection id "0HNFPO80G5RLR" accepted.
+2025-09-22 15:52:59.515 +05:30 [DBG] Connection id "0HNFPO80G5RLP" started.
+2025-09-22 15:52:59.516 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger-ui-bundle.js - null null
+2025-09-22 15:52:59.516 +05:30 [DBG] No candidates found for the request path '/swagger-ui-bundle.js'
+2025-09-22 15:52:59.516 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:52:59.515 +05:30 [DBG] No candidates found for the request path '/swagger-ui.css'
+2025-09-22 15:52:59.517 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:52:59.521 +05:30 [DBG] Connection id "0HNFPO80G5RLQ" started.
+2025-09-22 15:52:59.521 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger-ui-standalone-preset.js - null null
+2025-09-22 15:52:59.521 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/index.css - null null
+2025-09-22 15:52:59.523 +05:30 [DBG] Connection id "0HNFPO80G5RLR" started.
+2025-09-22 15:52:59.523 +05:30 [DBG] No candidates found for the request path '/swagger-ui-standalone-preset.js'
+2025-09-22 15:52:59.523 +05:30 [DBG] No candidates found for the request path '/index.css'
+2025-09-22 15:52:59.524 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:52:59.524 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:52:59.525 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/index.js - null null
+2025-09-22 15:52:59.525 +05:30 [DBG] No candidates found for the request path '/index.js'
+2025-09-22 15:52:59.526 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:52:59.528 +05:30 [DBG] Connection id "0HNFPO80G5RLR" completed keep alive response.
+2025-09-22 15:52:59.528 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/index.js - 200 null application/javascript;charset=utf-8 4.7982ms
+2025-09-22 15:52:59.548 +05:30 [DBG] Connection id "0HNFPO80G5RLO" completed keep alive response.
+2025-09-22 15:52:59.548 +05:30 [DBG] Connection id "0HNFPO80G5RLN" completed keep alive response.
+2025-09-22 15:52:59.548 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger-ui.css - 200 23647 text/css 36.85ms
+2025-09-22 15:52:59.548 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/index.css - 200 152 text/css 27.3778ms
+2025-09-22 15:52:59.560 +05:30 [DBG] Connection id "0HNFPO80G5RLP" completed keep alive response.
+2025-09-22 15:52:59.560 +05:30 [DBG] Connection id "0HNFPO80G5RLQ" completed keep alive response.
+2025-09-22 15:52:59.560 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger-ui-bundle.js - 200 417980 text/javascript 44.552ms
+2025-09-22 15:52:59.560 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger-ui-standalone-preset.js - 200 70860 text/javascript 38.9906ms
+2025-09-22 15:53:00.112 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - null null
+2025-09-22 15:53:00.113 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-09-22 15:53:00.113 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:53:00.132 +05:30 [DBG] Executing API description provider 'EndpointMetadataApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 15:53:00.134 +05:30 [DBG] Executing API description provider 'DefaultApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 15:53:00.140 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/favicon-32x32.png - null null
+2025-09-22 15:53:00.140 +05:30 [DBG] No candidates found for the request path '/favicon-32x32.png'
+2025-09-22 15:53:00.140 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:53:00.143 +05:30 [DBG] Connection id "0HNFPO80G5RLO" completed keep alive response.
+2025-09-22 15:53:00.144 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/favicon-32x32.png - 200 628 image/png 3.4128ms
+2025-09-22 15:53:00.270 +05:30 [DBG] Connection id "0HNFPO80G5RLN" completed keep alive response.
+2025-09-22 15:53:00.270 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 158.0551ms
+2025-09-22 15:55:11.455 +05:30 [DBG] Connection id "0HNFPO80G5RLP" disconnecting.
+2025-09-22 15:55:11.455 +05:30 [DBG] Connection id "0HNFPO80G5RLN" disconnecting.
+2025-09-22 15:55:11.456 +05:30 [DBG] Connection id "0HNFPO80G5RLO" disconnecting.
+2025-09-22 15:55:11.456 +05:30 [DBG] Connection id "0HNFPO80G5RLQ" disconnecting.
+2025-09-22 15:55:11.456 +05:30 [DBG] Connection id "0HNFPO80G5RLR" disconnecting.
+2025-09-22 15:55:11.457 +05:30 [DBG] Connection id "0HNFPO80G5RLP" stopped.
+2025-09-22 15:55:11.457 +05:30 [DBG] Connection id "0HNFPO80G5RLR" stopped.
+2025-09-22 15:55:11.457 +05:30 [DBG] Connection id "0HNFPO80G5RLQ" stopped.
+2025-09-22 15:55:11.457 +05:30 [DBG] Connection id "0HNFPO80G5RLO" stopped.
+2025-09-22 15:55:11.457 +05:30 [DBG] Connection id "0HNFPO80G5RLN" stopped.
+2025-09-22 15:55:11.462 +05:30 [DBG] Connection id "0HNFPO80G5RLQ" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 15:55:11.462 +05:30 [DBG] Connection id "0HNFPO80G5RLR" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 15:55:11.462 +05:30 [DBG] Connection id "0HNFPO80G5RLN" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 15:55:11.462 +05:30 [DBG] Connection id "0HNFPO80G5RLO" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 15:55:11.462 +05:30 [DBG] Connection id "0HNFPO80G5RLP" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 15:58:13.573 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-09-22 15:58:13.756 +05:30 [DBG] Hosting starting
+2025-09-22 15:58:13.966 +05:30 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2025-09-22 15:58:13.973 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-09-22 15:58:14.094 +05:30 [INF] Now listening on: http://localhost:5142
+2025-09-22 15:58:14.095 +05:30 [DBG] Loaded hosting startup assembly PublicWorks.API
+2025-09-22 15:58:14.097 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-22 15:58:14.098 +05:30 [INF] Hosting environment: Development
+2025-09-22 15:58:14.099 +05:30 [INF] Content root path: C:\Users\harsh.jaiswal\Desktop\MyFullstackApp\backend\Api\PublicWorks.API
+2025-09-22 15:58:14.099 +05:30 [DBG] Hosting started
+2025-09-22 15:58:39.338 +05:30 [DBG] Connection id "0HNFPOB5RIFRB" accepted.
+2025-09-22 15:58:39.434 +05:30 [DBG] Connection id "0HNFPOB5RIFRB" started.
+2025-09-22 15:58:39.435 +05:30 [DBG] Connection id "0HNFPOB5RIFRC" accepted.
+2025-09-22 15:58:39.436 +05:30 [DBG] Connection id "0HNFPOB5RIFRC" started.
+2025-09-22 15:58:39.902 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - null null
+2025-09-22 15:58:39.932 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-09-22 15:58:39.932 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 15:58:39.974 +05:30 [DBG] Executing API description provider 'EndpointMetadataApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 15:58:39.975 +05:30 [DBG] Executing API description provider 'DefaultApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 15:58:40.143 +05:30 [DBG] Connection id "0HNFPOB5RIFRB" completed keep alive response.
+2025-09-22 15:58:40.145 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 245.1065ms

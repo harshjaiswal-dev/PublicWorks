@@ -1,3 +1,4 @@
+using Business.DTOs;
 using Business.Service.Interface;
 using Data.Model;
 using Data.UnitOfWork;
@@ -23,14 +24,40 @@ namespace Business.Service.Implementation
             return await _unitOfWork.UserRepository.GetByIdAsync(id);
         }
 
-        public async Task CreateUserAsync(User user)
+        public async Task CreateUserAsync(UserDto dto)
         {
+            var user = new User()
+            {
+                UserId = dto.UserId,
+                GoogleUserId = dto.GoogleUserId,
+                Name = dto.Name,
+                PasswordHash = dto.PasswordHash,
+                ProfilePicture = dto.ProfilePicture,
+                RoleId = dto.RoleId,
+                LastLoginAt = dto.LastLoginAt,
+                CreatedAt = dto.CreatedAt,
+                IsActive = dto.IsActive
+            };
+
             await _unitOfWork.UserRepository.AddAsync(user);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task UpdateUserAsync(int id, User user)
+        public async Task UpdateUserAsync(int id, UserDto dto)
         {
+            var user = new User()
+            {
+                UserId = dto.UserId,
+                GoogleUserId = dto.GoogleUserId,
+                Name = dto.Name,
+                PasswordHash = dto.PasswordHash,
+                ProfilePicture = dto.ProfilePicture,
+                RoleId = dto.RoleId,
+                LastLoginAt = dto.LastLoginAt,
+                CreatedAt = dto.CreatedAt,
+                IsActive = dto.IsActive
+            };
+
             await _unitOfWork.UserRepository.UpdateAsync(id, user);
             await _unitOfWork.SaveAsync();
         }

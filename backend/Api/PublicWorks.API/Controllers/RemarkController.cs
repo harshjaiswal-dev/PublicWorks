@@ -1,3 +1,4 @@
+using Business.DTOs;
 using Business.Service.Interface;
 using Data.Model;
 using Microsoft.AspNetCore.Mvc;
@@ -31,14 +32,14 @@ namespace PublicWorks.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] Remark remark)
+        public async Task<IActionResult> Create([FromBody] RemarkDto remark)
         {
             await _service.CreateRemarkAsync(remark);
             return CreatedAtAction(nameof(GetById), new { id = remark.ID }, remark);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] Remark remark)
+        public async Task<IActionResult> Update(int id, [FromBody] RemarkDto remark)
         {
             if (id != remark.ID)
                 return BadRequest();

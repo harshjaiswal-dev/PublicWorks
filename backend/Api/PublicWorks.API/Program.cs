@@ -29,7 +29,11 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+        {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            c.RoutePrefix = ""; 
+        });
 }
 
 app.UseMiddleware<ExceptionMiddleware>();

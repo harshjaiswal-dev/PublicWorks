@@ -5,7 +5,7 @@ namespace Data.Interfaces
 {
     public interface IStatusRepository : IGenericRepository<Status>
     {
- Task<IEnumerable<Status>> GetMessagesByUserIdAsync(int userId);
+        //Task<IEnumerable<Status>> GetMessagesByUserIdAsync(int userId);
     }
   
 

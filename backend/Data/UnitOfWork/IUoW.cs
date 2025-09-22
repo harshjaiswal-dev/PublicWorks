@@ -7,7 +7,7 @@ namespace Data.UnitOfWork
         Task<int> SaveAsync();
 
         IActionTypeRepository ActionTypeRepository { get; }
-        IAuditTrailRepository AuditTrailRepository { get; }
+       // IAuditTrailRepository AuditTrailRepository { get; }
         IImageRepository ImageRepository { get; }
         IIssueRepository IssueRepository { get; }
         IMessageRepository MessageRepository { get; }

@@ -1,6 +1,5 @@
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-
 namespace Data.GenericRepository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
@@ -19,6 +18,7 @@ namespace Data.GenericRepository
             return await _dbSet.ToListAsync();
         }
 
+//fetches that id's data
         public async Task<T?> GetByIdAsync(int id)
         {
             return await _dbSet.FindAsync(id);
@@ -29,10 +29,11 @@ namespace Data.GenericRepository
             await _dbSet.AddAsync(entity);
         }
 
-        public void Update(T entity)
-        {
-            _dbSet.Update(entity);
-        }
+       public async Task UpdateAsync(T entity)
+       {
+          _dbSet.Update(entity);
+       }
+
 
         public void Delete(T entity)
         {

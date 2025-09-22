@@ -14,5 +14,11 @@ namespace Implementations.Repositories
         {
             _context = context;
         }
+         public async Task<IEnumerable<Message>> GetMessagesByUserIdAsync(int userId)
+    {
+        return await _context.Message
+            .Where(m => m.SendBy == userId || m.SendTo == userId)
+            .ToListAsync();
+    }
     }
 }

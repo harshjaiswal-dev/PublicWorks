@@ -6,7 +6,8 @@ namespace Data.GenericRepository
         Task<T?> GetByIdAsync(int id);
         Task AddAsync(T entity);
         Task SaveAsync();
-        void Update(T entity);
+       Task UpdateAsync(T entity);
+
         void Delete(T entity);
         
     }

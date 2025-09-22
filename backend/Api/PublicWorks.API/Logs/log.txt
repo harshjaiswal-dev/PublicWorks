@@ -1588,3 +1588,79 @@ FROM [Message] AS [m]
 2025-09-22 15:58:39.975 +05:30 [DBG] Executing API description provider 'DefaultApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
 2025-09-22 15:58:40.143 +05:30 [DBG] Connection id "0HNFPOB5RIFRB" completed keep alive response.
 2025-09-22 15:58:40.145 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 245.1065ms
+2025-09-22 16:18:43.723 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-09-22 16:18:43.887 +05:30 [DBG] Hosting starting
+2025-09-22 16:18:44.040 +05:30 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2025-09-22 16:18:44.045 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-09-22 16:18:44.072 +05:30 [INF] Now listening on: http://localhost:5142
+2025-09-22 16:18:44.072 +05:30 [DBG] Loaded hosting startup assembly PublicWorks.API
+2025-09-22 16:18:44.072 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-22 16:18:44.073 +05:30 [INF] Hosting environment: Development
+2025-09-22 16:18:44.073 +05:30 [INF] Content root path: C:\Users\harsh.jaiswal\Desktop\MyFullstackApp\backend\Api\PublicWorks.API
+2025-09-22 16:18:44.073 +05:30 [DBG] Hosting started
+2025-09-22 16:18:46.748 +05:30 [DBG] Connection id "0HNFPOMDMAUE6" accepted.
+2025-09-22 16:18:46.749 +05:30 [DBG] Connection id "0HNFPOMDMAUE6" started.
+2025-09-22 16:18:46.817 +05:30 [DBG] Connection id "0HNFPOMDMAUE7" accepted.
+2025-09-22 16:18:46.818 +05:30 [DBG] Connection id "0HNFPOMDMAUE7" started.
+2025-09-22 16:18:47.063 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - null null
+2025-09-22 16:18:47.091 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-09-22 16:18:47.093 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 16:18:47.132 +05:30 [DBG] Executing API description provider 'EndpointMetadataApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 16:18:47.133 +05:30 [DBG] Executing API description provider 'DefaultApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 16:18:47.258 +05:30 [DBG] Connection id "0HNFPOMDMAUE6" completed keep alive response.
+2025-09-22 16:18:47.261 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 200.0076ms
+2025-09-22 16:25:55.007 +05:30 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2025-09-22 16:25:55.088 +05:30 [DBG] Hosting starting
+2025-09-22 16:25:55.181 +05:30 [DBG] Middleware configuration started with options: {AllowedHosts = *, AllowEmptyHosts = True, IncludeFailureMessage = True}
+2025-09-22 16:25:55.185 +05:30 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2025-09-22 16:25:55.206 +05:30 [INF] Now listening on: http://localhost:5142
+2025-09-22 16:25:55.206 +05:30 [DBG] Loaded hosting startup assembly PublicWorks.API
+2025-09-22 16:25:55.207 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-22 16:25:55.207 +05:30 [INF] Hosting environment: Development
+2025-09-22 16:25:55.207 +05:30 [INF] Content root path: C:\Users\harsh.jaiswal\Desktop\MyFullstackApp\backend\Api\PublicWorks.API
+2025-09-22 16:25:55.208 +05:30 [DBG] Hosting started
+2025-09-22 16:27:13.920 +05:30 [DBG] Connection id "0HNFPOR4R3RCO" accepted.
+2025-09-22 16:27:13.921 +05:30 [DBG] Connection id "0HNFPOR4R3RCO" started.
+2025-09-22 16:27:13.927 +05:30 [DBG] Connection id "0HNFPOR4R3RCP" accepted.
+2025-09-22 16:27:13.928 +05:30 [DBG] Connection id "0HNFPOR4R3RCP" started.
+2025-09-22 16:27:13.956 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/index.html - null null
+2025-09-22 16:27:13.975 +05:30 [DBG] No candidates found for the request path '/index.html'
+2025-09-22 16:27:13.976 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 16:27:14.086 +05:30 [DBG] Connection id "0HNFPOR4R3RCO" completed keep alive response.
+2025-09-22 16:27:14.087 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/index.html - 200 null text/html;charset=utf-8 132.8574ms
+2025-09-22 16:27:14.346 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - null null
+2025-09-22 16:27:14.347 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-09-22 16:27:14.348 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 16:27:14.366 +05:30 [DBG] Executing API description provider 'EndpointMetadataApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 16:27:14.367 +05:30 [DBG] Executing API description provider 'DefaultApiDescriptionProvider' from assembly Microsoft.AspNetCore.Mvc.ApiExplorer v9.0.0.0.
+2025-09-22 16:27:14.473 +05:30 [DBG] Connection id "0HNFPOR4R3RCO" completed keep alive response.
+2025-09-22 16:27:14.473 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 127.1218ms
+2025-09-22 16:28:49.160 +05:30 [DBG] Connection id "0HNFPOR4R3RCP" received FIN.
+2025-09-22 16:28:49.168 +05:30 [DBG] Connection id "0HNFPOR4R3RCP" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 16:28:49.170 +05:30 [DBG] Connection id "0HNFPOR4R3RCP" disconnecting.
+2025-09-22 16:28:49.172 +05:30 [DBG] Connection id "0HNFPOR4R3RCP" stopped.
+2025-09-22 16:29:25.802 +05:30 [DBG] Connection id "0HNFPOR4R3RCO" disconnecting.
+2025-09-22 16:29:25.803 +05:30 [DBG] Connection id "0HNFPOR4R3RCO" stopped.
+2025-09-22 16:29:25.804 +05:30 [DBG] Connection id "0HNFPOR4R3RCO" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 16:34:50.497 +05:30 [DBG] Connection id "0HNFPOR4R3RCQ" accepted.
+2025-09-22 16:34:50.499 +05:30 [DBG] Connection id "0HNFPOR4R3RCQ" started.
+2025-09-22 16:34:50.519 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/index.html - null null
+2025-09-22 16:34:50.519 +05:30 [DBG] No candidates found for the request path '/index.html'
+2025-09-22 16:34:50.520 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 16:34:50.523 +05:30 [DBG] Connection id "0HNFPOR4R3RCR" accepted.
+2025-09-22 16:34:50.524 +05:30 [DBG] Connection id "0HNFPOR4R3RCQ" completed keep alive response.
+2025-09-22 16:34:50.524 +05:30 [DBG] Connection id "0HNFPOR4R3RCR" started.
+2025-09-22 16:34:50.525 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/index.html - 200 null text/html;charset=utf-8 5.6392ms
+2025-09-22 16:34:50.761 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - null null
+2025-09-22 16:34:50.762 +05:30 [DBG] No candidates found for the request path '/swagger/v1/swagger.json'
+2025-09-22 16:34:50.762 +05:30 [DBG] Request did not match any endpoints
+2025-09-22 16:34:50.778 +05:30 [DBG] Connection id "0HNFPOR4R3RCQ" completed keep alive response.
+2025-09-22 16:34:50.778 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5142/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 16.8056ms
+2025-09-22 16:35:02.740 +05:30 [DBG] Connection id "0HNFPOR4R3RCR" received FIN.
+2025-09-22 16:35:02.740 +05:30 [DBG] Connection id "0HNFPOR4R3RCQ" received FIN.
+2025-09-22 16:35:02.741 +05:30 [DBG] Connection id "0HNFPOR4R3RCR" disconnecting.
+2025-09-22 16:35:02.741 +05:30 [DBG] Connection id "0HNFPOR4R3RCR" stopped.
+2025-09-22 16:35:02.741 +05:30 [DBG] Connection id "0HNFPOR4R3RCQ" disconnecting.
+2025-09-22 16:35:02.741 +05:30 [DBG] Connection id "0HNFPOR4R3RCQ" stopped.
+2025-09-22 16:35:02.741 +05:30 [DBG] Connection id "0HNFPOR4R3RCR" sending FIN because: "The Socket transport's send loop completed gracefully."
+2025-09-22 16:35:02.742 +05:30 [DBG] Connection id "0HNFPOR4R3RCQ" sending FIN because: "The Socket transport's send loop completed gracefully."

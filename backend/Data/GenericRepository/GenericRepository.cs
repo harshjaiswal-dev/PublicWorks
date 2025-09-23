@@ -6,8 +6,8 @@ namespace Data.GenericRepository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        protected  readonly AppDbContext _context;
-        protected  readonly DbSet<T> _dbSet;
+        protected readonly AppDbContext _context;
+        protected readonly DbSet<T> _dbSet;
 
         public GenericRepository(AppDbContext context)
         {
@@ -35,6 +35,7 @@ namespace Data.GenericRepository
                 throw new NullEntityException(typeof(T).Name);
 
             await _dbSet.AddAsync(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task UpdateAsync(int id, T entity)
@@ -54,9 +55,9 @@ namespace Data.GenericRepository
             var existingEntity = await _dbSet.FindAsync(id);
             if (existingEntity == null)
                 throw new EntityNotFoundException(typeof(T).Name, id);
-      
+
             _dbSet.Remove(existingEntity);
-            
+
         }
 
     }

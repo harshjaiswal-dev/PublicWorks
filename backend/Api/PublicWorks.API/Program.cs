@@ -19,7 +19,21 @@ builder.Services.AddSerilog(options =>
     options.ReadFrom.Configuration(builder.Configuration);
 });
 
+builder.Services.AddAuthentication();
 builder.Services.AddControllers();
+builder.Services.AddAuthentication(options =>
+{
+    options.DefaultScheme = "Cookies";
+    options.DefaultChallengeScheme = "Google";
+})
+.AddCookie("Cookies")
+.AddGoogle(googleOptions =>
+{
+    Console.WriteLine(builder.Configuration["Authentication:Google:ClientId"]);
+    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"] ?? throw new InvalidOperationException("Google ClientId not found");
+    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"] ?? throw new InvalidOperationException("Google ClientSecret not found");
+});
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 

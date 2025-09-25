@@ -14,7 +14,7 @@ namespace PublicWorks.API.Configuration
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IRemarkService, RemarkService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IUoW, UoW>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             
             return services;
         }

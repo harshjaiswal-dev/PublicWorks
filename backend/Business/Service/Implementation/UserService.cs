@@ -7,9 +7,9 @@ namespace Business.Service.Implementation
 {
     public class UserService : IUserService
     {
-        private readonly IUoW _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public UserService(IUoW unitOfWork)
+        public UserService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

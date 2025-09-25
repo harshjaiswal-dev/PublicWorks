@@ -7,9 +7,9 @@ namespace Business.Service.Implementation
 {
     public class MessageService : IMessageService
     {
-        private readonly IUoW _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public MessageService(IUoW unitOfWork)
+        public MessageService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

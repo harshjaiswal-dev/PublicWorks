@@ -7,9 +7,9 @@ namespace Business.Service.Implementation
 {
     public class RemarkService : IRemarkService
     {
-        private readonly IUoW _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public RemarkService(IUoW unitOfWork)
+        public RemarkService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

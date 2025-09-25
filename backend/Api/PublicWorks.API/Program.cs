@@ -13,11 +13,12 @@ builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddDependencyInjection();
 builder.Services.AddSwaggerConfiguration();
 
-builder.Services.AddSerilog(options =>
-{
-    //we can configure serilog from configuration
-    options.ReadFrom.Configuration(builder.Configuration);
-});
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 builder.Services.AddControllers();
 
@@ -35,6 +36,7 @@ if (app.Environment.IsDevelopment())
         });
 }
 
+app.UseSerilogRequestLogging();
 app.UseMiddleware<ExceptionMiddleware>();
 app.UseHttpsRedirection();
 app.MapControllers();

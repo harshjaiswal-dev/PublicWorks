@@ -17,8 +17,8 @@ namespace PublicWorks.API.Configuration
              services.AddScoped<IPriorityService, PriorityService>();
              services.AddScoped<ICategoryService, CategoryService>();
                  services.AddScoped<IRoleService, RoleService>();
-            services.AddScoped<IUoW, UoW>();
             services.AddScoped<IStatusService, StatusService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             
             return services;
         }

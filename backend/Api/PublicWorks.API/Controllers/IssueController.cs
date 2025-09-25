@@ -1,10 +1,12 @@
 using Business.DTOs;
 using Business.Service.Interface;
 using Data.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PublicWorks.API.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class IssueController : ControllerBase
@@ -32,6 +34,7 @@ namespace PublicWorks.API.Controllers
         }
 
         [HttpPost]
+        
         public async Task<IActionResult> Create([FromBody] IssueDto issue)
         {
             await _service.CreateIssueAsync(issue);

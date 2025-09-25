@@ -1,6 +1,8 @@
+using System.Security.Claims;
 using Business.DTOs;
 using Business.Service.Interface;
 using Data.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PublicWorks.API.Controllers
@@ -13,6 +15,16 @@ namespace PublicWorks.API.Controllers
         public UserController(IUserService service)
         {
             _service = service;
+        }
+
+        [HttpGet("profile")]
+        [Authorize] // 👈 Only requests with valid JWT can access this
+        public IActionResult GetProfile()
+        {
+            var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            var name = User.Identity?.Name;
+
+            return Ok(new { message = "Welcome!", userId, name });
         }
         
         [HttpGet]

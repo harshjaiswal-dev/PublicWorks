@@ -22,6 +22,8 @@ namespace PublicWorks.API.Controllers
         [HttpGet("callback")]
         public async Task<IActionResult> GoogleCallback([FromQuery] string code)
         {
+            Console.WriteLine("CODE IS HERE");
+            
             var user = await _googleAuthService.HandleGoogleLoginAsync(code);
 
             // Create JWT for your app
@@ -32,6 +34,7 @@ namespace PublicWorks.API.Controllers
                 token = appJwt,
                 user = new { user.UserId, user.Name, user.ProfilePicture, user.RoleId }
             });
+            // Redirect to frontend with JWT as query param
         }
     }
 }

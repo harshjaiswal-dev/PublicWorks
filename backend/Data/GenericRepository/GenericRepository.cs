@@ -1,6 +1,7 @@
 using System.Threading.Tasks;
 using Data.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Data.GenericRepository
 {
@@ -38,6 +39,14 @@ namespace Data.GenericRepository
             await _context.SaveChangesAsync();
         }
 
+        
+
+        public async Task<T?> GetByConditionAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>().FirstOrDefaultAsync(predicate);
+        }
+
+
         public async Task UpdateAsync(int id, T entity)
         {
             if (entity == null)
@@ -48,6 +57,7 @@ namespace Data.GenericRepository
                 throw new EntityNotFoundException(typeof(T).Name, id);
 
             _context.Entry(existingEntity).CurrentValues.SetValues(entity);
+            await _context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(int id)

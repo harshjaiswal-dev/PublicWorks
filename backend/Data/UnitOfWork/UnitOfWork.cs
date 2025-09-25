@@ -5,10 +5,10 @@ using Implementations.Repositories;
 
 namespace Data.UnitOfWork
 {
-    public class UoW : IUoW
+    public class UnitOfWork : IUnitOfWork
     {
         private readonly AppDbContext _context;
-        public UoW(AppDbContext context)
+        public UnitOfWork(AppDbContext context)
         {
             _context = context;
         }

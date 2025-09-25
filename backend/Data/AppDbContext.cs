@@ -9,26 +9,23 @@ namespace Data
 {
     public class AppDbContext : DbContext
     {
-        //IHttpContextAccessor is used to access the current HTTP request context
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private int? _userId;//current logged-in user's ID
+        private int? _userId;
 
         public AppDbContext(DbContextOptions<AppDbContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
         {
             _httpContextAccessor = httpContextAccessor;
             SetUserIdFromContext();
         }
-        //extract the currently logged-in user's ID from the HTTP request and store it in the _userId field.
-        //This ID is then used to track who made changes to the database
+
         private void SetUserIdFromContext()
         {
-
             var httpContext = _httpContextAccessor.HttpContext;
             if (httpContext == null) return;
 
-            var user = httpContext.User;//current authenticated user.
+            var user = httpContext.User;
             if (user == null) return;
-            //if present userId can be parsed to int and later used for userid.audittrail
+
             var claim = user.FindFirst("UserId");
             if (claim != null && int.TryParse(claim.Value, out int parsedUserId))
             {
@@ -47,143 +44,126 @@ namespace Data
         public DbSet<Role> Role { get; set; }
         public DbSet<Status> Status { get; set; }
         public DbSet<User> Users { get; set; }
-        //This method is called whenever changes are saved to the database.
-        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+
+        private class TempAuditEntry
         {
-            OnBeforeSaveChanges();
-            return await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+            public EntityEntry Entry { get; set; } = default!;
+            public string EntityName { get; set; } = string.Empty;
+            public Dictionary<string, object?>? OldValues { get; set; }
+            public Dictionary<string, object?>? NewValues { get; set; }
+            public int ActionTypeId { get; set; }
         }
 
-        private void OnBeforeSaveChanges()
+        public override async Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
         {
-            ChangeTracker.DetectChanges();//detects all modifications made to entities.
+            var auditEntries = OnBeforeSaveChanges();//gathers info about changes using change tracken and stores in tempauditentrylist
+            var result = await base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+            //EF saves all changes and updates the negative temp IDs with real DB values
+            OnAfterSaveChanges(auditEntries);
+            return result;
+        }
 
-            var auditEntries = new List<AuditTrail>();//collect the audit logs for each entity being changed.
+        private List<TempAuditEntry> OnBeforeSaveChanges()
+        {
+            ChangeTracker.DetectChanges();//ef is tracking the latest chnges
 
+            var auditEntries = new List<TempAuditEntry>();//Creates a list to store all temporary audit entries.
 
             foreach (var entry in ChangeTracker.Entries())
-            //gives you all entities currently being tracked by EF Core
-            {
-                // Skip AuditTrail entity itself and ignore Detached/Unchanged entities
-                //detached is not tracked by efcore now and if no chnage  then nothing to audit
+            {//skips enteries that are of audittrail type and detached, and unchnaged
                 if (entry.Entity is AuditTrail || entry.State == EntityState.Detached || entry.State == EntityState.Unchanged)
                     continue;
 
-                var auditEntry = CreateAuditTrailEntry(entry);//analyzes this entity entry and generates an audit log
-                if (auditEntry != null)
+                var auditEntry = new TempAuditEntry
                 {
-                    auditEntries.Add(auditEntry);
-                }
-            }
+                    Entry = entry,
+                    EntityName = entry.Entity.GetType().Name
+                };
 
-            if (auditEntries.Any())
-            {
-                AuditTrail.AddRange(auditEntries);
-            }
-        }
+                switch (entry.State)
+                {
+                    case EntityState.Added:
+                        auditEntry.ActionTypeId = 1;
+                        auditEntry.NewValues = entry.CurrentValues.Properties
+                            .ToDictionary(p => p.Name, p => entry.CurrentValues[p]);
+                        break;
 
-        private AuditTrail? CreateAuditTrailEntry(EntityEntry entry)
-        {
-            var audit = new AuditTrail();
+                    case EntityState.Deleted:
+                        auditEntry.ActionTypeId = 3;
+                        auditEntry.OldValues = entry.OriginalValues.Properties
+                            .ToDictionary(p => p.Name, p => entry.OriginalValues[p]);
+                        break;
 
-            // Set UserId if available, otherwise 0 or nullable
-            audit.UserId = _userId;
+                    case EntityState.Modified:
+                        auditEntry.ActionTypeId = 2;
+                        auditEntry.OldValues = new Dictionary<string, object?>();
+                        auditEntry.NewValues = new Dictionary<string, object?>();
 
-            audit.EntityName = entry.Entity.GetType().Name;
-            audit.ActionDate = DateTimeOffset.UtcNow;
-
-            // Get primary key value (assumes single key)
-            var key = entry.Metadata.FindPrimaryKey();
-            if (key == null)
-            {
-                // No primary key defined, cannot audit
-                return null;
-            }
-
-            // For simplicity, support single primary key only
-            if (key.Properties.Count != 1)
-            {
-                // Handle composite keys if needed
-                return null;
-            }
-
-            var pkProperty = key.Properties.First();
-            var pkCurrentValue = entry.Property(pkProperty.Name).CurrentValue;
-
-            // Try to convert PK to int (your AuditTrail expects int RecordId)
-            if (pkCurrentValue == null || !int.TryParse(pkCurrentValue.ToString(), out int recordId))
-            {
-                // Cannot convert primary key to int, skip audit
-                return null;
-            }
-            audit.RecordId = recordId;
-
-            // Determine action type and map to your ActionType entity or IDs
-            switch (entry.State)
-            {
-                case EntityState.Added:
-                    audit.ActionTypeId = 1; // Assuming 1 = Create in ActionType table
-                    audit.NewValues = SerializeProperties(entry.CurrentValues.Properties, entry.CurrentValues);
-                    audit.OldValues = string.Empty;
-                    break;
-
-                case EntityState.Deleted:
-                    audit.ActionTypeId = 3; // Assuming 3 = Delete
-                    audit.OldValues = SerializeProperties(entry.OriginalValues.Properties, entry.OriginalValues);
-                    audit.NewValues = string.Empty;
-                    break;
-
-                case EntityState.Modified:
-                    audit.ActionTypeId = 2; // Assuming 2 = Update
-                    var changedProps = new List<string>();
-
-                    foreach (var prop in entry.Properties)
-                    {
-                        if (!prop.IsModified) continue;
-
-                        var original = prop.OriginalValue?.ToString();
-                        var current = prop.CurrentValue?.ToString();
-
-                        if (original != current) // strict comparison
+                        foreach (var prop in entry.Properties)
                         {
-                            changedProps.Add(prop.Metadata.Name);
+                            if (!prop.IsModified)
+                                continue;
+
+                            var original = prop.OriginalValue?.ToString();
+                            var current = prop.CurrentValue?.ToString();
+
+                            if (original != current)
+                            {
+                                auditEntry.OldValues[prop.Metadata.Name] = prop.OriginalValue;
+                                auditEntry.NewValues[prop.Metadata.Name] = prop.CurrentValue;
+                            }
                         }
-                    }
 
-                    if (!changedProps.Any()) return null; // no real changes
+                        if (!auditEntry.OldValues.Any() && !auditEntry.NewValues.Any())
+                            continue;
 
-                    audit.OldValues = SerializeProperties(
-                        entry.OriginalValues.Properties.Where(p => changedProps.Contains(p.Name)),
-                        entry.OriginalValues
-                    );
+                        break;
+                }
 
-                    audit.NewValues = SerializeProperties(
-                        entry.CurrentValues.Properties.Where(p => changedProps.Contains(p.Name)),
-                        entry.CurrentValues
-                    );
-                    break;
-                default:
-                    // Ignore other states
-                    return null;
+                auditEntries.Add(auditEntry);
             }
 
-            return audit;
+            return auditEntries;
         }
-        //converting to json
-        private string SerializeProperties(IEnumerable<Microsoft.EntityFrameworkCore.Metadata.IProperty> properties, PropertyValues values)
+
+        private void OnAfterSaveChanges(List<TempAuditEntry> tempEntries)
         {
-            var dict = new Dictionary<string, object?>();//Maps each property name to its value
-            foreach (var prop in properties)
+            foreach (var temp in tempEntries)
             {
-                var val = values[prop.Name];//gets actual valu 
-                dict[prop.Name] = val;
+                var entry = temp.Entry;
+
+                var key = entry.Metadata.FindPrimaryKey();
+                if (key == null || key.Properties.Count != 1)
+                    continue;
+
+                var pkProperty = key.Properties.First();
+                var pkValue = entry.Property(pkProperty.Name).CurrentValue;
+
+                if (pkValue == null || !int.TryParse(pkValue.ToString(), out int recordId) || recordId <= 0)
+                    continue; // Only log if we have a valid, positive RecordId
+
+                // Inject real primary key into NewValues (especially useful for 'Added' entries)
+                if (temp.NewValues != null && temp.NewValues.ContainsKey(pkProperty.Name))
+                {
+                    temp.NewValues[pkProperty.Name] = recordId;
+                }
+
+                var audit = new AuditTrail
+                {
+                    UserId = _userId,
+                    EntityName = temp.EntityName,
+                    ActionTypeId = temp.ActionTypeId,
+                    ActionDate = DateTimeOffset.UtcNow,
+                    RecordId = recordId,
+                    OldValues = temp.OldValues != null ? JsonConvert.SerializeObject(temp.OldValues) : string.Empty,
+                    NewValues = temp.NewValues != null ? JsonConvert.SerializeObject(temp.NewValues) : string.Empty
+                };
+
+                AuditTrail.Add(audit);
             }
 
-            return JsonConvert.SerializeObject(dict);//converts to json
+            // Save audit logs in same transaction
+            base.SaveChanges();
         }
     }
-
-
-
 }
-

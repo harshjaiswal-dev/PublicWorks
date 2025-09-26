@@ -3,8 +3,8 @@ using Data.GenericRepository;
 
 namespace Data.Repositories.Interfaces
 {
-    public interface IAuditTrailRepository : IGenericRepository<AuditTrail>
+    public interface IRoleRepository : IGenericRepository<Role>
     {
-       
+    
     }
 }

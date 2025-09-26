@@ -13,12 +13,12 @@ namespace Data.Model
 
         [ForeignKey(nameof(UserId))]
         public User? User { get; set; }
-        
+
         [Required(ErrorMessage = "Category is required.")]
         public int CategoryId { get; set; }
 
         [ForeignKey(nameof(CategoryId))]
-        public Category? Category { get; set; } 
+        public Category? Category { get; set; }
 
         [Required(ErrorMessage = "Latitude is required.")]
         [Column(TypeName = "decimal(9,6)")]
@@ -33,18 +33,22 @@ namespace Data.Model
         [Required(ErrorMessage = "Description is required.")]
         [MaxLength(1000, ErrorMessage = "Description cannot exceed 1000 characters.")]
         public string Description { get; set; } = string.Empty;
-    
+
         [Required(ErrorMessage = "Priority is required.")]
         public int PriorityId { get; set; }
 
         [ForeignKey(nameof(PriorityId))]
         public Priority? Priority { get; set; }
-    
+
         [Required(ErrorMessage = "Status is required.")]
         public int StatusId { get; set; }
-    
+
         [ForeignKey(nameof(StatusId))]
         public Status? Status { get; set; } 
+        
+        [MaxLength(255)]
+        [Required]
+        public string? ImagePath { get; set; }
     
     }
 }

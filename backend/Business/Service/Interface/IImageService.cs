@@ -7,8 +7,8 @@ namespace Business.Service.Interface
     {
         Task<IEnumerable<Image>> GetImagesAsync();
         Task<Image> GetImageByIdAsync(int id);
-        Task CreateImageAsync(ImageDto image);
-        Task UpdateImageAsync(int id, ImageDto image);
-        Task DeleteImageAsync(int id);
+        // Task CreateImageAsync(ImageDto image);
+        // Task UpdateImageAsync(int id, ImageDto image);
+        // Task DeleteImageAsync(int id);
     }
 }

@@ -24,36 +24,36 @@ namespace Business.Service.Implementation
             return await _unitOfWork.ImageRepository.GetByIdAsync(id);
         }
 
-        public async Task CreateImageAsync(ImageDto dto)
-        {
-            var image = new Image()
-            {
-                ID = dto.ID,
-                IssueId = dto.IssueId,
-                ImagePath = dto.ImagePath
-            };
+        // public async Task CreateImageAsync(ImageDto dto)
+        // {
+        //     var image = new Image()
+        //     {
+        //         ID = dto.ID,
+        //         IssueId = dto.IssueId,
+        //         ImagePath = dto.ImagePath
+        //     };
 
-            await _unitOfWork.ImageRepository.AddAsync(image);
-            await _unitOfWork.SaveAsync();
-        }
+        //     await _unitOfWork.ImageRepository.AddAsync(image);
+        //     await _unitOfWork.SaveAsync();
+        // }
 
-        public async Task UpdateImageAsync(int id, ImageDto dto)
-        {
-            var image = new Image()
-            {
-                ID = dto.ID,
-                IssueId = dto.IssueId,
-                ImagePath = dto.ImagePath
-            };
+        // public async Task UpdateImageAsync(int id, ImageDto dto)
+        // {
+        //     var image = new Image()
+        //     {
+        //         ID = dto.ID,
+        //         IssueId = dto.IssueId,
+        //         ImagePath = dto.ImagePath
+        //     };
 
-            await _unitOfWork.ImageRepository.UpdateAsync(id, image);
-            await _unitOfWork.SaveAsync();
-        }
+        //     await _unitOfWork.ImageRepository.UpdateAsync(id, image);
+        //     await _unitOfWork.SaveAsync();
+        // }
 
-        public async Task DeleteImageAsync(int id)
-        {
-            await _unitOfWork.ImageRepository.DeleteAsync(id);
-            await _unitOfWork.SaveAsync();
-        }
+        // public async Task DeleteImageAsync(int id)
+        // {
+        //     await _unitOfWork.ImageRepository.DeleteAsync(id);
+        //     await _unitOfWork.SaveAsync();
+        // }
     }
 }

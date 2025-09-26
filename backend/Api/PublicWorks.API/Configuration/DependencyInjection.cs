@@ -1,5 +1,6 @@
 using Business.Service.Implementation;
 using Business.Service.Interface;
+using Data.GenericRepository;
 using Data.UnitOfWork;
 
 namespace PublicWorks.API.Configuration
@@ -14,6 +15,10 @@ namespace PublicWorks.API.Configuration
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IRemarkService, RemarkService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<JwtService>();
+            services.AddScoped<IGoogleAuthService, GoogleAuthService>();
+            
              services.AddScoped<IPriorityService, PriorityService>();
              services.AddScoped<ICategoryService, CategoryService>();
                  services.AddScoped<IRoleService, RoleService>();

@@ -145,6 +145,11 @@ namespace Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
                     b.Property<decimal>("Lat")
                         .HasColumnType("decimal(9,6)");
 
@@ -163,6 +168,8 @@ namespace Data.Migrations
                     b.HasKey("IssueId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("PriorityId");
 
                     b.HasIndex("StatusId");
 
@@ -388,7 +395,7 @@ namespace Data.Migrations
 
                     b.HasOne("Data.Model.Priority", "Priority")
                         .WithMany()
-                        .HasForeignKey("StatusId")
+                        .HasForeignKey("PriorityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

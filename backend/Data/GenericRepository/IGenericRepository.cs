@@ -1,3 +1,5 @@
+using System.Linq.Expressions;
+
 namespace Data.GenericRepository
 {
     public interface IGenericRepository<T> where T : class
@@ -7,6 +9,6 @@ namespace Data.GenericRepository
         Task AddAsync(T entity);
         Task UpdateAsync(int id, T entity);
         Task DeleteAsync(int id);
-        
+        Task<T?> GetByConditionAsync(Expression<Func<T, bool>> predicate);
     }
 }

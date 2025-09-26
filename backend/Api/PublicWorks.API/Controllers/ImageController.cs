@@ -31,29 +31,29 @@ namespace PublicWorks.API.Controllers
             return Ok(image);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ImageDto image)
-        {
-            await _service.CreateImageAsync(image);
-            return CreatedAtAction(nameof(GetById), new { id = image.ID }, image);
-        }
+        // [HttpPost]
+        // public async Task<IActionResult> Create([FromBody] ImageDto image)
+        // {
+        //     await _service.CreateImageAsync(image);
+        //     return CreatedAtAction(nameof(GetById), new { id = image.ID }, image);
+        // }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] ImageDto image)
-        {
-            if (id != image.ID)
-                return BadRequest();
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> Update(int id, [FromBody] ImageDto image)
+        // {
+        //     if (id != image.ID)
+        //         return BadRequest();
 
-            await _service.UpdateImageAsync(id, image);
-            return NoContent();
-        }
+        //     await _service.UpdateImageAsync(id, image);
+        //     return NoContent();
+        // }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _service.DeleteImageAsync(id);
-            return NoContent();
-        }
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> Delete(int id)
+        // {
+        //     await _service.DeleteImageAsync(id);
+        //     return NoContent();
+        // }
 
     }
 }

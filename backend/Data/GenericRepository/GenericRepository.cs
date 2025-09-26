@@ -1,7 +1,6 @@
 using System.Threading.Tasks;
 using Data.Exceptions;
 using Microsoft.EntityFrameworkCore;
-
 namespace Data.GenericRepository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class

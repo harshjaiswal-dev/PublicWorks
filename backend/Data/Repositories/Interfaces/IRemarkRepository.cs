@@ -5,6 +5,7 @@ namespace Data.Repositories.Interfaces
 {
     public interface IRemarkRepository : IGenericRepository<Remark>
     {
-        
+
     }
 }
+

@@ -6,9 +6,9 @@ namespace Business.Service.Implementation
 {
     public class ActionTypeService : IActionTypeService
     {
-        private readonly IUoW _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ActionTypeService(IUoW unitOfWork)
+        public ActionTypeService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

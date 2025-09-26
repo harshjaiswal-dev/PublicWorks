@@ -17,9 +17,9 @@ namespace PublicWorks.API.Configuration
             services.AddScoped<IUserService, UserService>();
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<JwtService>();
-            services.AddScoped<IUoW, UoW>();
             services.AddScoped<IGoogleAuthService, GoogleAuthService>();
             
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             
             return services;
         }

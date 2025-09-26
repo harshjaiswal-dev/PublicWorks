@@ -3,6 +3,7 @@ using Business.Service.Interface;
 using Data.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Serilog;
 
 namespace PublicWorks.API.Controllers
 {
@@ -12,9 +13,11 @@ namespace PublicWorks.API.Controllers
     public class IssueController : ControllerBase
     {
         private readonly IIssueService _service;
-        public IssueController(IIssueService service)
+        private readonly IWebHostEnvironment _env;
+        public IssueController(IIssueService service, IWebHostEnvironment env)
         {
             _service = service;
+            _env = env;
         }
 
         [HttpGet]
@@ -33,30 +36,21 @@ namespace PublicWorks.API.Controllers
             return Ok(issue);
         }
 
-        [HttpPost]
-        
-        public async Task<IActionResult> Create([FromBody] IssueDto issue)
+        [HttpPost("submit")]
+        public async Task<IActionResult> SubmitIssue([FromForm] IssueCreateDto dto)
         {
-            await _service.CreateIssueAsync(issue);
-            return CreatedAtAction(nameof(GetById), new { id = issue.IssueId }, issue);
+            
+            int issueId = await _service.SubmitIssueAsync(dto);
+
+            // Log.Information("Issue submitted successfully by user {User}. IssueId={IssueId}", 
+            //         User.Identity?.Name ?? "Anonymous", issueId);
+
+            return Ok(new
+            {
+                Success = true,
+                Message = "Issue submitted successfully",
+                IssueId = issueId
+            });
         }
-
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] IssueDto issue)
-        {
-            if (id != issue.IssueId)
-                return BadRequest();
-
-            await _service.UpdateIssueAsync(id, issue);
-            return NoContent();
-        }
-
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _service.DeleteIssueAsync(id);
-            return NoContent();
-        }
-
     }
 }

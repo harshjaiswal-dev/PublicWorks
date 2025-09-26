@@ -21,6 +21,12 @@ builder.Services.AddSerilog(options =>
 {
     options.ReadFrom.Configuration(builder.Configuration);
 });
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
 
 // 🔹 Add JWT authentication
 builder.Services.AddAuthentication(options =>
@@ -71,6 +77,7 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseSerilogRequestLogging();
 app.UseMiddleware<ExceptionMiddleware>();
 // app.UseHttpsRedirection();
 

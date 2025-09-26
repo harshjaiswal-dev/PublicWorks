@@ -1,3 +1,7 @@
+using System.Net;
+using System.Text.Json;
+using Serilog;
+
 namespace PublicWorks.API.Middleware
 {
     public class ExceptionMiddleware
@@ -20,10 +24,28 @@ namespace PublicWorks.API.Middleware
         }
         private async Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
+            // Default to 500
+            var statusCode = (int)HttpStatusCode.InternalServerError;
+
+            // Log the error with Serilog
+            Log.Error(ex,
+                "Unhandled exception while processing {Method} {Path}. TraceId: {TraceId}",
+                context.Request?.Method,
+                context.Request?.Path.Value,
+                context.TraceIdentifier);
+
+            // Create safe API response
+            var errorResponse = new
+            {
+                Message = "An unexpected error occurred. Please contact support.",
+                TraceId = context.TraceIdentifier
+            };
+
             context.Response.ContentType = "application/json";
-            context.Response.StatusCode = StatusCodes.Status500InternalServerError;
-            var response = new { Message = "An unexpected error occurred.", Details = ex.Message, InnerException = ex.InnerException?.Message };
-            await context.Response.WriteAsJsonAsync(response);
-        }      
+            context.Response.StatusCode = statusCode;
+
+            var json = JsonSerializer.Serialize(errorResponse);
+            await context.Response.WriteAsync(json);
+        }
     }
 }

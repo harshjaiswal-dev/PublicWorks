@@ -2,7 +2,7 @@ using Data.Repositories.Interfaces;
 
 namespace Data.UnitOfWork
 {
-    public interface IUoW : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         Task<int> SaveAsync();
 

@@ -7,9 +7,9 @@ namespace Business.Service.Implementation
 {
     public class ImageService : IImageService
     {
-        private readonly IUoW _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public ImageService(IUoW unitOfWork)
+        public ImageService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

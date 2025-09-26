@@ -9,7 +9,7 @@ namespace Data.Model
         public int Id { get; set; }  // PK
 
         [Required]
-        public int UserId { get; set; }  // FK to Users
+        public int? UserId { get; set; }  // FK to Users
 
         [ForeignKey(nameof(UserId))]
         public User? User { get; set; }

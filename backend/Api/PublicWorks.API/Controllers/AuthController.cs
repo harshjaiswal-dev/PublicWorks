@@ -1,44 +1,50 @@
+using Business.Service.Interface;
+using Data.Model;
 using Microsoft.AspNetCore.Mvc;
+using Google.Apis.Auth;
 
 namespace PublicWorks.API.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        // private readonly IAuthService _authService;
+        private readonly IConfiguration _config;
 
-        // public AuthController(IAuthService authService)
-        // {
-        //     _authService = authService;
-        // } 
+        public AuthController(IConfiguration config)
+        {
+            _config = config;
+        }
 
-        // [HttpPost("login")]
-        // public async Task<IActionResult> Login(LoginRequestDto request)
-        // {
-        //     try
-        //     {
-        //         var res = await _authService.LoginAsync(request);
-        //         return Ok(res);
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         return BadRequest(ex.Message);
-        //     }
-        // }
+        [HttpPost("google")]
+        public async Task<IActionResult> GoogleLogin([FromBody] TokenRequest request)
+        {
+            try
+            {
+                var payload = await GoogleJsonWebSignature.ValidateAsync(request.Token,
+                    new GoogleJsonWebSignature.ValidationSettings()
+                    {
+                        Audience = new[] { _config["GoogleAuth:ClientId"] }
+                    });
 
-        // [HttpPost("google")]
-        // public async Task<IActionResult> GoogleLogin(GoogleLoginRequestDto request)
-        // {
-        //     try
-        //     {
-        //         var res = await _authService.GoogleLoginAsync(request);
-        //         return Ok(res);
-        //     }
-        //     catch (Exception ex)
-        //     {
-        //         return BadRequest(ex.Message);
-        //     }
-        // }
+                var user = new
+                {
+                    email = payload.Email,
+                    name = payload.Name,
+                    picture = payload.Picture
+                };
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
+        }
+
+    }
+    public class TokenRequest
+    {
+        public string Token { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 using Business.Service.Implementation;
 using Business.Service.Interface;
+using Data.GenericRepository;
 using Data.UnitOfWork;
 using NetTopologySuite;
 using NetTopologySuite.Geometries;
@@ -16,6 +17,8 @@ namespace PublicWorks.API.Configuration
             services.AddScoped<IMessageService, MessageService>();
             services.AddScoped<IRemarkService, RemarkService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped<JwtService>();
              services.AddScoped<IPriorityService, PriorityService>();
              services.AddScoped<ICategoryService, CategoryService>();
                  services.AddScoped<IRoleService, RoleService>();
@@ -24,6 +27,8 @@ namespace PublicWorks.API.Configuration
               services.AddSingleton<GeometryFactory>(
                 NetTopologySuite.NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326)
             );
+            services.AddScoped<IGoogleAuthService, GoogleAuthService>();
+            
             
             return services;
         }

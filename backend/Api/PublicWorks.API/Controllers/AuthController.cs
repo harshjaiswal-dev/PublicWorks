@@ -1,50 +1,38 @@
+using Business.Service.Implementation;
 using Business.Service.Interface;
-using Data.Model;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Google.Apis.Auth;
 
 namespace PublicWorks.API.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly IConfiguration _config;
+        private readonly IGoogleAuthService _googleAuthService;
+        private readonly JwtService _jwtService;
 
-        public AuthController(IConfiguration config)
+        public AuthController(IGoogleAuthService googleAuthService, JwtService jwtService)
         {
-            _config = config;
+            _googleAuthService = googleAuthService;
+            _jwtService = jwtService;
         }
 
-        [HttpPost("google")]
-        public async Task<IActionResult> GoogleLogin([FromBody] TokenRequest request)
+        [HttpGet("callback")]
+        public async Task<IActionResult> GoogleCallback([FromQuery] string code)
         {
-            try
-            {
-                var payload = await GoogleJsonWebSignature.ValidateAsync(request.Token,
-                    new GoogleJsonWebSignature.ValidationSettings()
-                    {
-                        Audience = new[] { _config["GoogleAuth:ClientId"] }
-                    });
+            var user = await _googleAuthService.HandleGoogleLoginAsync(code);
 
-                var user = new
-                {
-                    email = payload.Email,
-                    name = payload.Name,
-                    picture = payload.Picture
-                };
+            // Create JWT for your app
+            var appJwt = _jwtService.CreateToken(user.UserId.ToString(), user.Name);
 
-                return Ok(user);
-            }
-            catch (Exception ex)
+            return Ok(new
             {
-                return BadRequest(new { error = ex.Message });
-            }
+                token = appJwt,
+                user = new { user.UserId, user.Name, user.ProfilePicture, user.RoleId }
+            });
         }
-
-    }
-    public class TokenRequest
-    {
-        public string Token { get; set; }
     }
 }
+

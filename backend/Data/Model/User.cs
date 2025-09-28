@@ -15,12 +15,16 @@ namespace Data.Model
         [Required]
         [MaxLength(100)]
         public string Name { get; set; } = string.Empty;
+           [Required]
+        [MaxLength(100)]
+          public string Email { get; set; } = string.Empty;
 
         [MaxLength(255)]
         public string? PasswordHash { get; set; }
 
         [MaxLength(255)]
         public string? ProfilePicture { get; set; }  
+         //public ICollection<Role> Roles { get; set; } = new List<Role>();
 
         [Required]
         public int RoleId { get; set; } 

@@ -7,9 +7,9 @@ namespace Business.Service.Implementation
 {
     public class PriorityService : IPriorityService
     {
-        private readonly IUoW _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public PriorityService(IUoW unitOfWork)
+        public PriorityService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

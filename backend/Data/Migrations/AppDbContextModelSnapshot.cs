@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
+using NetTopologySuite.Geometries;
 
 #nullable disable
 
@@ -145,11 +146,14 @@ namespace Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<decimal>("Lat")
-                        .HasColumnType("decimal(9,6)");
+                    b.Property<Point>("Location")
+                        .IsRequired()
+                        .HasColumnType("geography");
 
-                    b.Property<decimal>("Long")
-                        .HasColumnType("decimal(9,6)");
+                    b.Property<string>("LocationText")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("PriorityId")
                         .HasColumnType("int");
@@ -163,6 +167,8 @@ namespace Data.Migrations
                     b.HasKey("IssueId");
 
                     b.HasIndex("CategoryId");
+
+                    b.HasIndex("PriorityId");
 
                     b.HasIndex("StatusId");
 
@@ -315,6 +321,11 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
                     b.Property<string>("GoogleUserId")
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
@@ -388,7 +399,7 @@ namespace Data.Migrations
 
                     b.HasOne("Data.Model.Priority", "Priority")
                         .WithMany()
-                        .HasForeignKey("StatusId")
+                        .HasForeignKey("PriorityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

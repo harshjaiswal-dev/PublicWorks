@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
 
+
+
 namespace Data
 {
     public class AppDbContext : DbContext
@@ -43,8 +45,25 @@ namespace Data
         public DbSet<Remark> Remark { get; set; }
         public DbSet<Role> Role { get; set; }
         public DbSet<Status> Status { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> User { get; set; }
 
+
+ // 👇 Mapping for spatial (geography) type
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Issue>(entity =>
+            {
+                // Make sure your Issue class has a Point Location { get; set; } property
+                entity.Property(e => e.Location)
+                      .HasColumnType("geography");
+                      entity.Property(e => e.LocationText)
+              .HasMaxLength(100); // or appropriate length
+            });
+
+            // Additional model configuration if needed...
+        }
         private class TempAuditEntry
         {
             public EntityEntry Entry { get; set; } = default!;
@@ -128,6 +147,12 @@ namespace Data
 
         private void OnAfterSaveChanges(List<TempAuditEntry> tempEntries)
         {
+              // ✅ Custom JSON settings to handle circular references and Geometry
+            var jsonSettings = new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                Converters = new List<JsonConverter> { new GeometryJsonConverter() }
+            };
             foreach (var temp in tempEntries)
             {
                 var entry = temp.Entry;
@@ -155,8 +180,8 @@ namespace Data
                     ActionTypeId = temp.ActionTypeId,
                     ActionDate = DateTimeOffset.UtcNow,
                     RecordId = recordId,
-                    OldValues = temp.OldValues != null ? JsonConvert.SerializeObject(temp.OldValues) : string.Empty,
-                    NewValues = temp.NewValues != null ? JsonConvert.SerializeObject(temp.NewValues) : string.Empty
+                    OldValues = temp.OldValues != null ? JsonConvert.SerializeObject(temp.OldValues,jsonSettings) : string.Empty,
+                    NewValues = temp.NewValues != null ? JsonConvert.SerializeObject(temp.NewValues,jsonSettings) : string.Empty
                 };
 
                 AuditTrail.Add(audit);

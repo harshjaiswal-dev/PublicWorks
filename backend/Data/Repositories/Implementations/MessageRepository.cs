@@ -11,11 +11,11 @@ namespace Data.Repositories.Implementations
         {
             
         }
-         public async Task<IEnumerable<Message>> GetMessagesByUserIdAsync(int userId)
-    {
-        return await _context.Message
-            .Where(m => m.SendBy == userId || m.SendTo == userId)
-            .ToListAsync();
-    }
+        public async Task<IEnumerable<Message>> GetMessagesByUserIdAsync(int userId)
+        {
+            return await _context.Message
+                .Where(m => m.SendBy == userId || m.SendTo == userId)
+                .ToListAsync();
+        }
     }
 }

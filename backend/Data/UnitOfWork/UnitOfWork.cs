@@ -1,7 +1,5 @@
-using Data.Interfaces;
 using Data.Repositories.Implementations;
 using Data.Repositories.Interfaces;
-using Implementations.Repositories;
 
 namespace Data.UnitOfWork
 {
@@ -31,8 +29,7 @@ namespace Data.UnitOfWork
          private IRoleRepository? _roleRepository;
         public IRoleRepository RoleRepository => _roleRepository ??= new RoleRepository(_context);
         private IPriorityRepository? _priorityRepository;
-        public IPriorityRepository PriorityRepository => _priorityRepository ??= new PriorityRepository(_context);
-       
+        public IPriorityRepository PriorityRepository => _priorityRepository ??= new PriorityRepository(_context);    
         private IImageRepository? _imageRepository;
         public IImageRepository ImageRepository => _imageRepository ??= new ImageRepository(_context);
         private IIssueRepository? _issueRepository;

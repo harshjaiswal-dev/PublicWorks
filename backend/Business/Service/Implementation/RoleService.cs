@@ -7,9 +7,9 @@ namespace Business.Service.Implementation
 {
     public class RoleService : IRoleService
     {
-        private readonly IUoW _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public RoleService(IUoW unitOfWork)
+        public RoleService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

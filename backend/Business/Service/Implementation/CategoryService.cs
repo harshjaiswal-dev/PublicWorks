@@ -7,9 +7,9 @@ namespace Business.Service.Implementation
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IUoW _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryService(IUoW unitOfWork)
+        public CategoryService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

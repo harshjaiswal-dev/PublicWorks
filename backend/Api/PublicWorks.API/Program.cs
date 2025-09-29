@@ -17,10 +17,6 @@ builder.Services.AddDependencyInjection();
 builder.Services.AddSwaggerConfiguration();
 builder.Services.AddHttpClient();
 
-builder.Services.AddSerilog(options =>
-{
-    options.ReadFrom.Configuration(builder.Configuration);
-});
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()

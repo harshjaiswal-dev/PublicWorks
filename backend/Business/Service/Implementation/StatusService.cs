@@ -7,9 +7,9 @@ namespace Business.Service.Implementation
 {
     public class StatusService : IStatusService
     {
-        private readonly IUoW _unitOfWork;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public StatusService(IUoW unitOfWork)
+        public StatusService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }

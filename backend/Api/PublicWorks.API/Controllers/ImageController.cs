@@ -15,12 +15,12 @@ namespace PublicWorks.API.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var images = await _service.GetImagesAsync();
-            return Ok(images);
-        }
+        // [HttpGet]
+        // public async Task<IActionResult> GetAll()
+        // {
+        //     var images = await _service.GetImagesAsync();
+        //     return Ok(images);
+        // }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)

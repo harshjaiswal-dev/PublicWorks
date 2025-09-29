@@ -42,9 +42,6 @@ namespace PublicWorks.API.Controllers
             
             int issueId = await _service.SubmitIssueAsync(dto);
 
-            // Log.Information("Issue submitted successfully by user {User}. IssueId={IssueId}", 
-            //         User.Identity?.Name ?? "Anonymous", issueId);
-
             return Ok(new
             {
                 Success = true,

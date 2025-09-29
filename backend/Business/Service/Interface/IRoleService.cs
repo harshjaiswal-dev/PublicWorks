@@ -7,8 +7,8 @@ namespace Business.Service.Interface
     {
         Task<IEnumerable<Role>> GetRoleAsync();
         Task<Role> GetRoleByIdAsync(int id);
-        Task CreateRoleAsync(RoleDto roles);
-        Task UpdateRoleAsync(int id, RoleDto roles);
-        Task DeleteRoleAsync(int id);
+        // Task CreateRoleAsync(RoleDto roles);
+        // Task UpdateRoleAsync(int id, RoleDto roles);
+        // Task DeleteRoleAsync(int id);
     }
 }

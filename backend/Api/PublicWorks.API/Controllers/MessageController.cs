@@ -31,28 +31,28 @@ namespace PublicWorks.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] MessageDto message)
+        public async Task<IActionResult> Create([FromBody] IssueMessageDto message)
         {
             await _service.CreateMessageAsync(message);
-            return CreatedAtAction(nameof(GetById), new { id = message.ID }, message);
+            return CreatedAtAction(nameof(GetById), new { id = message.MessageId }, message);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] MessageDto message)
-        {
-            if (id != message.ID)
-                return BadRequest();
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> Update(int id, [FromBody] MessageDto message)
+        // {
+        //     if (id != message.ID)
+        //         return BadRequest();
 
-            await _service.UpdateMessageAsync(id, message);
-            return NoContent();
-        }
+        //     await _service.UpdateMessageAsync(id, message);
+        //     return NoContent();
+        // }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _service.DeleteMessageAsync(id);
-            return NoContent();
-        }
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> Delete(int id)
+        // {
+        //     await _service.DeleteMessageAsync(id);
+        //     return NoContent();
+        // }
 
     }
 }

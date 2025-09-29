@@ -85,14 +85,13 @@ namespace Business.Service.Implementation
 
 
             // Create geography Point from Longitude and Latitude (longitude first!)
-            var locationPoint = _geometryFactory.CreatePoint(new Coordinate(issueDto.Longitude, issueDto.Latitude));
-             locationPoint.SRID = 4326;
+            // var locationPoint = _geometryFactory.CreatePoint(new Coordinate(issueDto.Longitude, issueDto.Latitude));
+            //  locationPoint.SRID = 4326;
             var issue = new Issue
             {
-                UserId = issueDto.UserId,
-                CategoryId = issueDto.CategoryId,
-                Location = locationPoint,
-                LocationText = locationPoint.AsText(), 
+                ReporterUserId = issueDto.UserId,
+                IssueCategoryId = issueDto.CategoryId,
+                //Location = issueDto.Location, 
                 Description = issueDto.Description,
                 PriorityId = 1, // You can adjust or take from DTO
                 StatusId = 1    // You can adjust or take from DTO
@@ -113,14 +112,14 @@ namespace Business.Service.Implementation
                     string relativePath = await FileHelper.SaveFileAsync(imageFile, issueDto.UserId, issueId);
                     uploadedFilePaths.Add(relativePath);
 
-                    var image = new Image
+                    var image = new IssueImage
                     {
                         IssueId = issueId,
                         ImagePath = relativePath,
                         UploadedAt = DateTimeOffset.UtcNow
                     };
 
-                    await _unitOfWork.ImageRepository.AddAsync(image);
+                    await _unitOfWork.IssueImageRepository.AddAsync(image);
                 }
 
                 await _unitOfWork.SaveAsync();

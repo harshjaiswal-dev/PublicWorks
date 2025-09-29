@@ -5,12 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories.Implementations
 {
-    public class CategoryRepository : GenericRepository<Category>, ICategoryRepository
+    public class IssueImageRepository : GenericRepository<IssueImage>, IIssueImageRepository
     {
-        public CategoryRepository(AppDbContext context) : base(context)
+        public IssueImageRepository(AppDbContext context) : base(context)
         {
 
         }
-    
     }
 }

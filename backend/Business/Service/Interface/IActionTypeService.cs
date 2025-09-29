@@ -6,8 +6,8 @@ namespace Business.Service.Interface
     {
         Task<IEnumerable<ActionType>> GetActionTypesAsync();
         Task<ActionType> GetActionTypeByIdAsync(int id);
-        Task CreateActionTypeAsync(ActionType actionType);
-        Task UpdateActionTypeAsync(int id, ActionType actionType);
-        Task DeleteActionTypeAsync(int id);
+        // Task CreateActionTypeAsync(ActionType actionType);
+        // Task UpdateActionTypeAsync(int id, ActionType actionType);
+        // Task DeleteActionTypeAsync(int id);
     }
 }

@@ -5,11 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories.Implementations
 {
-    public class RemarkRepository : GenericRepository<Remark>, IRemarkRepository
+    public class IssueStatusRepository : GenericRepository<IssueStatus>, IIssueStatusRepository
     {
-        public RemarkRepository(AppDbContext context) : base(context)
+        public IssueStatusRepository(AppDbContext context) : base(context)
         {
-            
+
         }
+    
     }
 }

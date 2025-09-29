@@ -1,4 +1,3 @@
-
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
@@ -12,15 +11,10 @@ using Newtonsoft.Json;
 using NetTopologySuite.Geometries;
 using Newtonsoft.Json;
 using NetTopologySuite.Geometries;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
-// 👇 Register DbContext with NetTopologySuite for spatial support
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        x => x.UseNetTopologySuite()
-    )
-);
 
 // Add services
 builder.Services.AddOpenApi();
@@ -79,10 +73,6 @@ builder.Services.AddCors(options =>
               .AllowAnyMethod()
               .AllowCredentials(); // if you use cookies, else optional
     });
-});
-    Console.WriteLine(builder.Configuration["Authentication:Google:ClientId"]);
-    googleOptions.ClientId = builder.Configuration["Authentication:Google:ClientId"] ?? throw new InvalidOperationException("Google ClientId not found");
-    googleOptions.ClientSecret = builder.Configuration["Authentication:Google:ClientSecret"] ?? throw new InvalidOperationException("Google ClientSecret not found");
 });
 builder.Services.AddHttpClient();
 

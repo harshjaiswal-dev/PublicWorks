@@ -13,5 +13,7 @@ namespace Data.Model
 
         [MaxLength(255)]
         public string? Description { get; set; }
+        
+         //  public ICollection<User> Users { get; set; } = new List<User>();
     }
 }

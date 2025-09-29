@@ -10,20 +10,20 @@ namespace Data.Repositories.Implementations
     {
         public UserRepository(AppDbContext context) : base(context)
         {
-
         }
 
-        public async Task<IEnumerable<User>> GetUsersByRoleIdAsync(int roleId)
+        // ✅ Get all users that have a specific RoleId
+           public async Task<IEnumerable<User>> GetUsersByRoleIdAsync(int roleId)
         {
-            return await _context.Users
+            return await _context.User
                 .Include(u => u.Role)
                 .Where(u => u.RoleId == roleId)
                 .ToListAsync();
         }
-
+ 
         public async Task<IEnumerable<User>> GetUsersByRoleNameAsync(string roleName)
         {
-            return await _context.Users
+            return await _context.User
                 .Include(u => u.Role)
                 .Where(u => u.Name == roleName)
                 .ToListAsync();

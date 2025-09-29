@@ -5,7 +5,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using NetTopologySuite.Geometries;
 
 #nullable disable
 
@@ -43,11 +42,11 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Model.AuditTrail", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("AuditTrailId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AuditTrailId"));
 
                     b.Property<DateTimeOffset>("ActionDate")
                         .HasColumnType("datetimeoffset");
@@ -57,7 +56,8 @@ namespace Data.Migrations
 
                     b.Property<string>("EntityName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("NewValues")
                         .IsRequired()
@@ -73,7 +73,7 @@ namespace Data.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("Id");
+                    b.HasKey("AuditTrailId");
 
                     b.HasIndex("ActionTypeId");
 
@@ -82,7 +82,48 @@ namespace Data.Migrations
                     b.ToTable("AuditTrail");
                 });
 
-            modelBuilder.Entity("Data.Model.Category", b =>
+            modelBuilder.Entity("Data.Model.Issue", b =>
+                {
+                    b.Property<int>("IssueId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IssueId"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("IssueCategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PriorityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ReporterUserId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.HasKey("IssueId");
+
+                    b.HasIndex("IssueCategoryId");
+
+                    b.HasIndex("PriorityId");
+
+                    b.HasIndex("ReporterUserId");
+
+                    b.HasIndex("StatusId");
+
+                    b.ToTable("Issue");
+                });
+
+            modelBuilder.Entity("Data.Model.IssueCategory", b =>
                 {
                     b.Property<int>("CategoryId")
                         .ValueGeneratedOnAdd()
@@ -101,16 +142,16 @@ namespace Data.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Category");
+                    b.ToTable("IssueCategory");
                 });
 
-            modelBuilder.Entity("Data.Model.Image", b =>
+            modelBuilder.Entity("Data.Model.IssueImage", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ImageId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ImageId"));
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
@@ -123,74 +164,20 @@ namespace Data.Migrations
                     b.Property<DateTimeOffset>("UploadedAt")
                         .HasColumnType("datetimeoffset");
 
-                    b.HasKey("ID");
+                    b.HasKey("ImageId");
 
                     b.HasIndex("IssueId");
 
-                    b.ToTable("Image");
+                    b.ToTable("IssueImage");
                 });
 
-            modelBuilder.Entity("Data.Model.Issue", b =>
+            modelBuilder.Entity("Data.Model.IssueMessage", b =>
                 {
-                    b.Property<int>("IssueId")
+                    b.Property<int>("MessageId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IssueId"));
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasMaxLength(1000)
-                        .HasColumnType("nvarchar(1000)");
-
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<Point>("Location")
-                        .IsRequired()
-                        .HasColumnType("geography");
-
-                    b.Property<string>("LocationText")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<int>("PriorityId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StatusId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
-
-                    b.HasKey("IssueId");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("PriorityId");
-
-                    b.HasIndex("PriorityId");
-
-                    b.HasIndex("StatusId");
-
-                    b.HasIndex("UserId");
-
-                    b.ToTable("Issue");
-                });
-
-            modelBuilder.Entity("Data.Model.Message", b =>
-                {
-                    b.Property<int>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MessageId"));
 
                     b.Property<string>("Body")
                         .IsRequired()
@@ -200,13 +187,13 @@ namespace Data.Migrations
                     b.Property<int>("IssueId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SendBy")
+                    b.Property<DateTimeOffset>("SentAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("SentByUserId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("SendDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("SendTo")
+                    b.Property<int>("SentToUserId")
                         .HasColumnType("int");
 
                     b.Property<string>("Subject")
@@ -214,14 +201,18 @@ namespace Data.Migrations
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
 
-                    b.HasKey("ID");
+                    b.HasKey("MessageId");
 
                     b.HasIndex("IssueId");
 
-                    b.ToTable("Message");
+                    b.HasIndex("SentByUserId");
+
+                    b.HasIndex("SentToUserId");
+
+                    b.ToTable("IssueMessage");
                 });
 
-            modelBuilder.Entity("Data.Model.Priority", b =>
+            modelBuilder.Entity("Data.Model.IssuePriority", b =>
                 {
                     b.Property<int>("PriorityId")
                         .ValueGeneratedOnAdd()
@@ -240,24 +231,18 @@ namespace Data.Migrations
 
                     b.HasKey("PriorityId");
 
-                    b.ToTable("Priority");
+                    b.ToTable("IssuePriority");
                 });
 
-            modelBuilder.Entity("Data.Model.Remark", b =>
+            modelBuilder.Entity("Data.Model.IssueRemark", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("RemarkId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RemarkId"));
 
                     b.Property<int>("IssueId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTimeOffset>("RemarkAt")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<int>("RemarkBy")
                         .HasColumnType("int");
 
                     b.Property<string>("RemarkText")
@@ -265,11 +250,41 @@ namespace Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.HasKey("ID");
+                    b.Property<DateTimeOffset>("RemarkedAt")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("RemarkedByUserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RemarkId");
 
                     b.HasIndex("IssueId");
 
-                    b.ToTable("Remark");
+                    b.HasIndex("RemarkedByUserId");
+
+                    b.ToTable("IssueRemark");
+                });
+
+            modelBuilder.Entity("Data.Model.IssueStatus", b =>
+                {
+                    b.Property<int>("StatusId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusId"));
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("StatusId");
+
+                    b.ToTable("IssueStatus");
                 });
 
             modelBuilder.Entity("Data.Model.Role", b =>
@@ -294,28 +309,6 @@ namespace Data.Migrations
                     b.ToTable("Role");
                 });
 
-            modelBuilder.Entity("Data.Model.Status", b =>
-                {
-                    b.Property<int>("StatusId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("StatusId"));
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("StatusId");
-
-                    b.ToTable("Status");
-                });
-
             modelBuilder.Entity("Data.Model.User", b =>
                 {
                     b.Property<int>("UserId")
@@ -325,7 +318,6 @@ namespace Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
                     b.Property<DateTimeOffset>("CreatedAt")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Email")
@@ -351,6 +343,9 @@ namespace Data.Migrations
                     b.Property<string>("PasswordHash")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePicture")
                         .HasMaxLength(255)
@@ -385,41 +380,29 @@ namespace Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Data.Model.Image", b =>
-                {
-                    b.HasOne("Data.Model.Issue", "Issue")
-                        .WithMany()
-                        .HasForeignKey("IssueId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Issue");
-                });
-
             modelBuilder.Entity("Data.Model.Issue", b =>
                 {
-                    b.HasOne("Data.Model.Category", "Category")
+                    b.HasOne("Data.Model.IssueCategory", "Category")
                         .WithMany()
-                        .HasForeignKey("CategoryId")
+                        .HasForeignKey("IssueCategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Model.Priority", "Priority")
+                    b.HasOne("Data.Model.IssuePriority", "Priority")
                         .WithMany()
-                        .HasForeignKey("PriorityId")
                         .HasForeignKey("PriorityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Data.Model.Status", "Status")
+                    b.HasOne("Data.Model.User", "Reporter")
+                        .WithMany()
+                        .HasForeignKey("ReporterUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Model.IssueStatus", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Data.Model.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -427,12 +410,12 @@ namespace Data.Migrations
 
                     b.Navigation("Priority");
 
+                    b.Navigation("Reporter");
+
                     b.Navigation("Status");
-
-                    b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Data.Model.Message", b =>
+            modelBuilder.Entity("Data.Model.IssueImage", b =>
                 {
                     b.HasOne("Data.Model.Issue", "Issue")
                         .WithMany()
@@ -443,7 +426,7 @@ namespace Data.Migrations
                     b.Navigation("Issue");
                 });
 
-            modelBuilder.Entity("Data.Model.Remark", b =>
+            modelBuilder.Entity("Data.Model.IssueMessage", b =>
                 {
                     b.HasOne("Data.Model.Issue", "Issue")
                         .WithMany()
@@ -451,7 +434,42 @@ namespace Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Data.Model.User", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SentByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Model.User", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("SentToUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Issue");
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
+                });
+
+            modelBuilder.Entity("Data.Model.IssueRemark", b =>
+                {
+                    b.HasOne("Data.Model.Issue", "Issue")
+                        .WithMany()
+                        .HasForeignKey("IssueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Data.Model.User", "RemarkBy")
+                        .WithMany()
+                        .HasForeignKey("RemarkedByUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Issue");
+
+                    b.Navigation("RemarkBy");
                 });
 
             modelBuilder.Entity("Data.Model.User", b =>

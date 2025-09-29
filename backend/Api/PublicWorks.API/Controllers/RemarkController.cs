@@ -15,12 +15,12 @@ namespace PublicWorks.API.Controllers
             _service = service;
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetAll()
-        {
-            var remarks = await _service.GetRemarksAsync();
-            return Ok(remarks);
-        }
+        // [HttpGet]
+        // public async Task<IActionResult> GetAll()
+        // {
+        //     var remarks = await _service.GetRemarksAsync();
+        //     return Ok(remarks);
+        // }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -32,28 +32,28 @@ namespace PublicWorks.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] RemarkDto remark)
+        public async Task<IActionResult> Create([FromBody] IssueRemarkDto remark)
         {
             await _service.CreateRemarkAsync(remark);
-            return CreatedAtAction(nameof(GetById), new { id = remark.ID }, remark);
+            return CreatedAtAction(nameof(GetById), new { id = remark.RemarkId }, remark);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] RemarkDto remark)
-        {
-            if (id != remark.ID)
-                return BadRequest();
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> Update(int id, [FromBody] RemarkDto remark)
+        // {
+        //     if (id != remark.ID)
+        //         return BadRequest();
 
-            await _service.UpdateRemarkAsync(id, remark);
-            return NoContent();
-        }
+        //     await _service.UpdateRemarkAsync(id, remark);
+        //     return NoContent();
+        // }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _service.DeleteRemarkAsync(id);
-            return NoContent();
-        }
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> Delete(int id)
+        // {
+        //     await _service.DeleteRemarkAsync(id);
+        //     return NoContent();
+        // }
 
     }
 }

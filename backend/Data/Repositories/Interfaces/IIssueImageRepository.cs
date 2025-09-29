@@ -3,9 +3,8 @@ using Data.GenericRepository;
 
 namespace Data.Repositories.Interfaces
 {
-    public interface IRemarkRepository : IGenericRepository<Remark>
+    public interface IIssueImageRepository : IGenericRepository<IssueImage>
     {
-
+    
     }
 }
-

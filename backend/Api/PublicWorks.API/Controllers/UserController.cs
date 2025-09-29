@@ -50,21 +50,21 @@ namespace PublicWorks.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = user.UserId }, user);
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] UserDto user)
-        {
-            if (id != user.UserId)
-                return BadRequest();
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> Update(int id, [FromBody] UserDto user)
+        // {
+        //     if (id != user.UserId)
+        //         return BadRequest();
 
-            await _service.UpdateUserAsync(id, user);
-            return NoContent();
-        }
+        //     await _service.UpdateUserAsync(id, user);
+        //     return NoContent();
+        // }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _service.DeleteUserAsync(id);
-            return NoContent();
-        }
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> Delete(int id)
+        // {
+        //     await _service.DeleteUserAsync(id);
+        //     return NoContent();
+        // }
     }
 }

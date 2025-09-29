@@ -5,10 +5,11 @@ namespace Business.Service.Interface
 {
     public interface IRemarkService
     {
-        Task<IEnumerable<Remark>> GetRemarksAsync();
-        Task<Remark> GetRemarkByIdAsync(int id);
-        Task CreateRemarkAsync(RemarkDto remark);
-        Task UpdateRemarkAsync(int id, RemarkDto remark);
-        Task DeleteRemarkAsync(int id);
+        //Task<IEnumerable<IssueRemark>> GetRemarksAsync();
+        Task<IssueRemark> GetRemarkByIdAsync(int id);
+        Task CreateRemarkAsync(IssueRemarkDto remark);
+        // Task UpdateRemarkAsync(int id, RemarkDto remark);
+        // Task DeleteRemarkAsync(int id);
+        Task<IEnumerable<IssueRemark>> GetRemarksbyIssueIdAsync(int issueId);
     }
 }

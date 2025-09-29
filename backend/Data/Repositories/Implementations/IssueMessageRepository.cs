@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories.Implementations
 {
-    public class PriorityRepository : GenericRepository<Priority>, IPriorityRepository
+    public class IssueMessageRepository : GenericRepository<IssueMessage>, IIssueMessageRepository
     {
-        public PriorityRepository(AppDbContext context) : base(context)
+        public IssueMessageRepository(AppDbContext context) : base(context)
         {
             
         }
-    
+        
     }
 }

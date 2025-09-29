@@ -24,37 +24,37 @@ namespace Business.Service.Implementation
             return await _unitOfWork.RoleRepository.GetByIdAsync(id);
         }
 
-        public async Task CreateRoleAsync(RoleDto dto)
-        {
-            var roles = new Role()
-            {
-                RoleId =dto.RoleId,
-                Name=dto.Name,
-                Description=dto.Description
+        // public async Task CreateRoleAsync(RoleDto dto)
+        // {
+        //     var roles = new Role()
+        //     {
+        //         RoleId =dto.RoleId,
+        //         Name=dto.Name,
+        //         Description=dto.Description
              
-            };
+        //     };
 
-            await _unitOfWork.RoleRepository.AddAsync(roles);
-            await _unitOfWork.SaveAsync();
-        }
+        //     await _unitOfWork.RoleRepository.AddAsync(roles);
+        //     await _unitOfWork.SaveAsync();
+        // }
 
-        public async Task UpdateRoleAsync(int id, RoleDto dto)
-        {
-            var roles = new Role()
-            {
-               RoleId=dto.RoleId,
-                Name=dto.Name,
-                Description=dto.Description
-            };
+        // public async Task UpdateRoleAsync(int id, RoleDto dto)
+        // {
+        //     var roles = new Role()
+        //     {
+        //        RoleId=dto.RoleId,
+        //         Name=dto.Name,
+        //         Description=dto.Description
+        //     };
 
-            await _unitOfWork.RoleRepository.UpdateAsync(id, roles);
-            await _unitOfWork.SaveAsync();
-        }
+        //     await _unitOfWork.RoleRepository.UpdateAsync(id, roles);
+        //     await _unitOfWork.SaveAsync();
+        // }
 
-        public async Task DeleteRoleAsync(int id)
-        {
-            await _unitOfWork.RoleRepository.DeleteAsync(id);
-            await _unitOfWork.SaveAsync();
-        }
+        // public async Task DeleteRoleAsync(int id)
+        // {
+        //     await _unitOfWork.RoleRepository.DeleteAsync(id);
+        //     await _unitOfWork.SaveAsync();
+        // }
     }
 }

@@ -19,7 +19,7 @@ namespace PublicWorks.API.Controllers
             _jwtService = jwtService;
         }
 
-        [HttpGet("callback")]
+        [HttpPost("callback")]
         public async Task<IActionResult> GoogleCallback([FromQuery] string code)
         {
             Console.WriteLine("CODE IS HERE");

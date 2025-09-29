@@ -14,28 +14,29 @@ namespace Business.Service.Implementation
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<IEnumerable<Image>> GetImagesAsync()
-        {
-            return await _unitOfWork.ImageRepository.GetAllAsync();
-        }
-
-        public async Task<Image> GetImageByIdAsync(int id)
-        {
-            return await _unitOfWork.ImageRepository.GetByIdAsync(id);
-        }
-
-        // public async Task CreateImageAsync(ImageDto dto)
+        // public async Task<IEnumerable<IssueImage>> GetImagesAsync()
         // {
-        //     var image = new Image()
-        //     {
-        //         ID = dto.ID,
-        //         IssueId = dto.IssueId,
-        //         ImagePath = dto.ImagePath
-        //     };
-
-        //     await _unitOfWork.ImageRepository.AddAsync(image);
-        //     await _unitOfWork.SaveAsync();
+        //     return await _unitOfWork.IssueImageRepository.GetAllAsync();
         // }
+
+        public async Task<IssueImage> GetImageByIdAsync(int id)
+        {
+            return await _unitOfWork.IssueImageRepository.GetByIdAsync(id);
+        }
+
+        public async Task CreateImageAsync(IssueImageDto dto)
+        {
+            var image = new IssueImage()
+            {
+                ImageId = dto.ImageId,
+                IssueId = dto.IssueId,
+                ImagePath = dto.ImagePath,
+                UploadedAt = dto.UploadedAt
+            };
+
+            await _unitOfWork.IssueImageRepository.AddAsync(image);
+            await _unitOfWork.SaveAsync();
+        }
 
         // public async Task UpdateImageAsync(int id, ImageDto dto)
         // {

@@ -5,10 +5,11 @@ namespace Business.Service.Interface
 {
     public interface IMessageService
     {
-        Task<IEnumerable<Message>> GetMessagesAsync();
-        Task<Message> GetMessageByIdAsync(int id);
-        Task CreateMessageAsync(MessageDto message);
-        Task UpdateMessageAsync(int id, MessageDto message);
-        Task DeleteMessageAsync(int id);
+        Task<IEnumerable<IssueMessage>> GetMessagesAsync();
+        Task<IssueMessage> GetMessageByIdAsync(int id);
+        Task CreateMessageAsync(IssueMessageDto message);
+        // Task UpdateMessageAsync(int id, MessageDto message);
+        // Task DeleteMessageAsync(int id);
+        //Task<IEnumerable<IssueMessage>> GetMessagebyIssueIdAsync(int issueId);
     }
 }

@@ -5,9 +5,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Data.Repositories.Implementations
 {
-    public class StatusRepository : GenericRepository<Status>, IStatusRepository
+    public class IssueCategoryRepository : GenericRepository<IssueCategory>, IIssueCategoryRepository
     {
-        public StatusRepository(AppDbContext context) : base(context)
+        public IssueCategoryRepository(AppDbContext context) : base(context)
         {
 
         }

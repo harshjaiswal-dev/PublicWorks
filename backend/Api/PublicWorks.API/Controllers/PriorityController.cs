@@ -31,29 +31,29 @@ namespace PublicWorks.API.Controllers
             return Ok(remark);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] PriorityDto priority)
-        {
-            await _service.CreatePriorityAsync(priority);
-            return CreatedAtAction(nameof(GetById), new { id = priority.PriorityId}, priority);
-        }
+        // [HttpPost]
+        // public async Task<IActionResult> Create([FromBody] PriorityDto priority)
+        // {
+        //     await _service.CreatePriorityAsync(priority);
+        //     return CreatedAtAction(nameof(GetById), new { id = priority.PriorityId}, priority);
+        // }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] PriorityDto priority)
-        {
-            if (id != priority.PriorityId)
-                return BadRequest();
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> Update(int id, [FromBody] PriorityDto priority)
+        // {
+        //     if (id != priority.PriorityId)
+        //         return BadRequest();
 
-            await _service.UpdatePriorityAsync(id, priority);
-            return NoContent();
-        }
+        //     await _service.UpdatePriorityAsync(id, priority);
+        //     return NoContent();
+        // }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _service.DeletePriorityAsync(id);
-            return NoContent();
-        }
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> Delete(int id)
+        // {
+        //     await _service.DeletePriorityAsync(id);
+        //     return NoContent();
+        // }
 
     }
 }

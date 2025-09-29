@@ -31,30 +31,30 @@ namespace PublicWorks.API.Controllers
             return Ok(remark);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CategoryDto category)
-        {
-            await _service.CreateCategoryAsync(category);
-            return CreatedAtAction(nameof(GetById), new { id = category.CategoryId},  category
-);
-        }
+//         [HttpPost]
+//         public async Task<IActionResult> Create([FromBody] CategoryDto category)
+//         {
+//             await _service.CreateCategoryAsync(category);
+//             return CreatedAtAction(nameof(GetById), new { id = category.CategoryId},  category
+// );
+//         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] CategoryDto category)
-        {
-            if (id != category.CategoryId)
-                return BadRequest();
+//         [HttpPut("{id}")]
+//         public async Task<IActionResult> Update(int id, [FromBody] CategoryDto category)
+//         {
+//             if (id != category.CategoryId)
+//                 return BadRequest();
 
-            await _service.UpdateCategoryAsync(id, category);
-            return NoContent();
-        }
+//             await _service.UpdateCategoryAsync(id, category);
+//             return NoContent();
+//         }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _service.DeleteCategoryAsync(id);
-            return NoContent();
-        }
+//         [HttpDelete("{id}")]
+//         public async Task<IActionResult> Delete(int id)
+//         {
+//             await _service.DeleteCategoryAsync(id);
+//             return NoContent();
+//         }
 
     }
 }

@@ -11,13 +11,20 @@ namespace Business.DTOs
         [Required(ErrorMessage = "CategoryId is required.")]
         public int CategoryId { get; set; }
 
-        [Required(ErrorMessage = "Latitude is required.")]
-        [Range(-90, 90, ErrorMessage = "Latitude must be between -90 and 90.")]
-        public decimal Latitude { get; set; }
+        // [Required(ErrorMessage = "Latitude is required.")]
+        // [Range(-90, 90, ErrorMessage = "Latitude must be between -90 and 90.")]
+        // public decimal Latitude { get; set; }
 
-        [Required(ErrorMessage = "Longitude is required.")]
-        [Range(-180, 180, ErrorMessage = "Longitude must be between -180 and 180.")]
-        public decimal Longitude { get; set; }
+        // [Required(ErrorMessage = "Longitude is required.")]
+        // [Range(-180, 180, ErrorMessage = "Longitude must be between -180 and 180.")]
+        // public decimal Longitude { get; set; }
+
+
+ [Range(-90, 90, ErrorMessage = "Latitude must be between -90 and 90.")]
+public double Latitude { get; set; }
+
+[Range(-180, 180, ErrorMessage = "Longitude must be between -180 and 180.")]
+public double Longitude { get; set; }
 
         [Required(ErrorMessage = "Description is required.")]
         [MaxLength(1000, ErrorMessage = "Description cannot exceed 1000 characters.")]

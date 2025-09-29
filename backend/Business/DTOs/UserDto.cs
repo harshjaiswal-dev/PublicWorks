@@ -16,14 +16,13 @@ namespace Business.DTOs
 
         [StringLength(255, ErrorMessage = "Password hash length is invalid.")]
         public string? PasswordHash { get; set; }
+        public string? ProfilePicture { get; set; }
+        public int RoleId { get; set; }  
 
-        [Url(ErrorMessage = "ProfilePicture must be a valid URL.")]
-        public string? ProfilePicture { get; set; }  
-
-        [Required(ErrorMessage = "RoleId is required.")]
-        [Range(1, int.MaxValue, ErrorMessage = "RoleId must be greater than 0.")]
-        public int RoleId { get; set; }              
-        public DateTimeOffset? LastLoginAt { get; set; }  
+      
+          // ✅ Instead of a single RoleId, expose multiple roles
+    // public List<RoleDto> Roles { get; set; } = new List<RoleDto>();       
+    public DateTimeOffset? LastLoginAt { get; set; }  
         public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
         public bool IsActive { get; set; } = true;
     }

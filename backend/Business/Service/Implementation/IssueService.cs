@@ -10,12 +10,12 @@ namespace Business.Service.Implementation
     public class IssueService : IIssueService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly GeometryFactory _geometryFactory;
+        //private readonly GeometryFactory _geometryFactory;
 
-        public IssueService(IUnitOfWork unitOfWork, GeometryFactory geometryFactory)
+        public IssueService(IUnitOfWork unitOfWork/*, GeometryFactory geometryFactory*/)
         {
             _unitOfWork = unitOfWork;
-            _geometryFactory = geometryFactory ?? throw new ArgumentNullException(nameof(geometryFactory));
+           // _geometryFactory = geometryFactory ?? throw new ArgumentNullException(nameof(geometryFactory));
         }
 
         public async Task<IEnumerable<Issue>> GetIssuesAsync()
@@ -83,7 +83,6 @@ namespace Business.Service.Implementation
         {
             if (issueDto == null) throw new ArgumentNullException(nameof(issueDto));
 
-
             // Create geography Point from Longitude and Latitude (longitude first!)
             // var locationPoint = _geometryFactory.CreatePoint(new Coordinate(issueDto.Longitude, issueDto.Latitude));
             //  locationPoint.SRID = 4326;
@@ -91,7 +90,7 @@ namespace Business.Service.Implementation
             {
                 ReporterUserId = issueDto.UserId,
                 IssueCategoryId = issueDto.CategoryId,
-                //Location = issueDto.Location, 
+                Location = new Point(issueDto.Longitude, issueDto.Latitude) { SRID = 4326 },
                 Description = issueDto.Description,
                 PriorityId = 1, // You can adjust or take from DTO
                 StatusId = 1    // You can adjust or take from DTO

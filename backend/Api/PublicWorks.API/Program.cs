@@ -1,23 +1,14 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using PublicWorks.API.Configuration;
 using PublicWorks.API.Middleware;
 using Serilog;
-using Newtonsoft.Json;
-using NetTopologySuite.Geometries;
-using Newtonsoft.Json;
-using NetTopologySuite.Geometries;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services
-builder.Services.AddOpenApi();
 builder.Services.AddDatabaseConfiguration(builder.Configuration);
 builder.Services.AddDependencyInjection();
 builder.Services.AddSwaggerConfiguration();
@@ -30,11 +21,10 @@ Log.Logger = new LoggerConfiguration()
 
 builder.Host.UseSerilog();
 
-//builder.Services.AddControllers();
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
     {
-        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        //options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
         options.SerializerSettings.Converters.Add(new GeometryJsonConverter());
     });
 

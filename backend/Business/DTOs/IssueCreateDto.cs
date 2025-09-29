@@ -23,11 +23,18 @@ namespace Business.DTOs
         public int CategoryId { get; set; }
 
         /// <summary>
-        /// Geographical location of the user (latitude/longitude).
-        /// Stored as SQL Server geography type.
+        /// Latitude of the location.
         /// </summary>
-        [Column(TypeName = "geography")]
-        public Point? Location { get; set; }
+        [Required(ErrorMessage = "Latitude is required.")]
+        [Range(-90, 90, ErrorMessage = "Latitude must be between -90 and 90.")]
+        public double Latitude { get; set; }
+
+        /// <summary>
+        /// Longitude of the location.
+        /// </summary>
+        [Required(ErrorMessage = "Longitude is required.")]
+        [Range(-180, 180, ErrorMessage = "Longitude must be between -180 and 180.")]
+        public double Longitude { get; set; }
         
         /// <summary>
         /// Detailed description of the issue.

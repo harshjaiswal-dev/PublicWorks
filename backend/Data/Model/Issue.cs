@@ -43,9 +43,9 @@ namespace Data.Model
         /// Geographical location of the issue (latitude/longitude).
         /// Stored as SQL Server geography type.
         /// </summary>
-        // [Required(ErrorMessage = "Location is required.")]
-        // [Column(TypeName = "geography")]
-        // public Point Location { get; set; } = null!;
+        [Required(ErrorMessage = "Location is required.")]
+        [Column(TypeName = "geography")]
+        public Point Location { get; set; } = null!;
 
         /// <summary>
         /// Detailed description of the issue.

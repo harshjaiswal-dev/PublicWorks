@@ -26,9 +26,9 @@ namespace PublicWorks.API.Configuration
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IStatusService, StatusService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
-              services.AddSingleton<GeometryFactory>(
-                NetTopologySuite.NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326)
-            );
+            //   services.AddSingleton<GeometryFactory>(
+            //     NetTopologySuite.NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326)
+            // );
             services.AddScoped<IGoogleAuthService, GoogleAuthService>();
             
             

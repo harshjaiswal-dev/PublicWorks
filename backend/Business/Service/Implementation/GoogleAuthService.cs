@@ -63,7 +63,7 @@ namespace Business.Service.Implementation
                 {
                     GoogleUserId = payload.Subject,
                     Name = payload.Name ?? payload.Email,
-                    RoleId = 2, // 2 = User role
+                    RoleId = 1, // 2 = User role
                     ProfilePicture = payload.Picture,
                     LastLoginAt = DateTimeOffset.UtcNow,
                     IsActive = true

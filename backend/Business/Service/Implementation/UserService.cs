@@ -36,7 +36,8 @@ namespace Business.Service.Implementation
                 RoleId = dto.RoleId,
                 LastLoginAt = dto.LastLoginAt,
                 CreatedAt = dto.CreatedAt,
-                IsActive = dto.IsActive
+                IsActive = dto.IsActive,
+                Email=dto.Email
             };
 
   

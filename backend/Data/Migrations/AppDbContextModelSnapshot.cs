@@ -146,11 +146,6 @@ namespace Data.Migrations
                         .HasMaxLength(1000)
                         .HasColumnType("nvarchar(1000)");
 
-                    b.Property<string>("ImagePath")
-                        .IsRequired()
-                        .HasMaxLength(255)
-                        .HasColumnType("nvarchar(255)");
-
                     b.Property<Point>("Location")
                         .IsRequired()
                         .HasColumnType("geography");
@@ -172,8 +167,6 @@ namespace Data.Migrations
                     b.HasKey("IssueId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("PriorityId");
 
                     b.HasIndex("PriorityId");
 
@@ -388,7 +381,7 @@ namespace Data.Migrations
             modelBuilder.Entity("Data.Model.Image", b =>
                 {
                     b.HasOne("Data.Model.Issue", "Issue")
-                        .WithMany()
+                        .WithMany("Images")
                         .HasForeignKey("IssueId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -406,7 +399,6 @@ namespace Data.Migrations
 
                     b.HasOne("Data.Model.Priority", "Priority")
                         .WithMany()
-                        .HasForeignKey("PriorityId")
                         .HasForeignKey("PriorityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -463,6 +455,11 @@ namespace Data.Migrations
                         .IsRequired();
 
                     b.Navigation("Role");
+                });
+
+            modelBuilder.Entity("Data.Model.Issue", b =>
+                {
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

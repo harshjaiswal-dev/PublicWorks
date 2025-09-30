@@ -3,40 +3,41 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Model
 {
-    public class User
-    {
-        [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int UserId { get; set; }  // PK ID
+  public class User
+  {
+    [Key]
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public int UserId { get; set; }  // PK ID
 
-        [MaxLength(100)]
-        public string? GoogleUserId { get; set; } // Nullable, since not all users may log in with Google
+    [MaxLength(100)]
+    public string? GoogleUserId { get; set; } // Nullable, since not all users may log in with Google
 
-        [Required]
-        [MaxLength(100)]
-        public string Name { get; set; } = string.Empty;
-           [Required]
-        [MaxLength(100)]
-          public string Email { get; set; } = string.Empty;
+    [Required]
+    [MaxLength(100)]
+    public string Name { get; set; } = string.Empty;
+    [Required]
+    [MaxLength(100)]
+    public string Email { get; set; } = string.Empty;
 
-        [MaxLength(255)]
-        public string? PasswordHash { get; set; }
+    [MaxLength(255)]
+    public string? PasswordHash { get; set; }
 
-        [MaxLength(255)]
-        public string? ProfilePicture { get; set; }  
-         //public ICollection<Role> Roles { get; set; } = new List<Role>();
+    [MaxLength(255)]
+    public string? ProfilePicture { get; set; }
+    //public ICollection<Role> Roles { get; set; } = new List<Role>();
 
-        [Required]
-        public int RoleId { get; set; } 
+    [Required]
+    public int RoleId { get; set; }
 
-        [ForeignKey(nameof(RoleId))]
-        public Role? Role { get; set; }
-              
-        public DateTimeOffset? LastLoginAt { get; set; }  
+    [ForeignKey(nameof(RoleId))]
+    public Role? Role { get; set; }
 
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+    public DateTimeOffset? LastLoginAt { get; set; }
 
-        public bool IsActive { get; set; } = true;
+    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+
+    public bool IsActive { get; set; } = true;
+        
     }
 }

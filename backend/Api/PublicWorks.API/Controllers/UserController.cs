@@ -18,7 +18,7 @@ namespace PublicWorks.API.Controllers
         }
 
         [HttpGet("profile")]
-        [Authorize] // 👈 Only requests with valid JWT can access this
+        [Authorize] //  Only requests with valid JWT can access this
         public IActionResult GetProfile()
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;

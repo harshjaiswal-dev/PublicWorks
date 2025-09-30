@@ -1,5 +1,7 @@
+using Data.Interfaces;
 using Data.Repositories.Implementations;
 using Data.Repositories.Interfaces;
+using Implementations.Repositories;
 
 namespace Data.UnitOfWork
 {
@@ -22,8 +24,15 @@ namespace Data.UnitOfWork
 
         private IActionTypeRepository? _actionTypeRepository;
         public IActionTypeRepository ActionTypeRepository => _actionTypeRepository ??= new ActionTypeRepository(_context);
-        private IAuditTrailRepository? _auditTrailRepository;
-        public IAuditTrailRepository AuditTrailRepository => _auditTrailRepository ??= new AuditTrailRepository(_context);
+        private IStatusRepository? _statusRepository;
+        public IStatusRepository StatusRepository => _statusRepository ??= new StatusRepository(_context);
+       private ICategoryRepository? _categoryRepository;
+        public ICategoryRepository CategoryRepository => _categoryRepository ??= new CategoryRepository(_context);
+         private IRoleRepository? _roleRepository;
+        public IRoleRepository RoleRepository => _roleRepository ??= new RoleRepository(_context);
+        private IPriorityRepository? _priorityRepository;
+        public IPriorityRepository PriorityRepository => _priorityRepository ??= new PriorityRepository(_context);
+       
         private IImageRepository? _imageRepository;
         public IImageRepository ImageRepository => _imageRepository ??= new ImageRepository(_context);
         private IIssueRepository? _issueRepository;

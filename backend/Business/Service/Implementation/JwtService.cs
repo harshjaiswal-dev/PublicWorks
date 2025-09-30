@@ -16,7 +16,7 @@ namespace Business.Service.Implementation
             _config = config;
         }
 
-        public string CreateToken(string userId, string email)
+        public string CreateToken(string userId, string email, string role)
         {
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Jwt:Key"]));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
@@ -25,7 +25,7 @@ namespace Business.Service.Implementation
             {
                 new Claim(JwtRegisteredClaimNames.Sub, userId),
                 new Claim(JwtRegisteredClaimNames.Email, email),
-                new Claim("role", "User")
+                new Claim(ClaimTypes.Role, role)
             };
 
             var token = new JwtSecurityToken(

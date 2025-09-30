@@ -7,7 +7,7 @@ using Serilog;
 
 namespace PublicWorks.API.Controllers
 {
-    [Authorize]
+
     [ApiController]
     [Route("api/[controller]")]
     public class IssueController : ControllerBase
@@ -39,7 +39,7 @@ namespace PublicWorks.API.Controllers
         [HttpPost("submit")]
         public async Task<IActionResult> SubmitIssue([FromForm] IssueCreateDto dto)
         {
-            
+
             int issueId = await _service.SubmitIssueAsync(dto);
 
             // Log.Information("Issue submitted successfully by user {User}. IssueId={IssueId}", 
@@ -51,6 +51,13 @@ namespace PublicWorks.API.Controllers
                 Message = "Issue submitted successfully",
                 IssueId = issueId
             });
+        }
+        
+        [HttpGet("summary")]
+        public async Task<IActionResult> GetIssueSummary()
+        {
+            var summary = await _service.GetIssueSummaryAsync();
+            return Ok(summary);
         }
     }
 }

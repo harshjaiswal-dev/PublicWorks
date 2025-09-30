@@ -39,6 +39,7 @@ namespace Business.Service.Implementation
                 IsActive = dto.IsActive
             };
 
+
             await _unitOfWork.UserRepository.AddAsync(user);
             await _unitOfWork.SaveAsync();
         }
@@ -58,6 +59,8 @@ namespace Business.Service.Implementation
                 IsActive = dto.IsActive
             };
 
+
+
             await _unitOfWork.UserRepository.UpdateAsync(id, user);
             await _unitOfWork.SaveAsync();
         }
@@ -67,5 +70,6 @@ namespace Business.Service.Implementation
             await _unitOfWork.UserRepository.DeleteAsync(id);
             await _unitOfWork.SaveAsync();
         }
+        
     }
 }

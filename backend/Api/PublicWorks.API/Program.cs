@@ -2,13 +2,26 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Data;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using PublicWorks.API.Configuration;
 using PublicWorks.API.Middleware;
 using Serilog;
 using System.Security.Claims;
+using Newtonsoft.Json;
+using NetTopologySuite.Geometries;
+using Newtonsoft.Json;
+using NetTopologySuite.Geometries;
 
 var builder = WebApplication.CreateBuilder(args);
+// 👇 Register DbContext with NetTopologySuite for spatial support
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection"),
+        x => x.UseNetTopologySuite()
+    )
+);
 
 // Add services
 builder.Services.AddOpenApi();
@@ -29,6 +42,16 @@ Log.Logger = new LoggerConfiguration()
 builder.Host.UseSerilog();
 
 // 🔹 Add JWT authentication
+//builder.Services.AddControllers();
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        options.SerializerSettings.Converters.Add(new GeometryJsonConverter());
+    });
+
+builder.Services.AddAuthentication();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -52,6 +75,7 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 builder.Services.AddControllers();
+builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddCors(options =>
 {
@@ -63,9 +87,11 @@ builder.Services.AddCors(options =>
               .AllowCredentials(); // if you use cookies, else optional
     });
 });
+builder.Services.AddHttpClient();
 
 var app = builder.Build();
 
+// Configure the HTTP request pipeline
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();

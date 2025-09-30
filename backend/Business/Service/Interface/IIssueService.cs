@@ -8,6 +8,8 @@ namespace Business.Service.Interface
         Task<IEnumerable<Issue>> GetIssuesAsync();
         Task<Issue> GetIssueByIdAsync(int id);
         Task<int> SubmitIssueAsync(IssueCreateDto dto);
+        Task<IssueSummaryDto> GetIssueSummaryAsync();
+
         // Task CreateIssueAsync(IssueDto issue);
         // Task UpdateIssueAsync(int id, IssueDto issue);
         // Task DeleteIssueAsync(int id);

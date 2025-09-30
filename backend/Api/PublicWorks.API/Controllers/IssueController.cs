@@ -7,17 +7,14 @@ using Serilog;
 
 namespace PublicWorks.API.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class IssueController : ControllerBase
     {
         private readonly IIssueService _service;
-        private readonly IWebHostEnvironment _env;
-        public IssueController(IIssueService service, IWebHostEnvironment env)
+        public IssueController(IIssueService service)
         {
             _service = service;
-            _env = env;
         }
 
         [HttpGet]

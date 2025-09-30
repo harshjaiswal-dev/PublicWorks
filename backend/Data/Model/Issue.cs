@@ -54,9 +54,10 @@ namespace Data.Model
         [ForeignKey(nameof(StatusId))]
         public Status? Status { get; set; } 
         
-        [MaxLength(255)]
-        [Required]
-        public string? ImagePath { get; set; }
-    
+        // [MaxLength(255)]
+        // [Required]
+        // public string? ImagePath { get; set; }
+    public ICollection<Image>? Images { get; set; }
+
     }
 }

@@ -40,7 +40,6 @@ namespace Business.Service.Implementation
                 IsActive = dto.IsActive
             };
 
-  
             await _unitOfWork.UserRepository.AddAsync(user);
             await _unitOfWork.SaveAsync();
         }

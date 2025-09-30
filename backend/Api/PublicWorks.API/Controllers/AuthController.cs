@@ -27,7 +27,7 @@ namespace PublicWorks.API.Controllers
             var user = await _googleAuthService.HandleGoogleLoginAsync(code);
 
             // Create JWT for your app
-            var appJwt = _jwtService.CreateToken(user.UserId.ToString(), user.Name);
+            var appJwt = _jwtService.GenerateAccessToken(user.UserId.ToString(), user.Name);
 
             return Ok(new
             {

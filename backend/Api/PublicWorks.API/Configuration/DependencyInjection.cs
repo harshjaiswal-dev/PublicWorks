@@ -12,6 +12,7 @@ namespace PublicWorks.API.Configuration
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IActionTypeService, ActionTypeService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IGoogleAuthService, GoogleAuthService>();
             services.AddScoped<IImageService, ImageService>();

@@ -36,7 +36,7 @@ namespace PublicWorks.API.Controllers
         [HttpPost("submit")]
         public async Task<IActionResult> SubmitIssue([FromForm] IssueCreateDto dto)
         {
-            
+
             int issueId = await _service.SubmitIssueAsync(dto);
 
             return Ok(new
@@ -45,6 +45,13 @@ namespace PublicWorks.API.Controllers
                 Message = "Issue submitted successfully",
                 IssueId = issueId
             });
+        }
+        
+        [HttpGet("summary")]
+        public async Task<IActionResult> GetIssueSummary()
+        {
+            var summary = await _service.GetIssueSummaryAsync();
+            return Ok(summary);
         }
     }
 }

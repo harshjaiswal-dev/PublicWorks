@@ -34,7 +34,7 @@ namespace Business.Service.Implementation
         /// <param name="email">The email of the user.</param>
         /// <param name="role">The role of the user (default: "User").</param>
         /// <returns>A signed JWT access token.</returns>
-        public string GenerateAccessToken(string userId, string email)
+        public string GenerateAccessToken(string userId, string email, string role)
         {
             if (string.IsNullOrWhiteSpace(_jwtSettings.Key))
                 throw new InvalidOperationException("JWT Key is missing in configuration.");
@@ -46,18 +46,11 @@ namespace Business.Service.Implementation
             var signingCredentials = new SigningCredentials(securityKey, SecurityAlgorithms.HmacSha256);
 
             // Define claims for the JWT token
-            // var claims = new[]
-            // {
-            //     new Claim(JwtRegisteredClaimNames.Sub, userId),   // User identifier
-            //     new Claim(JwtRegisteredClaimNames.Email, email), // User email
-            //     new Claim(ClaimTypes.Role, role)                 // User role
-            // };
-
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, userId),
-                new Claim(JwtRegisteredClaimNames.Email, email),
-                new Claim("role", "User")
+                new Claim(JwtRegisteredClaimNames.Sub, userId),   // User identifier
+                new Claim(JwtRegisteredClaimNames.Email, email), // User email
+                new Claim(ClaimTypes.Role, role)                 // User role
             };
 
             // Create the JWT token

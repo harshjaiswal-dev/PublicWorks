@@ -15,7 +15,7 @@ namespace Business.Service.Implementation
         public IssueService(IUnitOfWork unitOfWork/*, GeometryFactory geometryFactory*/)
         {
             _unitOfWork = unitOfWork;
-           // _geometryFactory = geometryFactory ?? throw new ArgumentNullException(nameof(geometryFactory));
+            // _geometryFactory = geometryFactory ?? throw new ArgumentNullException(nameof(geometryFactory));
         }
 
         public async Task<IEnumerable<Issue>> GetIssuesAsync()
@@ -88,7 +88,7 @@ namespace Business.Service.Implementation
             //  locationPoint.SRID = 4326;
             var issue = new Issue
             {
-                ReporterUserId = issueDto.UserId,
+                ReporterUserId = 2,
                 IssueCategoryId = issueDto.CategoryId,
                 Location = new Point(issueDto.Longitude, issueDto.Latitude) { SRID = 4326 },
                 Description = issueDto.Description,
@@ -168,5 +168,21 @@ namespace Business.Service.Implementation
         //     await _unitOfWork.IssueRepository.DeleteAsync(id);
         //     await _unitOfWork.SaveAsync();
         // }
+        
+        public async Task<IssueSummaryDto> GetIssueSummaryAsync()
+        {
+            var total = await _unitOfWork.IssueRepository.CountAsync();
+            var pending = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 1);
+            var inProgress = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 2);
+            var resolved = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 3);
+
+            return new IssueSummaryDto
+            {
+                TotalIssues = total,
+                Pending = pending,
+                InProgress = inProgress,
+                Resolved = resolved
+            };
+        }
     }
 }

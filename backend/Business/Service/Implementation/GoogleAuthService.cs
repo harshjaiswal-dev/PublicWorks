@@ -65,7 +65,8 @@ namespace Business.Service.Implementation
                 user = new User
                 {
                     GoogleUserId = payload.Subject,
-                    Name = payload.Name ?? payload.Email,
+                    Name = payload.Name,
+                    Email = payload.Email,
                     RoleId = 2, // 2 = User role
                     ProfilePicture = payload.Picture,
                     LastLoginAt = DateTimeOffset.UtcNow,

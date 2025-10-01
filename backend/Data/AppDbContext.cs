@@ -127,7 +127,7 @@ namespace Data
 
         private void OnAfterSaveChanges(List<TempAuditEntry> tempEntries)
         {
-              // ✅ Custom JSON settings to handle circular references and Geometry
+            // ✅ Custom JSON settings to handle circular references and Geometry
             var jsonSettings = new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
@@ -155,7 +155,7 @@ namespace Data
 
                 var audit = new AuditTrail
                 {
-                    UserId = _userId,
+                    UserId = 2,
                     EntityName = temp.EntityName,
                     ActionTypeId = temp.ActionTypeId,
                     ActionDate = DateTimeOffset.UtcNow,

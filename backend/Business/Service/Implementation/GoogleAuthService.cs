@@ -53,8 +53,11 @@ namespace Business.Service.Implementation
                 });
 
             // Check if user exists
-            var allUsers = await _userRepo.GetAllAsync();
-            var user = allUsers.FirstOrDefault(u => u.GoogleUserId == payload.Subject);
+            // var allUsers = await _userRepo.GetAllAsync();
+            // var user = allUsers.FirstOrDefault(u => u.GoogleUserId == payload.Subject);
+            var user = await _userRepo.GetByConditionAsync(u => u.GoogleUserId == payload.Subject);
+            // user.LastLoginAt = DateTimeOffset.UtcNow;
+            // await _userRepo.UpdateAsync(user.UserId, user);
 
             if (user == null)
             {
@@ -62,8 +65,9 @@ namespace Business.Service.Implementation
                 user = new User
                 {
                     GoogleUserId = payload.Subject,
-                    Name = payload.Name ?? payload.Email,
-                    RoleId = 1, // 2 = User role
+                    Name = payload.Name,
+                    Email = payload.Email,
+                    RoleId = 2, // 2 = User role
                     ProfilePicture = payload.Picture,
                     LastLoginAt = DateTimeOffset.UtcNow,
                     IsActive = true
@@ -78,6 +82,7 @@ namespace Business.Service.Implementation
                 // Update last login
                 user.LastLoginAt = DateTimeOffset.UtcNow;
                 await _userRepo.UpdateAsync(user.UserId, user);
+                Console.WriteLine($"Updated LastLoginAt: {user.LastLoginAt}");
             }
 
             return user;

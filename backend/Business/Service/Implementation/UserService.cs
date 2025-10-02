@@ -32,6 +32,7 @@ namespace Business.Service.Implementation
                 GoogleUserId = dto.GoogleUserId,
                 Name = dto.Name,
                 PasswordHash = dto.PasswordHash,
+                PhoneNumber = dto.PhoneNumber,
                 ProfilePicture = dto.ProfilePicture,
                 RoleId = dto.RoleId,
                 LastLoginAt = dto.LastLoginAt,
@@ -40,36 +41,35 @@ namespace Business.Service.Implementation
                 Email=dto.Email
             };
 
-  
             await _unitOfWork.UserRepository.AddAsync(user);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task UpdateUserAsync(int id, UserDto dto)
-        {
-            var user = new User()
-            {
-                UserId = dto.UserId,
-                GoogleUserId = dto.GoogleUserId,
-                Name = dto.Name,
-                PasswordHash = dto.PasswordHash,
-                ProfilePicture = dto.ProfilePicture,
-                RoleId = dto.RoleId,
-                LastLoginAt = dto.LastLoginAt,
-                CreatedAt = dto.CreatedAt,
-                IsActive = dto.IsActive
-            };
+        // public async Task UpdateUserAsync(int id, UserDto dto)
+        // {
+        //     var user = new User()
+        //     {
+        //         UserId = dto.UserId,
+        //         GoogleUserId = dto.GoogleUserId,
+        //         Name = dto.Name,
+        //         PasswordHash = dto.PasswordHash,
+        //         ProfilePicture = dto.ProfilePicture,
+        //         RoleId = dto.RoleId,
+        //         LastLoginAt = dto.LastLoginAt,
+        //         CreatedAt = dto.CreatedAt,
+        //         IsActive = dto.IsActive
+        //     };
 
           
 
-            await _unitOfWork.UserRepository.UpdateAsync(id, user);
-            await _unitOfWork.SaveAsync();
-        }
+        //     await _unitOfWork.UserRepository.UpdateAsync(id, user);
+        //     await _unitOfWork.SaveAsync();
+        // }
 
-        public async Task DeleteUserAsync(int id)
-        {
-            await _unitOfWork.UserRepository.DeleteAsync(id);
-            await _unitOfWork.SaveAsync();
-        }
+        // public async Task DeleteUserAsync(int id)
+        // {
+        //     await _unitOfWork.UserRepository.DeleteAsync(id);
+        //     await _unitOfWork.SaveAsync();
+        // }
     }
 }

@@ -10,12 +10,12 @@ namespace Business.Service.Implementation
     public class IssueService : IIssueService
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly GeometryFactory _geometryFactory;
+        //private readonly GeometryFactory _geometryFactory;
 
-        public IssueService(IUnitOfWork unitOfWork, GeometryFactory geometryFactory)
+        public IssueService(IUnitOfWork unitOfWork/*, GeometryFactory geometryFactory*/)
         {
             _unitOfWork = unitOfWork;
-            _geometryFactory = geometryFactory ?? throw new ArgumentNullException(nameof(geometryFactory));
+            // _geometryFactory = geometryFactory ?? throw new ArgumentNullException(nameof(geometryFactory));
         }
 
         public async Task<IEnumerable<Issue>> GetIssuesAsync()
@@ -83,16 +83,14 @@ namespace Business.Service.Implementation
         {
             if (issueDto == null) throw new ArgumentNullException(nameof(issueDto));
 
-
             // Create geography Point from Longitude and Latitude (longitude first!)
-            var locationPoint = _geometryFactory.CreatePoint(new Coordinate(issueDto.Longitude, issueDto.Latitude));
-             locationPoint.SRID = 4326;
+            // var locationPoint = _geometryFactory.CreatePoint(new Coordinate(issueDto.Longitude, issueDto.Latitude));
+            //  locationPoint.SRID = 4326;
             var issue = new Issue
             {
-                UserId = issueDto.UserId,
-                CategoryId = issueDto.CategoryId,
-                Location = locationPoint,
-                LocationText = locationPoint.AsText(), 
+                ReporterUserId = 2,
+                IssueCategoryId = issueDto.CategoryId,
+                Location = new Point(issueDto.Longitude, issueDto.Latitude) { SRID = 4326 },
                 Description = issueDto.Description,
                 PriorityId = 1, // You can adjust or take from DTO
                 StatusId = 1    // You can adjust or take from DTO
@@ -113,14 +111,14 @@ namespace Business.Service.Implementation
                     string relativePath = await FileHelper.SaveFileAsync(imageFile, issueDto.UserId, issueId);
                     uploadedFilePaths.Add(relativePath);
 
-                    var image = new Image
+                    var image = new IssueImage
                     {
                         IssueId = issueId,
                         ImagePath = relativePath,
                         UploadedAt = DateTimeOffset.UtcNow
                     };
 
-                    await _unitOfWork.ImageRepository.AddAsync(image);
+                    await _unitOfWork.IssueImageRepository.AddAsync(image);
                 }
 
                 await _unitOfWork.SaveAsync();
@@ -170,5 +168,23 @@ namespace Business.Service.Implementation
         //     await _unitOfWork.IssueRepository.DeleteAsync(id);
         //     await _unitOfWork.SaveAsync();
         // }
+        
+        public async Task<IssueSummaryDto> GetIssueSummaryAsync()
+        {
+            var total = await _unitOfWork.IssueRepository.CountAsync();
+            var pending = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 1);
+            var inProgress = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 2);
+            var resolved = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 3);
+            var highPriority = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.PriorityId == 3);
+
+            return new IssueSummaryDto
+            {
+                TotalIssues = total,
+                Pending = pending,
+                InProgress = inProgress,
+                Resolved = resolved,
+                HighPriority = highPriority
+            };
+        }
     }
 }

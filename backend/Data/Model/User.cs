@@ -3,41 +3,89 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Data.Model
 {
-  public class User
-  {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public int UserId { get; set; }  // PK ID
+    /// <summary>
+    /// Represents a system user.
+    /// Users can have roles and may log in via Google or locally.
+    /// </summary>
+    public class User
+    {
+        /// <summary>
+        /// Primary key for the user.
+        /// </summary>
+        [Key]
+        public int UserId { get; set; }
 
-    [MaxLength(100)]
-    public string? GoogleUserId { get; set; } // Nullable, since not all users may log in with Google
+        /// <summary>
+        /// Google user ID if the user signs in via Google OAuth.
+        /// Nullable for local users.
+        /// </summary>
+        [MaxLength(100)]
+        public string? GoogleUserId { get; set; }
 
-    [Required]
-    [MaxLength(100)]
-    public string Name { get; set; } = string.Empty;
-    [Required]
-    [MaxLength(100)]
-    public string Email { get; set; } = string.Empty;
+        /// <summary>
+        /// Full name of the user.
+        /// Required, max length 100.
+        /// </summary>
+        [Required(ErrorMessage = "User name is required.")]
+        [MaxLength(100, ErrorMessage = "User name cannot exceed 100 characters.")]
+        public string Name { get; set; } = string.Empty;
 
-    [MaxLength(255)]
-    public string? PasswordHash { get; set; }
+        /// <summary>
+        /// Email address of the user.
+        /// Required, max length 100.
+        /// </summary>
+        [Required(ErrorMessage = "Email is required.")]
+        [MaxLength(100, ErrorMessage = "Email cannot exceed 100 characters.")]
+        public string Email { get; set; } = string.Empty;
 
-    [MaxLength(255)]
-    public string? ProfilePicture { get; set; }
-    //public ICollection<Role> Roles { get; set; } = new List<Role>();
+        /// <summary>
+        /// Phone number of the user.
+        /// Optional, must be exactly 10 digits.
+        /// </summary>
+        [RegularExpression(@"^\d{10}$", ErrorMessage = "Phone number must be exactly 10 digits.")]
+        public string? PhoneNumber { get; set; }
 
-    [Required]
-    public int RoleId { get; set; }
+        /// <summary>
+        /// Hashed password for local authentication.
+        /// Nullable if user uses Google OAuth.
+        /// </summary>
+        [MaxLength(255)]
+        public string? PasswordHash { get; set; }
 
-    [ForeignKey(nameof(RoleId))]
-    public Role? Role { get; set; }
+        /// <summary>
+        /// URL or path to the profile picture.
+        /// Optional, max length 255.
+        /// </summary>
+        [MaxLength(255)]
+        public string? ProfilePicture { get; set; }
 
-    public DateTimeOffset? LastLoginAt { get; set; }
+        /// <summary>
+        /// Foreign key to the user's role.
+        /// </summary>
+        [Required(ErrorMessage = "Role is required.")]
+        public int RoleId { get; set; }
 
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+        /// <summary>
+        /// Navigation property for the role.
+        /// </summary>
+        [ForeignKey(nameof(RoleId))]
+        public Role? Role { get; set; }
 
-    public bool IsActive { get; set; } = true;
-        
+        /// <summary>
+        /// Timestamp of the last login.
+        /// Nullable if user has never logged in.
+        /// </summary>
+        public DateTimeOffset? LastLoginAt { get; set; }
+
+        /// <summary>
+        /// Timestamp when the user was created.
+        /// Defaults to current UTC time.
+        /// </summary>
+        public DateTimeOffset CreatedAt { get; set; } = DateTimeOffset.UtcNow;
+
+        /// <summary>
+        /// Indicates whether the user is active.
+        /// </summary>
+        public bool IsActive { get; set; } = true;
     }
 }

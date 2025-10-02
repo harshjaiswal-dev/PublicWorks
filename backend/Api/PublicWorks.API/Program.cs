@@ -1,68 +1,43 @@
-using Data;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using PublicWorks.API.Configuration;
 using PublicWorks.API.Middleware;
 using Serilog;
 using Newtonsoft.Json;
-using NetTopologySuite.Geometries;
-using Newtonsoft.Json;
-using NetTopologySuite.Geometries;
-using Microsoft.IdentityModel.Tokens;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using System.Text;
-using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
-// 👇 Register DbContext with NetTopologySuite for spatial support
-builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        x => x.UseNetTopologySuite()
-    )
-);
 
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-builder.Services.AddOpenApi();
-builder.Services.AddHttpContextAccessor();
-builder.Services.AddHttpClient();
-
-builder.Services.AddDatabaseConfiguration(builder.Configuration);
-builder.Services.AddDependencyInjection();
-builder.Services.AddSwaggerConfiguration();
-builder.Services.AddSerilog(options =>
-{
-    options.ReadFrom.Configuration(builder.Configuration);
-});
+// -------------------------
+// Serilog Configuration
+// -------------------------
+// Configure Serilog for structured logging from appsettings.json
 Log.Logger = new LoggerConfiguration()
     .ReadFrom.Configuration(builder.Configuration)
     .Enrich.FromLogContext()
     .CreateLogger();
-
 builder.Host.UseSerilog();
-// 🔹 Add JWT authentication
-builder.Services.AddAuthentication(options =>
-{
-    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-})
-.AddJwtBearer(options =>
-{
-    options.TokenValidationParameters = new TokenValidationParameters
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidateLifetime = true, // check expiry
-        ValidateIssuerSigningKey = true,    
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        IssuerSigningKey = new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
-        RoleClaimType = ClaimTypes.Role
-    };
-});
-builder.Services.AddAuthorization();
+
+// -------------------------
+// Add Services to DI Container
+// -------------------------
+
+// Configure DbContext and database-related services
+builder.Services.AddDatabaseConfiguration(builder.Configuration);
+
+// Register business layer and repository dependencies
+builder.Services.AddDependencyInjection();
+
+// Configure JWT authentication (Bearer tokens)
+builder.Services.AddJwtAuthentication(builder.Configuration);
+
+// Configure Swagger/OpenAPI for API documentation
+builder.Services.AddSwaggerConfiguration();
+
+// Configure CORS policies to allow requests from frontend
+builder.Services.AddCorsPolicies();
+
+// Register HttpClientFactory for making HTTP requests
+builder.Services.AddHttpClient();
+
+// Register controllers and configure JSON serialization
 builder.Services.AddControllers()
     .AddNewtonsoftJson(options =>
     {
@@ -70,39 +45,48 @@ builder.Services.AddControllers()
         options.SerializerSettings.Converters.Add(new GeometryJsonConverter());
     });
 
-//builder.Services.AddControllers();
-builder.Services.AddCors(options =>
-{
-    options.AddPolicy("AllowFrontend", policy =>
-    {
-        policy.WithOrigins("http://localhost:5173") // frontend URL
-              .AllowAnyHeader()
-              .AllowAnyMethod()
-              .AllowCredentials(); // if you use cookies, else optional
-    });
-});
+// Register HttpContextAccessor to access HTTP context in services
+builder.Services.AddHttpContextAccessor();
 
-
+// -------------------------
+// Build the App
+// -------------------------
 var app = builder.Build();
 
-// Configure the HTTP request pipeline
+// -------------------------
+// Configure Middleware / HTTP Pipeline
+// -------------------------
+
+// Enable Swagger UI only in development environment
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
     app.UseSwagger();
     app.UseSwaggerUI(c =>
-        {
-            c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-            c.RoutePrefix = ""; 
-        });
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+        c.RoutePrefix = "";
+    });
 }
 
+// Serilog request logging (logs all HTTP requests)
 app.UseSerilogRequestLogging();
-app.UseMiddleware<ExceptionMiddleware>();
-app.UseCors("AllowFrontend");
-app.UseAuthentication();  // 🔹 important
-app.UseAuthorization();   // 🔹 important
 
+// Global exception handling middleware
+app.UseMiddleware<ExceptionMiddleware>();
+
+// Redirect HTTP requests to HTTPS
 app.UseHttpsRedirection();
+
+// Enable CORS using configured policy
+app.UseCors("AllowFrontend");
+
+// Enable authentication and authorization middleware
+// Important: Authentication must come before Authorization
+app.UseAuthentication();
+app.UseAuthorization();
+
+// Map controller endpoints
 app.MapControllers();
+
+// Run the application
 app.Run();

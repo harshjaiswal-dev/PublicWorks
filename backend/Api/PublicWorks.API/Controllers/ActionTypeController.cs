@@ -30,29 +30,29 @@ namespace PublicWorks.API.Controllers
             return Ok(actionType);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] ActionType actionType)
-        {
-            await _service.CreateActionTypeAsync(actionType);
-            return CreatedAtAction(nameof(GetById), new { id = actionType.ActionTypeId }, actionType);
-        }
+        // [HttpPost]
+        // public async Task<IActionResult> Create([FromBody] ActionType actionType)
+        // {
+        //     await _service.CreateActionTypeAsync(actionType);
+        //     return CreatedAtAction(nameof(GetById), new { id = actionType.ActionTypeId }, actionType);
+        // }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> Update(int id, [FromBody] ActionType actionType)
-        {
-            if (id != actionType.ActionTypeId)
-                return BadRequest();
+        // [HttpPut("{id}")]
+        // public async Task<IActionResult> Update(int id, [FromBody] ActionType actionType)
+        // {
+        //     if (id != actionType.ActionTypeId)
+        //         return BadRequest();
 
-            await _service.UpdateActionTypeAsync(id, actionType);
-            return NoContent();
-        }
+        //     await _service.UpdateActionTypeAsync(id, actionType);
+        //     return NoContent();
+        // }
 
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            await _service.DeleteActionTypeAsync(id);
-            return NoContent();
-        }
+        // [HttpDelete("{id}")]
+        // public async Task<IActionResult> Delete(int id)
+        // {
+        //     await _service.DeleteActionTypeAsync(id);
+        //     return NoContent();
+        // }
 
     }
 }

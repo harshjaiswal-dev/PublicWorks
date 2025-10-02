@@ -11,5 +11,6 @@ namespace Business.Service.Interface
         // Task CreateIssueAsync(IssueDto issue);
         // Task UpdateIssueAsync(int id, IssueDto issue);
         // Task DeleteIssueAsync(int id);
+        Task<IssueSummaryDto> GetIssueSummaryAsync();
     }
 }

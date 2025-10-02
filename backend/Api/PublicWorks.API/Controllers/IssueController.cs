@@ -1,6 +1,7 @@
 using Business.DTOs;
 using Business.Service.Interface;
 using Data.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Serilog;
 
@@ -11,11 +12,9 @@ namespace PublicWorks.API.Controllers
     public class IssueController : ControllerBase
     {
         private readonly IIssueService _service;
-        private readonly IWebHostEnvironment _env;
-        public IssueController(IIssueService service, IWebHostEnvironment env)
+        public IssueController(IIssueService service)
         {
             _service = service;
-            _env = env;
         }
 
         [HttpGet]
@@ -37,11 +36,8 @@ namespace PublicWorks.API.Controllers
         [HttpPost("submit")]
         public async Task<IActionResult> SubmitIssue([FromForm] IssueCreateDto dto)
         {
-            
-            int issueId = await _service.SubmitIssueAsync(dto);
 
-            // Log.Information("Issue submitted successfully by user {User}. IssueId={IssueId}", 
-            //         User.Identity?.Name ?? "Anonymous", issueId);
+            int issueId = await _service.SubmitIssueAsync(dto);
 
             return Ok(new
             {
@@ -49,6 +45,13 @@ namespace PublicWorks.API.Controllers
                 Message = "Issue submitted successfully",
                 IssueId = issueId
             });
+        }
+        
+        [HttpGet("summary")]
+        public async Task<IActionResult> GetIssueSummary()
+        {
+            var summary = await _service.GetIssueSummaryAsync();
+            return Ok(summary);
         }
     }
 }

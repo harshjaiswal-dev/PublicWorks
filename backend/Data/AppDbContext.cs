@@ -1,18 +1,15 @@
-﻿using System.Text.Json;
-using Data.Model;
+﻿using Data.Model;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Newtonsoft.Json;
-
-
 
 namespace Data
 {
     public class AppDbContext : DbContext
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private int? _userId;
+        private int _userId;
 
         public AppDbContext(DbContextOptions<AppDbContext> options, IHttpContextAccessor httpContextAccessor) : base(options)
         {
@@ -35,39 +32,22 @@ namespace Data
             }
             else
             {
-                  _userId = null;
+                  _userId = 2;
             }
         }
 
         public DbSet<ActionType> ActionType { get; set; }
         public DbSet<AuditTrail> AuditTrail { get; set; }
-        public DbSet<Category> Category { get; set; }
-        public DbSet<Image> Image { get; set; }
+        public DbSet<IssueCategory> IssueCategory { get; set; }
+        public DbSet<IssueImage> IssueImage { get; set; }
         public DbSet<Issue> Issue { get; set; }
-        public DbSet<Message> Message { get; set; }
-        public DbSet<Priority> Priority { get; set; }
-        public DbSet<Remark> Remark { get; set; }
+        public DbSet<IssueMessage> IssueMessage { get; set; }
+        public DbSet<IssuePriority> IssuePriority { get; set; }
+        public DbSet<IssueRemark> IssueRemark { get; set; }
         public DbSet<Role> Role { get; set; }
-        public DbSet<Status> Status { get; set; }
+        public DbSet<IssueStatus> IssueStatus { get; set; }
         public DbSet<User> User { get; set; }
 
-
- // 👇 Mapping for spatial (geography) type
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Issue>(entity =>
-            {
-                // Make sure your Issue class has a Point Location { get; set; } property
-                entity.Property(e => e.Location)
-                      .HasColumnType("geography");
-                      entity.Property(e => e.LocationText)
-              .HasMaxLength(100); // or appropriate length
-            });
-
-            // Additional model configuration if needed...
-        }
         private class TempAuditEntry
         {
             public EntityEntry Entry { get; set; } = default!;
@@ -151,7 +131,7 @@ namespace Data
 
         private void OnAfterSaveChanges(List<TempAuditEntry> tempEntries)
         {
-              // ✅ Custom JSON settings to handle circular references and Geometry
+            // ✅ Custom JSON settings to handle circular references and Geometry
             var jsonSettings = new JsonSerializerSettings
             {
                 ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
@@ -179,7 +159,7 @@ namespace Data
 
                 var audit = new AuditTrail
                 {
-                    UserId = _userId,
+                    UserId = 2,
                     EntityName = temp.EntityName,
                     ActionTypeId = temp.ActionTypeId,
                     ActionDate = DateTimeOffset.UtcNow,

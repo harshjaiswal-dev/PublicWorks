@@ -487,6 +487,11 @@ namespace Data.Migrations
 
                     b.Navigation("Role");
                 });
+
+            modelBuilder.Entity("Data.Model.Issue", b =>
+                {
+                    b.Navigation("Images");
+                });
 #pragma warning restore 612, 618
         }
     }

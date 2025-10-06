@@ -30,6 +30,10 @@ namespace Data
             {
                 _userId = parsedUserId;
             }
+            else
+            {
+                  _userId = null;
+            }
         }
 
         public DbSet<ActionType> ActionType { get; set; }

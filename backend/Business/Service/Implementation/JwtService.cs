@@ -48,6 +48,7 @@ namespace Business.Service.Implementation
             // Define claims for the JWT token
             var claims = new[]
             {
+                new Claim("UserId", userId),  
                 new Claim(JwtRegisteredClaimNames.Sub, userId),   // User identifier
                 new Claim(JwtRegisteredClaimNames.Email, email), // User email
                 new Claim(ClaimTypes.Role, role)                 // User role

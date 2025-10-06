@@ -1,8 +1,10 @@
+using System.IdentityModel.Tokens.Jwt;
 using Business.DTOs;
 using Business.Service.Interface;
 using Data.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using PublicWorks.API.Helpers;
 using Serilog;
 
 namespace PublicWorks.API.Controllers
@@ -11,10 +13,12 @@ namespace PublicWorks.API.Controllers
     [Route("api/[controller]")]
     public class IssueController : ControllerBase
     {
+        private readonly UserHelper _userHelper;
         private readonly IIssueService _service;
-        public IssueController(IIssueService service)
+        public IssueController(IIssueService service, UserHelper userHelper)
         {
             _service = service;
+            _userHelper = userHelper;
         }
 
         [HttpGet]
@@ -33,9 +37,12 @@ namespace PublicWorks.API.Controllers
             return Ok(issue);
         }
 
+        [Authorize]
         [HttpPost("submit")]
         public async Task<IActionResult> SubmitIssue([FromForm] IssueCreateDto dto)
         {
+            var userId = _userHelper.GetLoggedInUserId() ?? 0;
+            dto.UserId = userId;
 
             int issueId = await _service.SubmitIssueAsync(dto);
 

@@ -64,7 +64,7 @@ namespace Data
 
         private List<TempAuditEntry> OnBeforeSaveChanges()
         {
-            ChangeTracker.DetectChanges();//ef is tracking the latest chnges
+            ChangeTracker.DetectChanges(); //ef is tracking the latest chnges
 
             var auditEntries = new List<TempAuditEntry>();//Creates a list to store all temporary audit entries.
 
@@ -144,6 +144,8 @@ namespace Data
                 var pkProperty = key.Properties.First();
                 var pkValue = entry.Property(pkProperty.Name).CurrentValue;
 
+                int userId;
+
                 if (pkValue == null || !int.TryParse(pkValue.ToString(), out int recordId) || recordId <= 0)
                     continue; // Only log if we have a valid, positive RecordId
 
@@ -153,9 +155,17 @@ namespace Data
                     temp.NewValues[pkProperty.Name] = recordId;
                 }
 
+                if (entry.Entity is User)
+                    userId = Convert.ToInt32(pkValue);
+                else
+                {
+                    // ✅ For other entities, get from claims
+                    userId = _userId;
+                }
+
                 var audit = new AuditTrail
                 {
-                    UserId = 2,
+                    UserId = userId,
                     EntityName = temp.EntityName,
                     ActionTypeId = temp.ActionTypeId,
                     ActionDate = DateTimeOffset.UtcNow,

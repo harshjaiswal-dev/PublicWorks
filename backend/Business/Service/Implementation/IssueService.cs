@@ -88,7 +88,7 @@ namespace Business.Service.Implementation
             //  locationPoint.SRID = 4326;
             var issue = new Issue
             {
-                ReporterUserId = 2,
+                ReporterUserId = issueDto.UserId,
                 IssueCategoryId = issueDto.CategoryId,
                 Location = new Point(issueDto.Longitude, issueDto.Latitude) { SRID = 4326 },
                 Description = issueDto.Description,

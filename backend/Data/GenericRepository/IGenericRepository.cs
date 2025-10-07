@@ -10,5 +10,6 @@ namespace Data.GenericRepository
         Task UpdateAsync(int id, T entity);
         Task DeleteAsync(int id);
         Task<T?> GetByConditionAsync(Expression<Func<T, bool>> predicate);
+        Task<IEnumerable<T>> GetAllByConditionAsync(Expression<Func<T, bool>> predicate);
     }
 }

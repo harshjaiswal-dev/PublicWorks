@@ -46,6 +46,13 @@ namespace Data.GenericRepository
             return await _context.Set<T>().FirstOrDefaultAsync(predicate);
         }
 
+        public async Task<IEnumerable<T>> GetAllByConditionAsync(Expression<Func<T, bool>> predicate)
+        {
+            return await _context.Set<T>()
+                         .Where(predicate)
+                         .ToListAsync();
+        }
+
 
         public async Task UpdateAsync(int id, T entity)
         {

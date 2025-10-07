@@ -46,12 +46,18 @@ namespace PublicWorks.API.Controllers
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var result = await _authService.AdminLoginAsync(loginDto.Username, loginDto.Password);
-
-            if (result == null)
+            var user = await _authService.AdminLoginAsync(loginDto.Username, loginDto.Password);
+            
+            if (user == null)
                 return Unauthorized(new { message = "Invalid username or password" });
 
-            return Ok(result);
+            var appJwt = _jwtService.GenerateAccessToken(user.UserId.ToString(), user.Name, "Admin");
+
+            return Ok(new
+            {
+                token = appJwt,
+                user = new { user.UserId, user.Name, user.ProfilePicture, user.RoleId, user.Email}
+            });
         }
     }
 }

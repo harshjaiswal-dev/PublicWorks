@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Model
 {
@@ -43,6 +44,7 @@ namespace Data.Model
         /// <summary>
         /// Navigation property for the user who added the remark.
         /// </summary>
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         [ForeignKey(nameof(RemarkedByUserId))]
         public User? RemarkBy { get; set; } 
 

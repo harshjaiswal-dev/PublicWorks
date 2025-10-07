@@ -442,13 +442,13 @@ namespace Data.Migrations
                     b.HasOne("Data.Model.User", "Sender")
                         .WithMany()
                         .HasForeignKey("SentByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Data.Model.User", "Receiver")
                         .WithMany()
                         .HasForeignKey("SentToUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Issue");
@@ -469,7 +469,7 @@ namespace Data.Migrations
                     b.HasOne("Data.Model.User", "RemarkBy")
                         .WithMany()
                         .HasForeignKey("RemarkedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Issue");

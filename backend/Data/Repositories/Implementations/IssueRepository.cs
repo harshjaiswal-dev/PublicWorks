@@ -12,7 +12,7 @@ namespace Data.Repositories.Implementations
         {
 
         }
-        
+
         // --- Summary methods ---
         public async Task<int> CountAsync()
         {
@@ -23,5 +23,18 @@ namespace Data.Repositories.Implementations
         {
             return await _context.Issue.CountAsync(predicate);
         }
+        
+        public void Update(Issue issue)
+        {
+            // Attach the entity if it’s not being tracked
+            if (_context.Entry(issue).State == EntityState.Detached)
+            {
+                _context.Issue.Attach(issue);
+            }
+
+            // Mark the entity as modified
+            _context.Entry(issue).State = EntityState.Modified;
+        }
+
     }
 }

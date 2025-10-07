@@ -8,5 +8,6 @@ namespace Data.Repositories.Interfaces
     {
         Task<int> CountAsync();
         Task<int> CountByConditionAsync(Expression<Func<Issue, bool>> predicate);
+         void Update(Issue entity);   
     }
 }

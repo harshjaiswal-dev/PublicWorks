@@ -13,8 +13,8 @@ using NetTopologySuite.Geometries;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250929180514_InitialCreate1")]
-    partial class InitialCreate1
+    [Migration("20251005123700_Intial")]
+    partial class Intial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -445,13 +445,13 @@ namespace Data.Migrations
                     b.HasOne("Data.Model.User", "Sender")
                         .WithMany()
                         .HasForeignKey("SentByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Data.Model.User", "Receiver")
                         .WithMany()
                         .HasForeignKey("SentToUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Issue");
@@ -472,7 +472,7 @@ namespace Data.Migrations
                     b.HasOne("Data.Model.User", "RemarkBy")
                         .WithMany()
                         .HasForeignKey("RemarkedByUserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Issue");

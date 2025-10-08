@@ -5,12 +5,14 @@ namespace Business.Service.Interface
 {
     public interface IIssueService
     {
-        Task<IEnumerable<Issue>> GetIssuesAsync();
+        Task<IEnumerable<Issue>> GetIssuesAsync(int? statusId, int? priorityId);
         Task<Issue> GetIssueByIdAsync(int id);
         Task<int> SubmitIssueAsync(IssueCreateDto dto);
         // Task CreateIssueAsync(IssueDto issue);
         // Task UpdateIssueAsync(int id, IssueDto issue);
         // Task DeleteIssueAsync(int id);
         Task<IssueSummaryDto> GetIssueSummaryAsync();
+        Task<Issue?> UpdateIssueAsync(int issueId, int statusId, int priorityId, int categoryId);
+        Task<IEnumerable<IssueImageDto>> GetIssueImagesAsync(int issueId);
     }
 }

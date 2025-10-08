@@ -18,9 +18,11 @@ namespace Business.Service.Implementation
             // _geometryFactory = geometryFactory ?? throw new ArgumentNullException(nameof(geometryFactory));
         }
 
-        public async Task<IEnumerable<Issue>> GetIssuesAsync()
+        public async Task<IEnumerable<Issue>> GetIssuesAsync(int? statusId, int? priorityId)
         {
-            return await _unitOfWork.IssueRepository.GetAllAsync();
+            return await _unitOfWork.IssueRepository.GetAllByConditionAsync(i =>
+                (!statusId.HasValue || i.StatusId == statusId) &&
+                (!priorityId.HasValue || i.PriorityId == priorityId));
         }
 
         public async Task<Issue> GetIssueByIdAsync(int id)
@@ -95,6 +97,7 @@ namespace Business.Service.Implementation
                 PriorityId = 1, // You can adjust or take from DTO
                 StatusId = 1    // You can adjust or take from DTO
             };
+            Console.WriteLine(issue.IssueCategoryId);
 
             await _unitOfWork.IssueRepository.AddAsync(issue);
             await _unitOfWork.SaveAsync();
@@ -168,12 +171,12 @@ namespace Business.Service.Implementation
         //     await _unitOfWork.IssueRepository.DeleteAsync(id);
         //     await _unitOfWork.SaveAsync();
         // }
-        
+
         public async Task<IssueSummaryDto> GetIssueSummaryAsync()
         {
             var total = await _unitOfWork.IssueRepository.CountAsync();
-            var pending = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 1);
-            var inProgress = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 2);
+            var pending = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 2);
+            var inProgress = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 1);
             var resolved = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 3);
             var highPriority = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.PriorityId == 3);
 
@@ -186,5 +189,43 @@ namespace Business.Service.Implementation
                 HighPriority = highPriority
             };
         }
+
+        public async Task<Issue?> UpdateIssueAsync(int issueId, int statusId, int priorityId, int categoryId)
+        {
+            // Use the repository from the UnitOfWork
+            var issue = await _unitOfWork.IssueRepository.GetByIdAsync(issueId);
+            if (issue == null) return null;
+            if (statusId != 0)
+            {
+                issue.StatusId = statusId;
+            }
+            if (priorityId != 0)
+            {
+                issue.PriorityId = priorityId;
+            }
+            if (categoryId != 0)
+            {
+                issue.IssueCategoryId = categoryId;
+            }
+
+            _unitOfWork.IssueRepository.Update(issue);
+            await _unitOfWork.SaveAsync();
+
+            return issue;
+        }
+        
+        public async Task<IEnumerable<IssueImageDto>> GetIssueImagesAsync(int issueId)
+        {
+            var images = await _unitOfWork.IssueImageRepository.GetImagesByIssueIdAsync(issueId);
+
+            return images.Select(img => new IssueImageDto
+            {
+                ImageId = img.ImageId,
+                IssueId = img.IssueId,
+                ImagePath = img.ImagePath,
+                UploadedAt = img.UploadedAt
+            });
+        }
+
     }
 }

@@ -15,7 +15,7 @@ namespace Business.Service.Implementation
             _jwtService = jwtService;
         }
 
-        public async Task<object> AdminLoginAsync(string username, string password)
+        public async Task<User> AdminLoginAsync(string username, string password)
         {
             // Check if admin exists
             var user = await _userRepo.GetByConditionAsync(u => u.Name == username && u.RoleId == 1);
@@ -26,14 +26,7 @@ namespace Business.Service.Implementation
             if (user.PasswordHash != password)
                 return null;
 
-            // Generate JWT using JwtService
-            var token = _jwtService.GenerateAccessToken(user.UserId.ToString(), user.Name, "Admin");
-
-            return new
-            {
-                user = new { username = user.Name, role = "Admin" },
-                token
-            };
+            return user;
         }
     }
 }

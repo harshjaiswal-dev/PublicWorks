@@ -2,6 +2,7 @@ using PublicWorks.API.Configuration;
 using PublicWorks.API.Middleware;
 using Serilog;
 using Newtonsoft.Json;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -27,6 +28,17 @@ builder.Services.AddDependencyInjection();
 
 // Configure JWT authentication (Bearer tokens)
 builder.Services.AddJwtAuthentication(builder.Configuration);
+
+// ✅ Add distributed cache for session
+builder.Services.AddDistributedMemoryCache();
+
+// Add session support (optional but helps for tracking user)
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(5);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
 // Configure Swagger/OpenAPI for API documentation
 builder.Services.AddSwaggerConfiguration();
@@ -68,6 +80,15 @@ if (app.Environment.IsDevelopment())
     });
 }
 
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "Assets")),
+    RequestPath = "/Assets"
+});
+
+app.UseRouting();
+
 // Serilog request logging (logs all HTTP requests)
 app.UseSerilogRequestLogging();
 
@@ -79,6 +100,8 @@ app.UseHttpsRedirection();
 
 // Enable CORS using configured policy
 app.UseCors("AllowFrontend");
+
+app.UseSession(); 
 
 // Enable authentication and authorization middleware
 // Important: Authentication must come before Authorization

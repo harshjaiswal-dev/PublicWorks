@@ -90,7 +90,7 @@ namespace Business.Service.Implementation
             //  locationPoint.SRID = 4326;
             var issue = new Issue
             {
-                ReporterUserId = 2,
+                ReporterUserId = issueDto.UserId,
                 IssueCategoryId = issueDto.CategoryId,
                 Location = new Point(issueDto.Longitude, issueDto.Latitude) { SRID = 4326 },
                 Description = issueDto.Description,
@@ -175,8 +175,8 @@ namespace Business.Service.Implementation
         public async Task<IssueSummaryDto> GetIssueSummaryAsync()
         {
             var total = await _unitOfWork.IssueRepository.CountAsync();
-            var pending = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 2);
-            var inProgress = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 1);
+            var pending = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 1);
+            var inProgress = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 2);
             var resolved = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 3);
             var highPriority = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.PriorityId == 3);
 

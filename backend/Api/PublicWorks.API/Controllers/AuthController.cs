@@ -39,7 +39,7 @@ namespace PublicWorks.API.Controllers
             });
             // Redirect to frontend with JWT as query param
         }
-        
+
         [HttpPost("adminauth")]
         public async Task<IActionResult> AdminLogin([FromBody] AdminLoginDto loginDto)
         {
@@ -52,6 +52,14 @@ namespace PublicWorks.API.Controllers
                 return Unauthorized(new { message = "Invalid username or password" });
 
             return Ok(result);
+        }
+        
+        [HttpPost("logout")]
+        public IActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+
+            return Ok(new { message = "Logout successful" });
         }
     }
 }

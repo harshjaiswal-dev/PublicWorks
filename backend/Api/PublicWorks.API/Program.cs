@@ -28,6 +28,17 @@ builder.Services.AddDependencyInjection();
 // Configure JWT authentication (Bearer tokens)
 builder.Services.AddJwtAuthentication(builder.Configuration);
 
+// ✅ Add distributed cache for session
+builder.Services.AddDistributedMemoryCache();
+
+// Add session support (optional but helps for tracking user)
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(5);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
+
 // Configure Swagger/OpenAPI for API documentation
 builder.Services.AddSwaggerConfiguration();
 
@@ -79,6 +90,8 @@ app.UseHttpsRedirection();
 
 // Enable CORS using configured policy
 app.UseCors("AllowFrontend");
+
+app.UseSession(); 
 
 // Enable authentication and authorization middleware
 // Important: Authentication must come before Authorization

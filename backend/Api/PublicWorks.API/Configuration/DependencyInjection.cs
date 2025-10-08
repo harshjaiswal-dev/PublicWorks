@@ -2,6 +2,7 @@ using Business.Service.Implementation;
 using Business.Service.Interface;
 using Data.GenericRepository;
 using Data.UnitOfWork;
+using PublicWorks.API.Helpers;
 
 namespace PublicWorks.API.Configuration
 {
@@ -23,7 +24,8 @@ namespace PublicWorks.API.Configuration
             services.AddScoped<IRemarkService, RemarkService>();     
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IStatusService, StatusService>();
-            services.AddScoped<IUserService, UserService>();  
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<UserHelper>(); 
             
             //   services.AddSingleton<GeometryFactory>(
             //     NetTopologySuite.NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326)

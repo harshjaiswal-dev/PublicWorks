@@ -11,5 +11,12 @@ namespace Data.Repositories.Implementations
         {
 
         }
+        public async Task<IEnumerable<IssueImage>> GetImagesByIssueIdAsync(int issueId)
+        {
+            return await _context.IssueImage
+                .Where(img => img.IssueId == issueId)
+                .OrderByDescending(img => img.UploadedAt)
+                .ToListAsync();
+        }
     }
 }

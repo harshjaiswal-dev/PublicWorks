@@ -21,13 +21,15 @@ namespace PublicWorks.API.Controllers
             _userHelper = userHelper;
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] int? statusId, [FromQuery] int? priorityId)
         {
-            var issues = await _service.GetIssuesAsync();
+            var issues = await _service.GetIssuesAsync(statusId, priorityId);
             return Ok(issues);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
@@ -37,7 +39,7 @@ namespace PublicWorks.API.Controllers
             return Ok(issue);
         }
 
-        [Authorize]
+        [Authorize(Roles = "User")]
         [HttpPost("submit")]
         public async Task<IActionResult> SubmitIssue([FromForm] IssueCreateDto dto)
         {
@@ -53,12 +55,46 @@ namespace PublicWorks.API.Controllers
                 IssueId = issueId
             });
         }
-        
+
+        [Authorize(Roles = "Admin")]
         [HttpGet("summary")]
         public async Task<IActionResult> GetIssueSummary()
         {
             var summary = await _service.GetIssueSummaryAsync();
             return Ok(summary);
+        }
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("update-issue/{issueId}")]
+        public async Task<IActionResult> UpdateIssue(int issueId, [FromBody] UpdateIssueDto dto)
+        {
+            try
+            {
+                // Call the service to update the status
+                var updatedIssue = await _service.UpdateIssueAsync(issueId, dto.StatusId, dto.PriorityId, dto.CategoryId);
+
+                if (updatedIssue == null)
+                    return NotFound(new { message = "Issue not found" });
+
+                return Ok(new { issueId = updatedIssue.IssueId, statusId = updatedIssue.StatusId });
+            }
+            catch (Exception ex)
+            {
+                // Optional: log the error
+                Log.Error(ex, "Error updating issue status");
+                return StatusCode(500, new { message = "Internal server error" });
+            }
+        }
+        
+        [Authorize(Roles = "Admin")]
+        [HttpGet("{issueId}/images")]
+        public async Task<IActionResult> GetIssueImages(int issueId)
+        {
+            var images = await _service.GetIssueImagesAsync(issueId);
+            if (images == null || !images.Any())
+                return NotFound(new { message = "No images found for this issue." });
+
+            return Ok(images);
         }
     }
 }

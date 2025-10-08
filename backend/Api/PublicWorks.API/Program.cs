@@ -2,6 +2,7 @@ using PublicWorks.API.Configuration;
 using PublicWorks.API.Middleware;
 using Serilog;
 using Newtonsoft.Json;
+using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -78,6 +79,15 @@ if (app.Environment.IsDevelopment())
         c.RoutePrefix = "";
     });
 }
+
+app.UseStaticFiles(new StaticFileOptions
+{
+    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "Assets")),
+    RequestPath = "/Assets"
+});
+
+app.UseRouting();
 
 // Serilog request logging (logs all HTTP requests)
 app.UseSerilogRequestLogging();

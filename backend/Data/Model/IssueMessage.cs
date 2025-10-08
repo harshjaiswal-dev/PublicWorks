@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.EntityFrameworkCore;
 
 namespace Data.Model
 {
@@ -35,6 +36,7 @@ namespace Data.Model
         /// <summary>
         /// Navigation property for the user who sent the message.
         /// </summary>
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         [ForeignKey(nameof(SentByUserId))]
         public User? Sender { get; set; } = null!;
 
@@ -47,6 +49,7 @@ namespace Data.Model
         /// <summary>
         /// Navigation property for the recipient user.
         /// </summary>
+        [DeleteBehavior(DeleteBehavior.Restrict)]
         [ForeignKey(nameof(SentToUserId))]
         public User? Receiver { get; set; } 
 

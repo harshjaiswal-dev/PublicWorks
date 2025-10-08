@@ -170,8 +170,8 @@ namespace Data
                     ActionTypeId = temp.ActionTypeId,
                     ActionDate = DateTimeOffset.UtcNow,
                     RecordId = recordId,
-                    OldValues = temp.OldValues != null ? JsonConvert.SerializeObject(temp.OldValues,jsonSettings) : string.Empty,
-                    NewValues = temp.NewValues != null ? JsonConvert.SerializeObject(temp.NewValues,jsonSettings) : string.Empty
+                    OldValues = temp.OldValues != null ? JsonConvert.SerializeObject(temp.OldValues, jsonSettings) : string.Empty,
+                    NewValues = temp.NewValues != null ? JsonConvert.SerializeObject(temp.NewValues, jsonSettings) : string.Empty
                 };
 
                 AuditTrail.Add(audit);
@@ -180,5 +180,29 @@ namespace Data
             // Save audit logs in same transaction
             base.SaveChanges();
         }
+        
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<IssueMessage>()
+                .HasOne(m => m.Sender)
+                .WithMany()
+                .HasForeignKey(m => m.SentByUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<IssueMessage>()
+                .HasOne(m => m.Receiver)
+                .WithMany()
+                .HasForeignKey(m => m.SentToUserId)
+                .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<IssueMessage>()
+                .HasOne(m => m.Issue)
+                .WithMany()
+                .HasForeignKey(m => m.IssueId)
+                .OnDelete(DeleteBehavior.Cascade); // this one is safe
+        }
+
     }
 }

@@ -32,7 +32,6 @@ namespace Business.Service.Implementation
                 ["redirect_uri"] = _config["Authentication:Google:RedirectUri"],
                 ["grant_type"] = "authorization_code"
             };
-            Console.WriteLine("Values: " + string.Join(", ", values.Select(kvp => $"{kvp.Key}={kvp.Value}")));
 
             var response = await client.PostAsync(
                 "https://oauth2.googleapis.com/token",

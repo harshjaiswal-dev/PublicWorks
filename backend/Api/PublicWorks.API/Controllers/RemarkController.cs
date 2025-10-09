@@ -30,6 +30,12 @@ namespace PublicWorks.API.Controllers
                 return NotFound();
             return Ok(remark);
         }
+         [HttpGet("issue/{issueId}")]
+        public async Task<IActionResult> GetByIssueId(int issueId)
+        {
+            var remarks = await _service.GetRemarksbyIssueIdAsync(issueId);
+            return Ok(remarks);
+        }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] IssueRemarkDto remark)

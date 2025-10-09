@@ -10,12 +10,10 @@ namespace Business.Service.Implementation
     public class IssueService : IIssueService
     {
         private readonly IUnitOfWork _unitOfWork;
-        //private readonly GeometryFactory _geometryFactory;
 
-        public IssueService(IUnitOfWork unitOfWork/*, GeometryFactory geometryFactory*/)
+        public IssueService(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            // _geometryFactory = geometryFactory ?? throw new ArgumentNullException(nameof(geometryFactory));
         }
 
         public async Task<IEnumerable<Issue>> GetIssuesAsync(int? statusId, int? priorityId)
@@ -30,64 +28,10 @@ namespace Business.Service.Implementation
             return await _unitOfWork.IssueRepository.GetByIdAsync(id);
         }
 
-        //         public async Task<int> SubmitIssueAsync(IssueCreateDto issueDto)
-        //         {
-        //             if (issueDto == null) throw new ArgumentNullException(nameof(issueDto));
-        //  var locationPoint = _geometryFactory.CreatePoint(new Coordinate(issueDto.Longitude, issueDto.Latitude));
-        //             int issueId = 0;
-        //             var uploadedFilePaths = new List<string>();
-
-        //             // await using var transaction = await _dbContext.Database.BeginTransactionAsync();
-        //             // try
-        //             // {
-        //                 // Create Issue
-        //                 var issue = new Issue
-        //                 {
-        //                     UserId = issueDto.UserId,
-        //                     CategoryId = issueDto.CategoryId,
-        //                  Location = locationPoint,
-        //                     Description = issueDto.Description,
-        //                     PriorityId = 1,
-        //                     StatusId = 1
-        //                 };
-
-        //                 await _unitOfWork.IssueRepository.AddAsync(issue);
-        //                 await _unitOfWork.SaveAsync();
-        //                 issueId = issue.IssueId;
-
-        //                 // Save Images
-        //                 if (issueDto.Images != null && issueDto.Images.Count > 0)
-        //                 {
-        //                     foreach (var imageFile in issueDto.Images)
-        //                     {
-        //                         string relativePath = await FileHelper.SaveFileAsync(imageFile, issueDto.UserId, issueId);
-        //                         uploadedFilePaths.Add(relativePath);
-
-        //                         var image = new Image
-        //                         {
-        //                             IssueId = issueId,
-        //                             ImagePath = relativePath,
-        //                             UploadedAt = DateTimeOffset.UtcNow
-        //                         };
-
-        //                         await _unitOfWork.ImageRepository.AddAsync(image);
-        //                     }
-
-        //                     await _unitOfWork.SaveAsync();
-        //                 }
-
-        //                 // Commit Transaction
-        //                 // await transaction.CommitAsync();
-        //                 return issueId;
-        //         }
-
         public async Task<int> SubmitIssueAsync(IssueCreateDto issueDto)
         {
             if (issueDto == null) throw new ArgumentNullException(nameof(issueDto));
 
-            // Create geography Point from Longitude and Latitude (longitude first!)
-            // var locationPoint = _geometryFactory.CreatePoint(new Coordinate(issueDto.Longitude, issueDto.Latitude));
-            //  locationPoint.SRID = 4326;
             var issue = new Issue
             {
                 ReporterUserId = issueDto.UserId,
@@ -97,7 +41,6 @@ namespace Business.Service.Implementation
                 PriorityId = 1, // You can adjust or take from DTO
                 StatusId = 1    // You can adjust or take from DTO
             };
-            Console.WriteLine(issue.IssueCategoryId);
 
             await _unitOfWork.IssueRepository.AddAsync(issue);
             await _unitOfWork.SaveAsync();
@@ -111,7 +54,8 @@ namespace Business.Service.Implementation
 
                 foreach (var imageFile in issueDto.Images)
                 {
-                    string relativePath = await FileHelper.SaveFileAsync(imageFile, issueDto.UserId, issueId);
+                    //string relativePath = await FileHelper.SaveFileAsync(imageFile, issueDto.UserId, issueId);
+                    string relativePath = await FileHelper.SaveFileAsync(imageFile);
                     uploadedFilePaths.Add(relativePath);
 
                     var image = new IssueImage

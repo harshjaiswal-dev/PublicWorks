@@ -24,8 +24,9 @@ namespace Business.Service.Implementation
             return await _unitOfWork.IssueRemarkRepository.GetByIdAsync(id);
         }
 
+
         public async Task CreateRemarkAsync(IssueRemarkDto dto)
-        {
+        {             
             var remark = new IssueRemark()
             {
                 RemarkId = dto.RemarkId,

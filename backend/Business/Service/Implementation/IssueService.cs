@@ -175,8 +175,8 @@ namespace Business.Service.Implementation
         public async Task<IssueSummaryDto> GetIssueSummaryAsync()
         {
             var total = await _unitOfWork.IssueRepository.CountAsync();
-            var pending = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 2);
-            var inProgress = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 1);
+            var pending = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 1);
+            var inProgress = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 2);
             var resolved = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.StatusId == 3);
             var highPriority = await _unitOfWork.IssueRepository.CountByConditionAsync(i => i.PriorityId == 3);
 

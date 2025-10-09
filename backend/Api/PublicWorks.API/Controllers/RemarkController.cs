@@ -2,6 +2,7 @@ using Business.DTOs;
 using Business.Service.Interface;
 using Data.Model;
 using Microsoft.AspNetCore.Mvc;
+using PublicWorks.API.Helpers;
 
 namespace PublicWorks.API.Controllers
 {
@@ -10,9 +11,11 @@ namespace PublicWorks.API.Controllers
     public class RemarkController : ControllerBase
     {
         private readonly IRemarkService _service;
-        public RemarkController(IRemarkService service)
+        private readonly UserHelper _userHelper;
+        public RemarkController(IRemarkService service, UserHelper userHelper)
         {
             _service = service;
+            _userHelper = userHelper;
         }
 
         // [HttpGet]
@@ -30,16 +33,12 @@ namespace PublicWorks.API.Controllers
                 return NotFound();
             return Ok(remark);
         }
-         [HttpGet("issue/{issueId}")]
-        public async Task<IActionResult> GetByIssueId(int issueId)
-        {
-            var remarks = await _service.GetRemarksbyIssueIdAsync(issueId);
-            return Ok(remarks);
-        }
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] IssueRemarkDto remark)
         {
+            remark.RemarkedByUserId = _userHelper.GetLoggedInUserId() ?? 0;
+
             await _service.CreateRemarkAsync(remark);
             return CreatedAtAction(nameof(GetById), new { id = remark.RemarkId }, remark);
         }
@@ -61,5 +60,11 @@ namespace PublicWorks.API.Controllers
         //     return NoContent();
         // }
 
+        [HttpGet("issue/{issueId}")]
+        public async Task<IActionResult> GetByIssueId(int issueId)
+        {
+            var remarks = await _service.GetRemarksbyIssueIdAsync(issueId);
+            return Ok(remarks);
+        }
     }
 }

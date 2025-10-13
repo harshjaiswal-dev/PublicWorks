@@ -26,6 +26,15 @@ namespace Business.Service.Implementation
 
         public async Task CreateMessageAsync(IssueMessageDto dto)
         {
+            // Validate sender exists
+            var senderExists = await _unitOfWork.UserRepository.ExistsAsync(dto.SenderId);
+            if (!senderExists)
+                throw new Exception($"Sender with ID {dto.SenderId} does not exist.");
+
+            // Validate recipient exists
+            var recipientExists = await _unitOfWork.UserRepository.ExistsAsync(dto.RecipientId);
+            if (!recipientExists)
+                throw new Exception($"Recipient with ID {dto.RecipientId} does not exist.");
             var message = new IssueMessage()
             {
                 MessageId = dto.MessageId,
@@ -38,7 +47,7 @@ namespace Business.Service.Implementation
             };
 
             await _unitOfWork.IssueMessageRepository.AddAsync(message);
-            await _unitOfWork.SaveAsync();
+            // await _unitOfWork.SaveAsync();      
         }
 
         // public async Task UpdateMessageAsync(int id, MessageDto dto)

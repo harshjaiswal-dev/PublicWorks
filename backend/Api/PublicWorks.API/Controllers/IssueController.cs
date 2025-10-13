@@ -21,7 +21,7 @@ namespace PublicWorks.API.Controllers
             _userHelper = userHelper;
         }
 
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] int? statusId, [FromQuery] int? priorityId)
         {
@@ -56,7 +56,7 @@ namespace PublicWorks.API.Controllers
             });
         }
 
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         [HttpGet("summary")]
         public async Task<IActionResult> GetIssueSummary()
         {

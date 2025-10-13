@@ -152,7 +152,7 @@ namespace Data
 
                 int userId;
 
-                int userId;
+              
 
                 if (pkValue == null || !int.TryParse(pkValue.ToString(), out int recordId) || recordId <= 0)
                     continue; // Only log if we have a valid, positive RecordId
@@ -181,7 +181,7 @@ namespace Data
 
                 var audit = new AuditTrail
                 {
-                    UserId = userId,
+                   
                     UserId = userId,
                     EntityName = temp.EntityName,
                     ActionTypeId = temp.ActionTypeId,

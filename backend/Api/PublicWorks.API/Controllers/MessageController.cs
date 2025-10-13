@@ -30,12 +30,22 @@ namespace PublicWorks.API.Controllers
             return Ok(message);
         }
 
+        // [HttpPost]
+        // public async Task<IActionResult> Create([FromBody] IssueMessageDto message)
+        // {
+        //     await _service.CreateMessageAsync(message);
+        //     return CreatedAtAction(nameof(GetById), new { id = message.MessageId }, message);
+        // }
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] IssueMessageDto message)
         {
+            if (message == null)
+                return BadRequest("Message cannot be null.");
+
             await _service.CreateMessageAsync(message);
             return CreatedAtAction(nameof(GetById), new { id = message.MessageId }, message);
         }
+
 
         // [HttpPut("{id}")]
         // public async Task<IActionResult> Update(int id, [FromBody] MessageDto message)

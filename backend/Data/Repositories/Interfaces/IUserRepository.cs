@@ -7,5 +7,6 @@ namespace Data.Repositories.Interfaces
     {
         Task<IEnumerable<User>> GetUsersByRoleIdAsync(int roleId);
         Task<IEnumerable<User>> GetUsersByRoleNameAsync(string roleName);
+         Task<bool> ExistsAsync(int userId);
     }
 }

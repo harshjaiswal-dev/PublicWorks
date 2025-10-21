@@ -50,6 +50,11 @@ namespace Business.Service.Implementation
             // await _unitOfWork.SaveAsync();      
         }
 
+        public async Task<IEnumerable<IssueMessage>> GetMessagesbyIssueIdAsync(int issueId)
+        {
+            return await _unitOfWork.IssueMessageRepository.GetMessagesbyIssueIdAsync(issueId);
+        }
+
         // public async Task UpdateMessageAsync(int id, MessageDto dto)
         // {
         //     var message = new Message()

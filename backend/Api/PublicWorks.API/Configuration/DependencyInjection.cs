@@ -3,6 +3,8 @@ using Business.Service.Interface;
 using Data.GenericRepository;
 using Data.UnitOfWork;
 using PublicWorks.API.Helpers;
+using Business.Service.Implementation;
+using PublicWorks.API.Services; // Add this if CacheService is in this namespace
 
 namespace PublicWorks.API.Configuration
 {
@@ -25,7 +27,10 @@ namespace PublicWorks.API.Configuration
             services.AddScoped<IRoleService, RoleService>();
             services.AddScoped<IStatusService, StatusService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<UserHelper>(); 
+            services.AddScoped<UserHelper>();
+            services.AddScoped<ICacheService, CacheService>();
+            
+
             
             //   services.AddSingleton<GeometryFactory>(
             //     NetTopologySuite.NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326)

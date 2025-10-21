@@ -46,6 +46,13 @@ namespace PublicWorks.API.Controllers
             return CreatedAtAction(nameof(GetById), new { id = message.MessageId }, message);
         }
 
+        [HttpGet("issue/{issueId}")]
+        public async Task<IActionResult> GetByIssueId(int issueId)
+        {
+            var remarks = await _service.GetMessagesbyIssueIdAsync(issueId);
+            return Ok(remarks);
+        }
+
 
         // [HttpPut("{id}")]
         // public async Task<IActionResult> Update(int id, [FromBody] MessageDto message)

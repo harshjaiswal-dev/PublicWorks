@@ -1,0 +1,7 @@
+RoleId,Name,Description,Scenario
+1,Admin,Administrator role,ValidRole
+2,User,Regular user role,ValidRole
+3,Guest,Guest role,ValidRole
+4,,No name role,MissingName
+5,FutureRole,Role for future,FutureDate
+6,DeletedRole,Deleted role,Deleted

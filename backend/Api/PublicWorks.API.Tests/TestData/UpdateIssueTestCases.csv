@@ -1,0 +1,9 @@
+IssueId,StatusId,PriorityId,CategoryId,Exists,ThrowsException,ExpectedStatusCode,ExpectedSuccess,ExpectedIssueId,ExpectedStatusId,ExpectedMessage
+1,2,3,5,true,false,200,true,1,2,Issue updated successfully
+2,0,4,0,true,false,200,true,2,1,Issue updated successfully
+3,0,0,0,true,false,200,true,3,5,Issue updated successfully
+4,1,1,2,false,false,404,false,0,0,Issue not found
+5,3,2,4,false,true,500,false,0,0,Internal server error
+6,4,0,0,true,false,200,true,6,4,Issue updated successfully
+7,0,0,0,false,true,500,false,0,0,Internal server error
+8,0,0,7,true,false,200,true,8,9,Issue updated successfully

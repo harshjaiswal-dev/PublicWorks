@@ -1,0 +1,11 @@
+UserId,GoogleUserId,Name,PasswordHash,PhoneNumber,ProfilePicture,RoleId,LastLoginAt,CreatedAt,IsActive,Email,ClaimUserId,ClaimName
+1,,John Doe,,9876543210,,1,2024-10-01,2024-01-01,true,john@example.com,1,John
+2,,Jane Smith,,9123456789,,2,2024-09-20,2024-02-12,true,jane@example.com,2,Jane
+3,,Test User,,9998887777,,3,,,false,test@example.com,3,Test
+4,g123,Google User,ghk345,9001122334,/img/google.png,2,2024-08-01,2024-01-15,true,google@example.com,4,Google
+5,,Null Name,abc123,9012345678,,1,2024-07-10,2024-02-10,false,null@example.com,5,NullName
+6,,Future User,pass123,9123456780,,1,2025-12-31,2025-12-01,true,future@example.com,7,FutureDates
+7,,Inactive User,pass456,9876501234,,2,2024-01-01,2024-01-01,false,inactive@example.com,8,Inactive
+8,,Special Char,pass@123!,9123000000,,1,2024-05-01,2024-05-01,true,special@example.com,9,SpecialChar
+9,,No Email User,pass999,9998887777,,3,2024-06-01,2024-03-01,true,,10,NoEmail
+

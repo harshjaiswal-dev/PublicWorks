@@ -1,0 +1,5 @@
+Scenario,RemarkId,IssueId,RemarkText
+Single,1,101,"Single remark for issue 101"
+Multiple,1,101,"First remark for issue 101"
+Multiple,2,101,"Second remark for issue 101"
+Empty,,,   # No remark scenario

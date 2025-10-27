@@ -1,0 +1,6 @@
+Scenario,Username,Password,Role,Code,ExpectedStatus
+ValidAdmin,admin1,pass123,Admin,,200
+InvalidAdmin,admin2,wrongpass,Admin,,401
+ValidUser,user1,pass123,User,,200
+GoogleSuccess,,, ,google-code-123,200
+GoogleFailure,,, ,invalid-code,401

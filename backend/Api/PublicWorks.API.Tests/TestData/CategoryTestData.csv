@@ -1,0 +1,5 @@
+Scenario,Id,ExpectedCategoriesJson,ExpectedCategoryJson
+GetAll,0,"[{""CategoryId"":1,""CategoryName"":""Roads""},{""CategoryId"":2,""CategoryName"":""Water""}]",
+GetAllEmpty,0,"[]",
+GetByIdValid,1,,"{""CategoryId"":1,""CategoryName"":""Roads""}"
+GetByIdInvalid,99,,

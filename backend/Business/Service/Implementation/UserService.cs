@@ -2,6 +2,7 @@ using Business.DTOs;
 using Business.Service.Interface;
 using Data.Model;
 using Data.UnitOfWork;
+using Microsoft.AspNetCore.Identity;
 
 namespace Business.Service.Implementation
 {
@@ -26,12 +27,13 @@ namespace Business.Service.Implementation
 
         public async Task CreateUserAsync(UserDto dto)
         {
+            var passwordHasher = new PasswordHasher<User>();
             var user = new User()
             {
                 UserId = dto.UserId,
                 GoogleUserId = dto.GoogleUserId,
                 Name = dto.Name,
-                PasswordHash = dto.PasswordHash,
+               // PasswordHash = dto.PasswordHash,
                 PhoneNumber = dto.PhoneNumber,
                 ProfilePicture = dto.ProfilePicture,
                 RoleId = dto.RoleId,
@@ -40,7 +42,7 @@ namespace Business.Service.Implementation
                 IsActive = dto.IsActive,
                 Email=dto.Email
             };
-
+            user.PasswordHash = passwordHasher.HashPassword(user, dto.PasswordHash);
             await _unitOfWork.UserRepository.AddAsync(user);
             await _unitOfWork.SaveAsync();
         }

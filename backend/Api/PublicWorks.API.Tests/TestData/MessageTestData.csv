@@ -1,0 +1,6 @@
+Scenario,Id,ExpectedMessagesJson,ExpectedMessageJson
+GetAll,0,"[{""MessageId"":1,""IssueId"":101,""SenderId"":1,""RecipientId"":2,""Subject"":""Test Subject 1"",""Body"":""Test Body 1"",""SentAt"":""2025-10-26T12:00:00""},
+                {""MessageId"":2,""IssueId"":102,""SenderId"":2,""RecipientId"":1,""Subject"":""Test Subject 2"",""Body"":""Test Body 2"",""SentAt"":""2025-10-26T12:30:00""}]",
+GetAllEmpty,0,"[]",
+GetByIdValid,1,,"{""MessageId"":1,""IssueId"":101,""SenderId"":1,""RecipientId"":2,""Subject"":""Test Subject 1"",""Body"":""Test Body 1"",""SentAt"":""2025-10-26T12:00:00""}",
+GetByIdInvalid,99,,

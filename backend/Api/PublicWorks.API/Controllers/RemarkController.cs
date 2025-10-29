@@ -66,12 +66,5 @@ namespace PublicWorks.API.Controllers
         //     await _service.DeleteRemarkAsync(id);
         //     return NoContent();
         // }
-
-        [HttpGet("issue/{issueId}")]
-        public async Task<IActionResult> GetByIssueId(int issueId)
-        {
-            var remarks = await _service.GetRemarksbyIssueIdAsync(issueId);
-            return Ok(remarks);
-        }
     }
 }

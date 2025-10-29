@@ -3,7 +3,7 @@ using System.Security.Claims;
 
 namespace PublicWorks.API.Helpers
 {
-    public class UserHelper
+    public class UserHelper : IUserHelper
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -23,6 +23,11 @@ namespace PublicWorks.API.Helpers
                 return userId;
 
             return null;
+        }
+
+        public string? GetLoggedInUserRole()
+        {
+            return _httpContextAccessor.HttpContext?.User?.FindFirst(ClaimTypes.Role)?.Value;
         }
     }
 }

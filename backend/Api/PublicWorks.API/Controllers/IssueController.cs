@@ -1,7 +1,5 @@
-using System.IdentityModel.Tokens.Jwt;
 using Business.DTOs;
 using Business.Service.Interface;
-using Data.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PublicWorks.API.Helpers;
@@ -13,9 +11,9 @@ namespace PublicWorks.API.Controllers
     [Route("api/[controller]")]
     public class IssueController : ControllerBase
     {
-        private readonly UserHelper _userHelper;
+        private readonly IUserHelper _userHelper;
         private readonly IIssueService _service;
-        public IssueController(IIssueService service, UserHelper userHelper)
+        public IssueController(IIssueService service, IUserHelper userHelper)
         {
             _service = service;
             _userHelper = userHelper;
@@ -48,7 +46,7 @@ namespace PublicWorks.API.Controllers
 
             int issueId = await _service.SubmitIssueAsync(dto);
 
-            return Ok(new
+            return Ok(new SubmitIssueResponse
             {
                 Success = true,
                 Message = "Issue submitted successfully",
@@ -74,9 +72,10 @@ namespace PublicWorks.API.Controllers
                 var updatedIssue = await _service.UpdateIssueAsync(issueId, dto.StatusId, dto.PriorityId, dto.CategoryId);
 
                 if (updatedIssue == null)
-                    return NotFound(new { message = "Issue not found" });
+                    return NotFound(new UpdateIssueResponse 
+                    { Message = "Issue not found" });
 
-                return Ok(new { issueId = updatedIssue.IssueId, statusId = updatedIssue.StatusId });
+                return Ok(new  UpdateIssueResponse { IssueId = updatedIssue.IssueId, StatusId = updatedIssue.StatusId });
             }
             catch (Exception ex)
             {
@@ -86,13 +85,13 @@ namespace PublicWorks.API.Controllers
             }
         }
         
-        // [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpGet("{issueId}/images")]
         public async Task<IActionResult> GetIssueImages(int issueId)
         {
             var images = await _service.GetIssueImagesAsync(issueId);
             if (images == null || !images.Any())
-                return NotFound(new { message = "No images found for this issue." });
+                return NotFound(new IssueImagesResponse { Message = "No images found for this issue.",Data=null });
 
             return Ok(images);
         }

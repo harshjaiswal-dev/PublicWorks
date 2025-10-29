@@ -1,9 +1,6 @@
 using System.Diagnostics;
-using Business.DTOs;
 using Business.Service.Interface;
-using Data.Model;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Caching.Memory;
 
 namespace PublicWorks.API.Controllers
 {

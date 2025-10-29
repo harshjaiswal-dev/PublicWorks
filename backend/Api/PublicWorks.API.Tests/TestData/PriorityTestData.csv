@@ -1,0 +1,6 @@
+Scenario,Id,ExpectedPrioritiesJson,ExpectedPriorityJson
+GetAll,0,"[{""PriorityId"":1,""Name"":""High"",""Description"":""High priority issue""},
+          {""PriorityId"":2,""Name"":""Medium"",""Description"":""Medium priority issue""}]",
+GetAllEmpty,0,"[]",
+GetByIdValid,1,,"{""PriorityId"":1,""Name"":""High"",""Description"":""High priority issue""}",
+GetByIdInvalid,99,,

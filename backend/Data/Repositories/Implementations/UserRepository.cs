@@ -20,7 +20,6 @@ namespace Data.Repositories.Implementations
                 .Where(u => u.RoleId == roleId)
                 .ToListAsync();
         }
-
         public async Task<IEnumerable<User>> GetUsersByRoleNameAsync(string roleName)
         {
             return await _context.User

@@ -47,7 +47,6 @@ namespace PublicWorks.API.Controllers
                 return BadRequest(ModelState);
 
             var user = await _authService.AdminLoginAsync(loginDto.Username, loginDto.Password);
-
             if (user == null)
                 return Unauthorized(new { message = "Invalid username or password" });
 

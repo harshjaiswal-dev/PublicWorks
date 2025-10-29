@@ -60,6 +60,8 @@ builder.Services.AddControllers()
 // Register HttpContextAccessor to access HTTP context in services
 builder.Services.AddHttpContextAccessor();
 
+builder.Services.AddMemoryCache();
+
 // -------------------------
 // Build the App
 // -------------------------

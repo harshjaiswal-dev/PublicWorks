@@ -9,7 +9,13 @@ namespace Data.Repositories.Implementations
     {
         public IssueMessageRepository(AppDbContext context) : base(context)
         {
-            
+
+        }
+        public async Task<IEnumerable<IssueMessage>> GetMessagesbyIssueIdAsync(int issueId)
+        {
+            return await _context.IssueMessage
+                .Where(u => u.IssueId == issueId)
+                .ToListAsync();
         }
         
     }

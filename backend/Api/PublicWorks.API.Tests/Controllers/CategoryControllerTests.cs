@@ -17,12 +17,14 @@ namespace PublicWorks.API.Tests
     public class CategoryControllerTests
     {
         private readonly Mock<ICategoryService> _mockService;
+        private readonly Mock<ICacheService> _mockCacheService;
         private readonly CategoryController _controller;
 
         public CategoryControllerTests()
         {
             _mockService = new Mock<ICategoryService>();
-            _controller = new CategoryController(_mockService.Object);
+            _mockCacheService = new Mock<ICacheService>();
+            _controller = new CategoryController(_mockService.Object, _mockCacheService.Object );
         }
 
         #region CSV Loader

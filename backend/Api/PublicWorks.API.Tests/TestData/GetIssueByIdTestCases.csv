@@ -1,0 +1,6 @@
+Id,Scenario,StatusId,PriorityId,CategoryId,Description
+1,Valid,2,3,4,Test issue 1
+2,Valid,1,2,3,Test issue 2
+3,NotFound,0,0,0,
+0,BadRequest,0,0,0,
+-1,BadRequest,0,0,0,

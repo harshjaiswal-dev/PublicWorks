@@ -1,0 +1,5 @@
+Scenario,IssueId,ImageId,ImagePath,UploadedAt
+Valid,1,101,/uploads/img1.jpg,2025-01-01T10:00:00
+Valid,1,102,/uploads/img2.jpg,2025-01-02T12:00:00
+Empty,2,,, 
+NotFound,3,,, 

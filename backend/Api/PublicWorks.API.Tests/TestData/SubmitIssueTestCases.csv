@@ -1,0 +1,4 @@
+UserId,CategoryId,Latitude,Longitude,Description,ExpectedIssueId,ExpectedSuccess
+101,1,23.456,78.123,"Pothole near school",1001,true
+102,2,20.000,75.000,"Streetlight not working",1002,true
+103,3,0,0,"Empty test case",0,false

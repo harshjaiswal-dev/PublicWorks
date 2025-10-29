@@ -2,7 +2,7 @@ using Business.Service.Interface;
 using Microsoft.Extensions.Caching.Memory;
 using System.Diagnostics;
 
-namespace PublicWorks.API.Services
+namespace Business.Service.Implementation
 {
     public class CacheService : ICacheService
     {

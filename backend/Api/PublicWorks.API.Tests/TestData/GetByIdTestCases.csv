@@ -1,0 +1,6 @@
+IssueId,RemarkId,RemarkText,Scenario
+101,1,"First remark for issue 101",Valid
+101,2,"Second remark for issue 101",Valid
+102,3,"Only remark for issue 102",Valid
+103,, ,NotFound
+-1,, ,BadRequest

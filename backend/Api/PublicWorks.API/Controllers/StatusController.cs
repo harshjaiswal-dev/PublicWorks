@@ -1,6 +1,4 @@
-using Business.DTOs;
 using Business.Service.Interface;
-using Data.Model;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

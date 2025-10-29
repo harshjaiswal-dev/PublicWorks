@@ -1,0 +1,5 @@
+Scenario,Id,ExpectedStatusesJson,ExpectedStatusJson
+GetAll,0,"[{""StatusId"":1,""Name"":""Open""},{""StatusId"":2,""Name"":""Closed""}]",
+GetAllEmpty,0,"[]",
+GetByIdValid,1,,"{""StatusId"":1,""Name"":""Open""}",
+GetByIdInvalid,99,,

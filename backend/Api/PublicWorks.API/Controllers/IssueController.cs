@@ -86,7 +86,7 @@ namespace PublicWorks.API.Controllers
             }
         }
         
-        [Authorize(Roles = "Admin")]
+        // [Authorize(Roles = "Admin")]
         [HttpGet("{issueId}/images")]
         public async Task<IActionResult> GetIssueImages(int issueId)
         {

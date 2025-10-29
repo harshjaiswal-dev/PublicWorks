@@ -10,6 +10,6 @@ namespace Business.Service.Interface
         Task CreateMessageAsync(IssueMessageDto message);
         // Task UpdateMessageAsync(int id, MessageDto message);
         // Task DeleteMessageAsync(int id);
-        //Task<IEnumerable<IssueMessage>> GetMessagebyIssueIdAsync(int issueId);
+        Task<IEnumerable<IssueMessage>> GetMessagesbyIssueIdAsync(int issueId);
     }
 }

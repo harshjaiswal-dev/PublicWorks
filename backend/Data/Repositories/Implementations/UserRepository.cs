@@ -20,7 +20,7 @@ namespace Data.Repositories.Implementations
                 .Where(u => u.RoleId == roleId)
                 .ToListAsync();
         }
- 
+
         public async Task<IEnumerable<User>> GetUsersByRoleNameAsync(string roleName)
         {
             return await _context.User
@@ -28,5 +28,11 @@ namespace Data.Repositories.Implementations
                 .Where(u => u.Name == roleName)
                 .ToListAsync();
         }
+        
+        public async Task<bool> ExistsAsync(int userId)
+        {
+            return await _dbSet.AnyAsync(u => u.UserId == userId);
+        }
+
     }
 }

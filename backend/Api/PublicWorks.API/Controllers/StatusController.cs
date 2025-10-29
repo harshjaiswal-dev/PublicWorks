@@ -1,6 +1,7 @@
 using Business.DTOs;
 using Business.Service.Interface;
 using Data.Model;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace PublicWorks.API.Controllers
@@ -14,8 +15,8 @@ namespace PublicWorks.API.Controllers
         {
             _service = service;
         }
-
-        [HttpGet]
+        [Authorize (Roles="Admin")]
+        [HttpGet]   
         public async Task<IActionResult> GetAll()
         {
             var remarks = await _service.GetStatusAsync();

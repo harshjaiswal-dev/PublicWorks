@@ -1,7 +1,9 @@
+using System.Diagnostics;
 using Business.DTOs;
 using Business.Service.Interface;
 using Data.Model;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 
 namespace PublicWorks.API.Controllers
 {
@@ -10,16 +12,42 @@ namespace PublicWorks.API.Controllers
     public class CategoryController : ControllerBase
     {
         private readonly ICategoryService _service;
-        public CategoryController(ICategoryService service)
+        private readonly ICacheService _cacheService;
+        public CategoryController(ICategoryService service, ICacheService cacheService)
         {
+            _cacheService = cacheService;
             _service = service;
         }
+
+        // [HttpGet]
+        // public async Task<IActionResult> GetAll()
+        // {
+        //     var stopwatch = new Stopwatch();
+        //     stopwatch.Start();
+
+        //     var remarks = await _service.GetCategoryAsync();
+        //     stopwatch.Stop();
+
+        //     Console.WriteLine($"[GetAll] Time taken (no caching): {stopwatch.ElapsedMilliseconds} ms");
+
+        //     return Ok(remarks);
+        // }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var remarks = await _service.GetCategoryAsync();
-            return Ok(remarks);
+            var stopwatch = Stopwatch.StartNew();
+            var cacheKey = "categoryList";
+
+            var categories = await _cacheService.GetOrAddAsync(
+                cacheKey,
+                async () => await _service.GetCategoryAsync(),
+                TimeSpan.FromMinutes(30)
+            );
+            stopwatch.Stop(); 
+            Console.WriteLine($"[CategoryController] Total API time: {stopwatch.ElapsedMilliseconds} ms");
+
+            return Ok(categories);
         }
 
         [HttpGet("{id}")]
